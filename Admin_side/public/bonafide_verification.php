@@ -301,7 +301,9 @@ if (isset($_POST['approve'])) {
                   <div class="flex-none w-2/3 max-w-full px-3">
                     <div>
                       <p class="mb-0 font-sans text-md font-semibold leading-normal uppercase">Pending Verify</p>
-                      <h5 class="mb-2 font-bold text-2xl">50</h5>
+                      <h5 class="mb-2 font-bold text-2xl">
+                        <?php echo $bonafide->pending_approval(); ?>
+                      </h5>
                     </div>
                   </div>
                   <div class="px-3 text-right basis-1/3">
@@ -323,7 +325,9 @@ if (isset($_POST['approve'])) {
                   <div class="flex-none w-2/3 max-w-full px-3">
                     <div>
                       <p class="mb-0 font-sans text-md font-semibold leading-normal uppercase">Pending Approval</p>
-                      <h5 class="mb-2 font-bold text-2xl">50</h5>
+                      <h5 class="mb-2 font-bold text-2xl">
+                        <?php echo $bonafide->pending_approval(); ?>
+                      </h5>
                     </div>
                   </div>
                   <div class="px-3 text-right basis-1/3">
@@ -345,7 +349,9 @@ if (isset($_POST['approve'])) {
                   <div class="flex-none w-2/3 max-w-full px-3">
                     <div>
                       <p class="mb-0 font-sans text-md font-semibold leading-normal uppercase">Verify Complete</p>
-                      <h5 class="mb-2 font-bold text-2xl">50</h5>
+                      <h5 class="mb-2 font-bold text-2xl">
+                        <?php echo $bonafide->complete_verify(); ?>
+                      </h5>
                     </div>
                   </div>
                   <div class="px-3 text-right basis-1/3">
@@ -367,7 +373,9 @@ if (isset($_POST['approve'])) {
                   <div class="flex-none w-2/3 max-w-full px-3">
                     <div>
                       <p class="mb-0 font-sans text-md font-semibold leading-normal uppercase">Deliver Complete</p>
-                      <h5 class="mb-2 font-bold text-2xl">50</h5>
+                      <h5 class="mb-2 font-bold text-2xl">
+                        <?php echo $bonafide->complete_deliver(); ?>
+                      </h5>
                     </div>
                   </div>
                   <div class="px-3 text-right basis-1/3">
@@ -446,7 +454,7 @@ if (isset($_POST['approve'])) {
                   <?php echo $row['mobile_no']; ?>
                 </p>
               </div>
-              <?php if ($_SESSION['type'] == "Head" || $_SESSION['type'] == "Clerk" && $row['delever_flag'] == 1) { ?>
+              <?php if ($_SESSION['type'] == "Head" && $row['delever_flag'] == 1 || $_SESSION['type'] == "Clerk" && $row['delever_flag'] == 1) { ?>
                 <div class="col-span-1">
                   <h1 class="text-lg font-medium">Pickup Date</h1>
                   <p class="text-lg">

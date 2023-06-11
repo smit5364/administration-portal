@@ -2,6 +2,13 @@
 session_start();
 include('private/connection.php');
 require('fpdf/fpdf.php');
+require 'vendor/autoload.php';
+
+//Import PHPMailer classes into the global namespace
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+
 
 
 class Bonafide
@@ -27,6 +34,7 @@ class Bonafide
         $con = connect();
         $query = "UPDATE `bonafide` SET `verify_flag`='1',`verify_by`='$_SESSION[name]' WHERE id = '$id'";
         mysqli_query($con, $query);
+        header('location:bonafide');
     }
 
     function approve_verify($id)
@@ -34,6 +42,8 @@ class Bonafide
         $con = connect();
         $query = "UPDATE `bonafide` SET `approve_flag`='1',`approve_by`='$_SESSION[name]' WHERE id = '$id'";
         mysqli_query($con, $query);
+        $this->sendmail($id);
+        header('location:bonafide');
     }
 
     function deliver_verify($id)
@@ -270,6 +280,111 @@ class Bonafide
         $pdf->Cell(40, 5, "BMCCA, BMU.", 0, 1, 'L');
         $pdf->Output("I", "bonafide.pdf");
     }
+
+    function sendmail($id)
+    {
+        $today = new DateTime();
+
+        $twoDaysLater = $today->modify('+2 day');
+        if ($twoDaysLater->format('N') == 7) {
+            $twoDaysLater->modify('+1 day');
+        }
+
+        $pickup_date = $twoDaysLater->format('d-m-Y');
+        $con = connect();
+        $sql = "SELECT * FROM `bonafide` WHERE id = ? LIMIT 1";
+        $stmt = mysqli_prepare($con, $sql);
+
+        if ($stmt) {
+            mysqli_stmt_bind_param($stmt, "i", $id);
+            mysqli_stmt_execute($stmt);
+            $result = mysqli_stmt_get_result($stmt);
+            $row = mysqli_fetch_assoc($result);
+
+            if ($row) {
+                $name = $row['name'];
+                $email = $row['email'];
+            }
+        }
+        $mail = new PHPMailer(true);
+
+        try {
+            $mail->SMTPDebug = SMTP::DEBUG_OFF;
+            $mail->isSMTP();
+            $mail->Host = 'smtp.sendgrid.net';
+            $mail->SMTPAuth = true;
+            $mail->Username = 'apikey';
+            $mail->Password = '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';
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
+            $mail->Port = 465;
+
+            $mail->setFrom('smitzaveri123@gmail.com', 'BMU');
+            $mail->addAddress($email);
+            $mail->addReplyTo('smitzaveri123@gmail.com', 'Information');
+
+            $mail->isHTML(true);
+            $mail->Subject = 'Bonafide Certificate Approval and Pickup Information';
+            $mail->isHTML(true);
+
+            $mail->Body = '<html>
+                        <head>
+                        <style>
+                            body {
+                            font-family: Arial, sans-serif;
+                            font-size: 16px;
+                            line-height: 1.5;
+                            color: #333;
+                            margin: 0;
+                            padding: 0;
+                            background-color: #f5f5f5;
+                            }
+                            h1 {
+                            font-size: 24px;
+                            font-weight: bold;
+                            margin-top: 0;
+                            }
+                            ul {
+                            list-style: none;
+                            margin: 0;
+                            padding: 0;
+                            }
+                            li {
+                            margin-bottom: 10px;
+                            }
+                            p {
+                            margin-bottom: 20px;
+                            }
+                            .container {
+                            max-width: 600px;
+                            margin: 0 auto;
+                            padding: 20px;
+                            background-color: #fff;
+                            }
+                        </style>
+                        </head>
+                        <body>
+                        <div class="container">
+                            <h1>Bonafide Certificate Approved</h1>
+                            <p>Dear ' . $name . ',</p>
+                            <p>We are pleased to inform you that your Bonafide Certificate has been approved and is now ready for pickup at Bhagwan Mahavir University. Congratulations!</p>
+                            <p>Please make a note of the pickup details:</p>
+                            <ul>
+                                <li><strong>Pickup Date:</strong> ' . $pickup_date . '</li>
+                            </ul>
+                            <p>Kindly ensure that you bring a valid ID proof when you come to collect your Bonafide Certificate.</p>
+                            <p>If you have any questions or require further assistance, please don\'t hesitate to contact our support team. They will be more than happy to help you.</p>
+                            <p>Once again, congratulations on the approval of your Bonafide Certificate. We look forward to serving you.</p>
+                            <p>Best regards,<br>BMU</p>
+                        </div>
+                        </body>
+                        </html>';
+
+            $mail->send();
+        } catch (Exception $e) {
+            echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+        }
+    }
+
 
 }
 ?>
