@@ -5,13 +5,19 @@ $bonafide = new Bonafide;
 if ($_SESSION['name'] == "") {
   header('location:signin');
 }
-if($_SESSION['type'] == "Head" && isset($_GET['approve_id'])){
+if ($_SESSION['type'] == "Head" && isset($_GET['approve_id'])) {
   $id = $_GET['approve_id'];
   $bonafide->approve_verify($id);
 }
-if($_SESSION['type'] == "Clerk" && isset($_GET['deliver_id'])){
+if ($_SESSION['type'] == "Clerk" && isset($_GET['pickup_id'])) {
+  $id = $_GET['pickup_id'];
+  $bonafide->date_for_pickup($id);
+  header("home");
+
+}
+if ($_SESSION['type'] == "Clerk" && isset($_GET['deliver_id'])) {
   $id = $_GET['deliver_id'];
-  $bonafide->approve_verify($id);
+  $bonafide->print_bonafide($id);
 }
 ?>
 <!DOCTYPE html>
@@ -41,9 +47,12 @@ if($_SESSION['type'] == "Clerk" && isset($_GET['deliver_id'])){
 <body class="m-0 font-sans text-base antialiased font-normal leading-default bg-gray-50 text-slate-500 overflow-hidden">
   <div class="absolute w-full bg-indigo-600 min-h-[25%]"></div>
   <!-- sidenav  -->
-  <aside class="fixed inset-y-0 flex-wrap items-center justify-between block w-1/5 p-0 my-4 overflow-y-auto antialiased transition-transform duration-200 -translate-x-full bg-white border-0 shadow-xl max-w-64 ease-nav-brand z-990 xl:ml-6 rounded-2xl xl:left-0 xl:translate-x-0" aria-expanded="false">
+  <aside
+    class="fixed inset-y-0 flex-wrap items-center justify-between block w-1/5 p-0 my-4 overflow-y-auto antialiased transition-transform duration-200 -translate-x-full bg-white border-0 shadow-xl max-w-64 ease-nav-brand z-990 xl:ml-6 rounded-2xl xl:left-0 xl:translate-x-0"
+    aria-expanded="false">
     <div class="h-19">
-      <i class="absolute top-0 right-0 p-4 opacity-50 cursor-pointer fas fa-times text-slate-400 xl:hidden" sidenav-close></i>
+      <i class="absolute top-0 right-0 p-4 opacity-50 cursor-pointer fas fa-times text-slate-400 xl:hidden"
+        sidenav-close></i>
       <a href="dashboard.php" class="flex justify-center pt-2">
         <img src="private/assets/img/logo.png" alt="" width="140px">
       </a>
@@ -54,8 +63,10 @@ if($_SESSION['type'] == "Clerk" && isset($_GET['deliver_id'])){
     <div class="items-center block w-auto max-h-screen overflow-auto h-sidenav grow basis-full">
       <ul class="flex flex-col pl-0 mb-0">
         <li class="mt-2 w-full">
-          <a href="bonafide" class="py-2 bg-indigo-100 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap rounded-lg px-4 font-semibold text-slate-700 transition-colors">
-            <div class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
+          <a href="bonafide"
+            class="py-2 bg-indigo-100 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap rounded-lg px-4 font-semibold text-slate-700 transition-colors">
+            <div
+              class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
               <i class="relative top-0 text-lg leading-normal text-blue-500 ni ni-tv-2"></i>
             </div>
             <span class="ml-1 duration-300 text-lg opacity-100 pointer-events-none ease">Bonafide</span>
@@ -136,7 +147,9 @@ if($_SESSION['type'] == "Clerk" && isset($_GET['deliver_id'])){
 
   <main class="relative h-full max-h-screen transition-all duration-200 ease-in-out xl:ml-68 rounded-xl">
     <!-- Navbar -->
-    <nav class="relative flex flex-wrap items-center justify-between px-0 pt-5 mx-6 transition-all ease-in shadow-none duration-250 rounded-2xl lg:flex-nowrap lg:justify-start" navbar-main navbar-scroll="false">
+    <nav
+      class="relative flex flex-wrap items-center justify-between px-0 pt-5 mx-6 transition-all ease-in shadow-none duration-250 rounded-2xl lg:flex-nowrap lg:justify-start"
+      navbar-main navbar-scroll="false">
       <div class="flex items-center justify-between w-full px-4 py-1 mx-auto flex-wrap-inherit">
         <nav class="pl-80">
           <!-- breadcrumb -->
@@ -144,7 +157,9 @@ if($_SESSION['type'] == "Clerk" && isset($_GET['deliver_id'])){
             <li class="text-sm leading-normal">
               <a class="text-white opacity-50 text-md" href="javascript:;">Pages</a>
             </li>
-            <li class="text-md pl-2 capitalize leading-normal text-white before:float-left before:pr-2 before:text-white before:content-['/']" aria-current="page">Bonafide</li>
+            <li
+              class="text-md pl-2 capitalize leading-normal text-white before:float-left before:pr-2 before:text-white before:content-['/']"
+              aria-current="page">Bonafide</li>
           </ol>
           <h6 class="mb-0 font-bold text-white capitalize text-lg">Bonafide</h6>
         </nav>
@@ -166,19 +181,21 @@ if($_SESSION['type'] == "Clerk" && isset($_GET['deliver_id'])){
             <li class="flex items-center mr-3">
               <?php
               if ($_SESSION['name'] == "") {
-              ?>
+                ?>
                 <a href="signin" class="block px-0 py-2 text-lg font-semibold text-white transition-all ease-nav-brand">
                   <i class="fa fa-user sm:mr-1"></i>
                   <span class="hidden sm:inline">Sign In</span>
                 </a>
-              <?php
+                <?php
               } else {
-              ?>
+                ?>
                 <a href="signout">
                   <i class="fa fa-user sm:mr-2 text-white font-semibold text-lg"></i>
-                  <span class="hidden sm:inline text-white font-semibold text-lg"><?php echo $_SESSION['name']; ?></span>
+                  <span class="hidden sm:inline text-white font-semibold text-lg">
+                    <?php echo $_SESSION['name']; ?>
+                  </span>
                 </a>
-              <?php
+                <?php
               }
               ?>
             </li>
@@ -279,7 +296,7 @@ if($_SESSION['type'] == "Clerk" && isset($_GET['deliver_id'])){
     <div class="w-4/5 px-6 py-8 ml-80">
       <?php
       if ($_SESSION['type'] == "Head") {
-      ?>
+        ?>
         <!-- row 1 -->
         <div class="flex flex-wrap -mx-3 mb-6">
           <!-- card1 -->
@@ -290,11 +307,14 @@ if($_SESSION['type'] == "Clerk" && isset($_GET['deliver_id'])){
                   <div class="flex-none w-2/3 max-w-full px-3">
                     <div>
                       <p class="mb-0 font-sans text-md font-semibold leading-normal uppercase">Pending Verify</p>
-                      <h5 class="mb-2 font-bold text-2xl"><?php echo $bonafide->pending_verify();?></h5>
+                      <h5 class="mb-2 font-bold text-2xl">
+                        <?php echo $bonafide->pending_verify(); ?>
+                      </h5>
                     </div>
                   </div>
                   <div class="px-3 text-right basis-1/3">
-                    <div class="inline-block w-12 h-12 text-center rounded-circle bg-gradient-to-tl from-blue-500 to-violet-500">
+                    <div
+                      class="inline-block w-12 h-12 text-center rounded-circle bg-gradient-to-tl from-blue-500 to-violet-500">
                       <i class="ni leading-none ni-money-coins text-lg relative top-3.5 text-white"></i>
                     </div>
                   </div>
@@ -311,11 +331,14 @@ if($_SESSION['type'] == "Clerk" && isset($_GET['deliver_id'])){
                   <div class="flex-none w-2/3 max-w-full px-3">
                     <div>
                       <p class="mb-0 font-sans text-md font-semibold leading-normal uppercase">Pending Approval</p>
-                      <h5 class="mb-2 font-bold text-2xl"><?php echo $bonafide->pending_approval();?></h5>
+                      <h5 class="mb-2 font-bold text-2xl">
+                        <?php echo $bonafide->pending_approval(); ?>
+                      </h5>
                     </div>
                   </div>
                   <div class="px-3 text-right basis-1/3">
-                    <div class="inline-block w-12 h-12 text-center rounded-circle bg-gradient-to-tl from-red-600 to-orange-600">
+                    <div
+                      class="inline-block w-12 h-12 text-center rounded-circle bg-gradient-to-tl from-red-600 to-orange-600">
                       <i class="ni leading-none ni-world text-lg relative top-3.5 text-white"></i>
                     </div>
                   </div>
@@ -332,11 +355,14 @@ if($_SESSION['type'] == "Clerk" && isset($_GET['deliver_id'])){
                   <div class="flex-none w-2/3 max-w-full px-3">
                     <div>
                       <p class="mb-0 font-sans text-md font-semibold leading-normal uppercase">Verify Complete</p>
-                      <h5 class="mb-2 font-bold text-2xl"><?php echo $bonafide->complete_verify();?></h5>
+                      <h5 class="mb-2 font-bold text-2xl">
+                        <?php echo $bonafide->complete_verify(); ?>
+                      </h5>
                     </div>
                   </div>
                   <div class="px-3 text-right basis-1/3">
-                    <div class="inline-block w-12 h-12 text-center rounded-circle bg-gradient-to-tl from-emerald-500 to-teal-400">
+                    <div
+                      class="inline-block w-12 h-12 text-center rounded-circle bg-gradient-to-tl from-emerald-500 to-teal-400">
                       <i class="ni leading-none ni-paper-diploma text-lg relative top-3.5 text-white"></i>
                     </div>
                   </div>
@@ -353,11 +379,14 @@ if($_SESSION['type'] == "Clerk" && isset($_GET['deliver_id'])){
                   <div class="flex-none w-2/3 max-w-full px-3">
                     <div>
                       <p class="mb-0 font-sans text-md font-semibold leading-normal uppercase">Deliver Complete</p>
-                      <h5 class="mb-2 font-bold text-2xl"><?php echo $bonafide->complete_deliver();?></h5>
+                      <h5 class="mb-2 font-bold text-2xl">
+                        <?php echo $bonafide->complete_deliver(); ?>
+                      </h5>
                     </div>
                   </div>
                   <div class="px-3 text-right basis-1/3">
-                    <div class="inline-block w-12 h-12 text-center rounded-circle bg-gradient-to-tl from-orange-500 to-yellow-500">
+                    <div
+                      class="inline-block w-12 h-12 text-center rounded-circle bg-gradient-to-tl from-orange-500 to-yellow-500">
                       <i class="ni leading-none ni-cart text-lg relative top-3.5 text-white"></i>
                     </div>
                   </div>
@@ -366,7 +395,7 @@ if($_SESSION['type'] == "Clerk" && isset($_GET['deliver_id'])){
             </div>
           </div>
         </div>
-      <?php
+        <?php
       }
       ?>
       <!-- end Navbar -->
@@ -395,42 +424,64 @@ if($_SESSION['type'] == "Clerk" && isset($_GET['deliver_id'])){
               $count = 0;
               while ($row = mysqli_fetch_assoc($get_deatils)) {
                 $count++;
-              ?>
+                ?>
                 <tr class="border-b transition duration-300 ease-in-out hover:bg-neutral-100">
-                  <td class="whitespace-nowrap px-6 py-4 font-medium"><?php echo $count; ?></td>
-                  <td class="whitespace-nowrap px-6 py-4"><?php echo $row['id']; ?></td>
-                  <td class="whitespace-nowrap px-0 py-4"><?php echo $row['enrollment_no']; ?></td>
-                  <td class="whitespace-nowrap pr-6 py-4"><?php echo $row['name']; ?></td>
-                  <td class="whitespace-nowrap py-4"><?php echo $row['course']; ?></td>
-                  <td class="whitespace-nowrap px-6 py-4">
-                    <?php if ($row['verify_flag'] == 0 && $_SESSION['type'] == "Clerk") { ?>
-                      <a href="bonafide_verification?verify_id=<?php echo $row['id'];?>"><button name="view" id="view" class="bg-indigo-600 px-4 py-2 rounded-lg text-white font-medium hover:bg-indigo-500 shadow-md">View</button></a>
-                      <?php } else if($row['verify_flag'] == 0 && $_SESSION['type'] == "Head") { ?>
-                        <p class="text-md bg-red-500 mr-3 text-white font-medium text-center rounded-full">Pending</p>
-                      <?php } else if($row['verify_flag'] == 1){ ?>
-                        <p class="text-md bg-green-500 mr-3 text-white font-medium text-center rounded-full">Verified</p>
-                      <?php } ?>
+                  <td class="whitespace-nowrap px-6 py-4 font-medium">
+                    <?php echo $count; ?>
                   </td>
                   <td class="whitespace-nowrap px-6 py-4">
-                    <?php if ($row['verify_flag'] == 1 && $_SESSION['type'] == "Head" && $row['approve_flag'] == 0){ ?>
-                      <a href="bonafide?approve_id=<?php echo $row['id'];?>"><button name="approve" id="approve" class="bg-indigo-600 px-4 py-2 rounded-lg text-white font-medium hover:bg-indigo-500 shadow-md">Approve</button></a>
+                    <?php echo $row['id']; ?>
+                  </td>
+                  <td class="whitespace-nowrap px-0 py-4">
+                    <a href="bonafide_verification?verify_id=<?php echo $row['id']; ?>"><?php echo $row['enrollment_no']; ?></a>
+                  </td>
+                  <td class="whitespace-nowrap pr-6 py-4">
+                    <?php echo $row['name']; ?>
+                  </td>
+                  <td class="whitespace-nowrap py-4">
+                    <?php echo $row['course']; ?>
+                  </td>
+                  <td class="whitespace-nowrap px-6 py-4">
+                    <?php if ($row['verify_flag'] == 0 && $_SESSION['type'] == "Clerk") { ?>
+                      <a href="bonafide_verification?verify_id=<?php echo $row['id']; ?>"><button name="view" id="view"
+                          class="bg-indigo-600 px-4 py-2 rounded-lg text-white font-medium hover:bg-indigo-500 shadow-md">View</button></a>
+                    <?php } else if ($row['verify_flag'] == 0 && $_SESSION['type'] == "Head") { ?>
+                        <p class="text-md bg-red-500 mr-3 p-1 text-white font-medium text-center rounded-full">Pending</p>
+                    <?php } else if ($row['verify_flag'] == 1) { ?>
+                          <p class="text-md bg-green-500 mr-3 p-1 text-white font-medium text-center rounded-full">Verified</p>
+                    <?php } ?>
+                  </td>
+                  <td class="whitespace-nowrap px-6 py-4">
+                    <?php if ($row['verify_flag'] == 1 && $_SESSION['type'] == "Head" && $row['approve_flag'] == 0) { ?>
+                      <a href="bonafide?approve_id=<?php echo $row['id']; ?>"><button name="approve" id="approve"
+                          class="bg-indigo-600 px-4 py-2 rounded-lg text-white font-medium hover:bg-indigo-500 shadow-md">Approve</button></a>
                     <?php } else if ($row['approve_flag'] == 0 && $_SESSION['type'] == "Clerk") { ?>
-                      <p class="text-md bg-red-500 mr-3 text-white font-medium text-center rounded-full">Pending</p>
-                    <?php } else if($row['approve_flag'] == 1){ ?>
-                      <p class="text-md bg-green-500 mr-3 text-white font-medium text-center rounded-full">Approved</p>
+                        <p class="text-md bg-red-500 mr-3 p-1 text-white font-medium text-center rounded-full">Pending</p>
+                    <?php } else if ($row['approve_flag'] == 1) { ?>
+                          <p class="text-md bg-green-500 mr-3 p-1 text-white font-medium text-center rounded-full">Approved</p>
                     <?php } ?>
                   </td>
                   <td class="whitespace-nowrap px-6 py-4">
                     <?php if ($row['approve_flag'] == 1 && $_SESSION['type'] == "Clerk" && $row['delever_flag'] == 0) { ?>
-                      <a href="bonafide?deliver_id=<?php echo $row['id'];?>"><button name="print" id="print" class="bg-indigo-600 px-4 py-2 rounded-lg text-white font-medium hover:bg-indigo-500 shadow-md">Print</button></a>
-                      <?php } else if($_SESSION['type'] == "Head" && $row['delever_flag'] == 0) { ?>
-                        <p class="text-md bg-red-500 mr-3 text-white font-medium text-center rounded-full">Pending</p>
-                      <?php } else if($_SESSION['type'] == "Head" || $_SESSION['type'] == "Clerk" && $row['delever_flag'] == 1) { ?>
-                        <p class="text-md bg-green-500 mr-3 text-white font-medium text-center rounded-full">Delivered</p>
-                      <?php } ?>
+                      <div class="flex"> <a href="bonafide?pickup_id=<?php echo $row['id']; ?>"><button name="print"
+                            id="print"
+                            class="bg-indigo-600 px-4 py-2 rounded-lg text-white font-medium hover:bg-indigo-500 shadow-md">Deliver</button></a><a
+                          target="_blank" href="bonafide?deliver_id=<?php echo $row['id']; ?>"><img class="h-6 my-2 ml-2"
+                            src=" private/Images/printer.png" alt="" srcset=""></a></div>
+                    <?php } else if ($_SESSION['type'] == "Head" && $row['delever_flag'] == 0) { ?>
+                        <p class="text-md bg-red-500 mr-3 p-1 text-white font-medium text-center rounded-full">Pending</p>
+                    <?php } else if ($_SESSION['type'] == "Head" || $_SESSION['type'] == "Clerk" && $row['delever_flag'] == 1) { ?>
+                          <div class="flex ">
+                            <p class="text-md bg-green-500 mr-3 py-1 px-2 text-white font-medium text-center rounded-full">
+                              Delivered
+                            </p>
+                            <a target="_blank" href="bonafide?deliver_id=<?php echo $row['id']; ?>"><img class="h-6 m-auto"
+                                src="private/Images/printer.png" alt="" srcset=""></a>
+                          </div>
+                    <?php } ?>
                   </td>
                 </tr>
-              <?php
+                <?php
               }
               ?>
             </tbody>

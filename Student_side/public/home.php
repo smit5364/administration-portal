@@ -4,7 +4,7 @@
 
 session_start();
 if (isset($_POST["enroll_text"])) {
-    $_SESSION['enroll'] = $_POST["enroll_text"];
+    $_SESSION['enroll'] = trim($_POST["enroll_text"]);
 }
 if (isset($_SESSION['enroll'])) {
     $enroll = $_SESSION['enroll'];
@@ -30,18 +30,19 @@ if (isset($_SESSION['enroll'])) {
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Geologica:wght@300;400;500;600;700;800;900&display=swap"
         rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css"   />
 </head>
 
 <body class="bg-gray-200">
     <div class="overflow-hidden">
         <nav class="bg-white py-2 flex justify-center shadow-lg">
             <ul>
-                <li><img src="public/images/logo.png" alt="bmu" class="w-32"></li>
+                <li><a href="home"><img src="private/images/logo.png" alt="bmu" class="w-32"></a></li>
             </ul>
         </nav>
         <div class="relative">
             <div class="bg-[#000]">
-                <img src="public/images/img3.jpeg" alt="bmu" class="w-full h-[30rem] opacity-40 bg-cover">
+                <img src="private/images/img3.jpeg" alt="bmu" class="w-full h-[30rem] opacity-40 bg-cover">
             </div>
             <div class="flex justify-center">
                 <h1 class="absolute text-white top-[10rem] text-[5rem] font-serif animate__animated animate__zoomIn"
@@ -50,19 +51,19 @@ if (isset($_SESSION['enroll'])) {
         </div>
         <div class="absolute w-full px-28 top-[29rem]">
             <div class="flex justify-between" style="font-family: 'Geologica', sans-serif;">
-                <div class="getEnroll cursor-pointer" data-certificate-url="bonafide">
+                <div class="getEnroll m-2 cursor-pointer" data-certificate-url="bonafide">
                     <div class="bg-white flex items-center w-[22rem] h-48 rounded-xl shadow-lg">
-                        <p class="text-4xl font-medium text-center px-6">Bonafide Certificate</p>
+                        <p class="text-4xl font-medium text-center px-6 m-auto">Bonafide Certificate</p>
                     </div>
                 </div>
-                <div class="getEnroll cursor-pointer" data-certificate-url="bonafide2">
+                <div class="getEnroll  m-2 cursor-pointer" data-certificate-url="bonafide2">
                     <div class="bg-white flex items-center w-[22rem] h-48 rounded-xl shadow-lg">
-                        <p class="text-4xl font-medium text-center px-6">2 Certificate</p>
+                        <p class="text-4xl font-medium text-center px-6 m-auto">2 Certificate</p>
                     </div>
                 </div>
-                <div class="getEnroll cursor-pointer" data-certificate-url="bonafide3">
+                <div class="getEnroll  m-2 cursor-pointer" data-certificate-url="bonafide3">
                     <div class="bg-white flex items-center w-[22rem] h-48 rounded-xl shadow-lg">
-                        <p class="text-4xl font-medium text-center px-6">3 Certificate</p>
+                        <p class="text-4xl font-medium text-center px-6 m-auto">Certificate</p>
                     </div>
                 </div>
 
@@ -70,12 +71,14 @@ if (isset($_SESSION['enroll'])) {
         </div>
     </div>
 
-    <dialog class="bg-white p-8 rounded shadow-lg" data-modal id="formContainer" form="myForm">
+    <dialog class="bg-white p-8 rounded-2xl shadow-lg" data-modal id="formContainer" form="myForm">
         <form method="post" id="myForm">
             <h2 class="text-2xl font-medium mb-4">Enter Enrollment Number</h2>
-            <input name="enroll_text" id="enrollmentInput" type="number" value="<?php if (isset($_SESSION["enroll"])) {
+
+            <input name="enroll_text" id="enrollmentInput" placeholder="Enter Enrollment Number" type="text" value="<?php if (isset($_SESSION["enroll"])) {
                 echo $_SESSION["enroll"];
-            } ?>" class="w-full px-4 py-2 border border-gray-300 rounded mb-4">
+            } ?>"
+                class="block mb-3 px-2.5 pb-2.5 pt-2.5 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-black appearance-none  focus:outline-none focus:ring-2 focus:border-blue-600 peer">
 
 
             <button type="button" formmethod="dialog" class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded"
@@ -124,7 +127,7 @@ if (isset($_SESSION['enroll'])) {
                 form.close();
             }
         });
-    </script>
+        AOS.init();
     </script>
 
 
