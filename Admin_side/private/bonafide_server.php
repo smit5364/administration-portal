@@ -46,13 +46,6 @@ class Bonafide
         header('location:bonafide');
     }
 
-    function deliver_verify($id)
-    {
-        $con = connect();
-        $query = "UPDATE `bonafide` SET `delever_flag`='1' WHERE id = '$id'";
-        mysqli_query($con, $query);
-    }
-
     function pending_verify()
     {
         $con = connect();
@@ -94,6 +87,7 @@ class Bonafide
         $con = connect();
         $query = "UPDATE `bonafide` SET `delever_flag`='1', `pickup_date`= curdate() WHERE id = '$id'";
         mysqli_query($con, $query);
+        header('location:bonafide');
 
     }
 

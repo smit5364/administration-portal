@@ -453,8 +453,9 @@ if ($_SESSION['type'] == "Clerk" && isset($_GET['deliver_id'])) {
                   </td>
                   <td class="whitespace-nowrap px-6 py-4">
                     <?php if ($row['verify_flag'] == 1 && $_SESSION['type'] == "Head" && $row['approve_flag'] == 0) { ?>
-                      <a href="bonafide?approve_id=<?php echo $row['id']; ?>"><button name="approve" id="approve"
-                          class="bg-indigo-600 px-4 py-2 rounded-lg text-white font-medium hover:bg-indigo-500 shadow-md">Approve</button></a>
+                      <a href="bonafide_verification?verify_id=<?php echo $row['id']; ?>"><button name="approve"
+                          id="approve"
+                          class="bg-indigo-600 px-4 py-2 rounded-lg text-white font-medium hover:bg-indigo-500 shadow-md">View</button></a>
                     <?php } else if ($row['approve_flag'] == 0 && $_SESSION['type'] == "Clerk") { ?>
                         <p class="text-md bg-red-500 mr-3 p-1 text-white font-medium text-center rounded-full">Pending</p>
                     <?php } else if ($row['approve_flag'] == 1) { ?>
