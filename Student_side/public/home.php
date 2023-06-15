@@ -1,28 +1,16 @@
-<!DOCTYPE html>
-
 <?php
-
+include('private/home_server.php');
+error_reporting(0);
 session_start();
-if (isset($_POST["enroll_text"])) {
-    $_SESSION['enroll'] = trim($_POST["enroll_text"]);
-}
-if (isset($_SESSION['enroll'])) {
-    $enroll = $_SESSION['enroll'];
-} else {
-    // echo "No enrollment number found in session.";
-}
 ?>
-
+<!DOCTYPE html>
 <html lang="en">
-
-
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Administration</title>
-    <link rel="icon" href="public/images/fav.png">
+    <link rel="icon" href="private/images/fav.png">
     <link rel="stylesheet" href="../style.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
@@ -36,8 +24,19 @@ if (isset($_SESSION['enroll'])) {
 <body class="bg-gray-200">
     <div class="overflow-hidden">
         <nav class="bg-white py-2 flex justify-center shadow-lg">
-            <ul>
+            <ul class="flex justify-between">
                 <li><a href="home"><img src="private/images/logo.png" alt="bmu" class="w-32"></a></li>
+                <?php
+                    if(!$_SESSION['enrollment']){
+                ?>
+                <li><a href="signin"><button class="bg-blue-800 text-white border-2 border-blue-800 rounded-lg hover:bg-transparent hover:text-blue-800 hover:border-2 hover:border-blue-800 px-4 py-2 text-lg font-medium ml-[1200px]">Login</button></a></li>
+                <?php
+                    }else{
+                ?>
+                <li><a href="signout"><button class="bg-blue-800 text-white border-2 border-blue-800 rounded-lg hover:bg-transparent hover:text-blue-800 hover:border-2 hover:border-blue-800 px-2 py-2 text-lg font-medium ml-[1100px]">Logout <?php echo getnamebyenroll($_SESSION['enrollment']);?></button></a></li>
+                <?php
+                    }
+                ?>
             </ul>
         </nav>
         <div class="relative">
@@ -51,17 +50,17 @@ if (isset($_SESSION['enroll'])) {
         </div>
         <div class="absolute w-full px-28 top-[29rem]">
             <div class="flex justify-between" style="font-family: 'Geologica', sans-serif;">
-                <div class="getEnroll m-2 cursor-pointer" data-certificate-url="bonafide">
-                    <div class="bg-white flex items-center w-[22rem] h-48 rounded-xl shadow-lg">
+                <div class="getEnroll m-2 cursor-pointer" data-certificate-url="bonafide" data-aos="fade-right">
+                    <a href="bonafide"><div class="bg-white flex items-center w-[22rem] h-48 rounded-xl shadow-lg">
                         <p class="text-4xl font-medium text-center px-6 m-auto">Bonafide Certificate</p>
-                    </div>
+                    </div></a>
                 </div>
-                <div class="getEnroll  m-2 cursor-pointer" data-certificate-url="bonafide2">
+                <div class="getEnroll  m-2 cursor-pointer" data-certificate-url="bonafide2" data-aos="fade-up">
                     <div class="bg-white flex items-center w-[22rem] h-48 rounded-xl shadow-lg">
                         <p class="text-4xl font-medium text-center px-6 m-auto">2 Certificate</p>
                     </div>
                 </div>
-                <div class="getEnroll  m-2 cursor-pointer" data-certificate-url="bonafide3">
+                <div class="getEnroll  m-2 cursor-pointer" data-certificate-url="bonafide3" data-aos="fade-left">
                     <div class="bg-white flex items-center w-[22rem] h-48 rounded-xl shadow-lg">
                         <p class="text-4xl font-medium text-center px-6 m-auto">Certificate</p>
                     </div>
@@ -69,64 +68,10 @@ if (isset($_SESSION['enroll'])) {
 
             </div>
         </div>
-    </div>
+</div>
 
-    <dialog class="bg-white p-8 rounded-2xl shadow-lg" data-modal id="formContainer" form="myForm">
-        <form method="post" id="myForm">
-            <h2 class="text-2xl font-medium mb-4">Enter Enrollment Number</h2>
-
-            <input name="enroll_text" id="enrollmentInput" placeholder="Enter Enrollment Number" type="text" value="<?php if (isset($_SESSION["enroll"])) {
-                echo $_SESSION["enroll"];
-            } ?>"
-                class="block mb-3 px-2.5 pb-2.5 pt-2.5 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-black appearance-none  focus:outline-none focus:ring-2 focus:border-blue-600 peer">
-
-
-            <button type="button" formmethod="dialog" class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded"
-                onclick="closeForm()">Cancel</button>
-            <button type="button" onclick="submitForm()"
-                class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded">Submit</button>
-
-        </form>
-    </dialog>
-
-
-
-
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
-        const openButtons = document.getElementsByClassName("getEnroll");
-        const form = document.querySelector("[data-modal]");
-        let certificateUrl;
-
-        for (let i = 0; i < openButtons.length; i++) {
-            openButtons[i].addEventListener("click", (event) => {
-                form.showModal();
-                certificateUrl = openButtons[i].dataset.certificateUrl;
-            });
-        }
-
-        function closeForm() {
-            var form = document.querySelector("[data-modal]");
-            form.close();
-        }
-
-        function submitForm() {
-            var form = document.querySelector("[data-modal] form");
-            form.action = certificateUrl;
-            form.submit();
-        }
-
-
-        form.addEventListener("click", (e) => {
-            const dialogDimensions = form.getBoundingClientRect();
-            if (
-                e.clientX < dialogDimensions.left ||
-                e.clientX > dialogDimensions.right ||
-                e.clientY < dialogDimensions.top ||
-                e.clientY > dialogDimensions.bottom
-            ) {
-                form.close();
-            }
-        });
         AOS.init();
     </script>
 

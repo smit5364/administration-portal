@@ -493,6 +493,15 @@ if ($_SESSION['type'] == "Clerk" && isset($_GET['deliver_id'])) {
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
   <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
   <script>
+    $('.btn_xls').click(function(){
+      var valueOfButton = $(this).val();
+      var ajaxurl = 'private/bonafide_server.php',
+      data = {'action': valueOfButton};
+      jQuery.post(ajaxurl,data,function(response){
+        alert('Pending Verification List Download');
+      });
+    });
+
     $('#myTable').DataTable();
   </script>
 </body>

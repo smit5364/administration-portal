@@ -1,22 +1,21 @@
 <?php
-// error_reporting(0);
-include('./private/bonafide_server.php');
-
+error_reporting(0);
+include('private/bonafide_server.php');
 $bonafide = new bonafide;
-
 session_start();
-if (isset($_POST["enroll_text"])) {
-    $_SESSION['enroll'] = $_POST["enroll_text"];
+if(!$_SESSION['enrollment']){
+    header('location:signin');
 }
-if (isset($_SESSION['enroll'])) {
-    $enroll = $_SESSION['enroll'];
+if (isset($_SESSION['enrollment'])) {
+    $enroll = $_SESSION['enrollment'];
     $studentInfo = $bonafide->getStudentInfo($enroll);
 
     $sem = $studentInfo['sem'];
     $crs = $studentInfo['crs'];
     $name = $studentInfo['name'];
     $fathername = $studentInfo['fathername'];
-    $course = $studentInfo['course'];
+    $email = $studentInfo['email'];
+    $mobile = $studentInfo['mobile'];
 
 } else {
     echo "No enrollment number found in session.";
@@ -42,8 +41,6 @@ if (isset($_POST['insert'])) {
     // Insert Data
     $bonafide->insert($enroll, $name, $fathername, $course, $sem, $mobile, $email, $purpose, $savefilename);
 }
-
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -53,7 +50,7 @@ if (isset($_POST['insert'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bonafide Certificate</title>
-    <link rel="icon" href="public/images/fav.png">
+    <link rel="icon" href="private/images/fav.png">
     <link rel="stylesheet" href="../style.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -153,12 +150,16 @@ if (isset($_POST['insert'])) {
                     <div class="row-span-1 flex flex-col gap-y-1 ">
                         <label for="Email" class="text-xl">Email</label>
                         <input required type="email" name="email" placeholder="Enter Your Email"
-                            class="bg-white h-12 rounded-lg pl-3 text-lg outline-none focus:ring-2 focus:ring-indigo-800">
+                            class="bg-white h-12 rounded-lg pl-3 text-lg outline-none focus:ring-2 focus:ring-indigo-800" value="<?php if (isset($email)) {
+                            echo $email;
+                        } ?>">
                     </div>
                     <div class="row-span-2 flex flex-col gap-y-1 ">
                         <label for="Mobile No" class="text-xl">Mobile No</label>
                         <input required type="tel" name="mobile" pattern="[0-9]{10}" placeholder="Enter Your Mobile No"
-                            class="bg-white h-12 rounded-lg pl-3 text-lg outline-none focus:ring-2 focus:ring-indigo-800">
+                            class="bg-white h-12 rounded-lg pl-3 text-lg outline-none focus:ring-2 focus:ring-indigo-800" value="<?php if (isset($mobile)) {
+                            echo $mobile;
+                        } ?>">
                     </div>
                 </div>
                 <div class="grid grid-cols-2 mt-6 gap-x-10">
@@ -258,13 +259,6 @@ if (isset($_POST['insert'])) {
                 other_reason.classList.add('hidden');
                 other_reason.required = false;
             }
-        });
-
-        // Reset Button onclick function
-        const form = document.getElementById('bonafide_form');
-        const reset_btn = document.getElementById('reset');
-        reset_btn.addEventListener('click', function () {
-            form[0].reset();
         });
     </script>
 </body>

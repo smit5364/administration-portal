@@ -20,24 +20,25 @@ class bonafide
     function getStudentInfo($enroll)
     {
         $conn = connect();
-        $student = "SELECT * FROM `student_info` WHERE `enrollment_no`='$enroll'";
+        $student = "SELECT * FROM `student` WHERE `enrollment_no`='$enroll'";
         $student_run = mysqli_query($conn, $student);
 
         if ($student_run && mysqli_num_rows($student_run) > 0) {
             $student_row = mysqli_fetch_assoc($student_run);
-            $sem = $student_row['current_semester'];
-            $crs = $student_row['course_code'];
+            $sem = $student_row['semester'];
+            $crs = $student_row['course'];
             $name = $student_row['last_name'] . " " . $student_row['first_name'] . " " . $student_row['middle_name'];
-            $fathername = $student_row['father_name'] . " " . $student_row['last_name'];
-            $course = $student_row['course_code'];
-            $sem = $student_row['current_semester'];
+            $fathername = $student_row['father_name'];
+            $email = $student_row['email'];
+            $mobile = $student_row['mobile'];
 
             return array(
                 'sem' => $sem,
                 'crs' => $crs,
                 'name' => $name,
                 'fathername' => $fathername,
-                'course' => $course
+                'email' => $email,
+                'mobile' => $mobile
             );
         } else {
             header("Location: home"); // Redirect to the home page if enrollment number doesn't exist
