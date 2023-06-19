@@ -38,6 +38,7 @@ if ($_SESSION['type'] == "Clerk" && isset($_GET['deliver_id'])) {
   <link href="private/assets/css/nucleo-svg.css" rel="stylesheet" />
   <!-- Popper -->
   <script src="https://unpkg.com/@popperjs/core@2"></script>
+  <link rel="stylesheet" href="private/assets/css/tooltips.css">
   <!-- Main Styling -->
   <link rel="stylesheet" href="input.css">
   <script src="https://cdn.tailwindcss.com"></script>
@@ -45,114 +46,46 @@ if ($_SESSION['type'] == "Clerk" && isset($_GET['deliver_id'])) {
   <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css">
 </head>
 
-<body class="m-0 font-sans text-base antialiased font-normal leading-default bg-gray-50 text-slate-500 overflow-hidden">
+<body class="m-0 font-sans text-base antialiased font-normal bg-gray-50 text-slate-500 overflow-hidden">
   <div class="absolute w-full bg-indigo-600 min-h-[25%]"></div>
   <!-- sidenav  -->
-  <aside
-    class="fixed inset-y-0 flex-wrap items-center justify-between block w-1/5 p-0 my-4 overflow-y-auto antialiased transition-transform duration-200 -translate-x-full bg-white border-0 shadow-xl max-w-64 ease-nav-brand z-990 xl:ml-6 rounded-2xl xl:left-0 xl:translate-x-0"
-    aria-expanded="false">
-    <div class="h-19">
+  <section class="fixed inset-y-0 flex-wrap items-center justify-between w-1/5 p-0 my-4 overflow-y-auto antialiased transition-transform duration-200 -translate-x-full bg-white border-0 shadow-xl max-w-64 ease-in-out z-[990] xl:ml-6 rounded-2xl xl:left-0 xl:translate-x-0">
+  <div class="h-19 pt-2">
       <i class="absolute top-0 right-0 p-4 opacity-50 cursor-pointer fas fa-times text-slate-400 xl:hidden"
         sidenav-close></i>
-      <a href="dashboard.php" class="flex justify-center pt-2">
+      <a href="dashboard" class="flex justify-center">
         <img src="private/assets/img/logo.png" alt="" width="140px">
       </a>
     </div>
 
-    <hr class="h-px mt-0 bg-transparent bg-gradient-to-r from-transparent via-black/40 to-transparent" />
+    <hr class="h-px mt-1 bg-transparent bg-gradient-to-r from-transparent via-black/40 to-transparent" />
 
-    <div class="items-center block w-auto max-h-screen overflow-auto h-sidenav grow basis-full">
-      <ul class="flex flex-col pl-0 mb-0">
+    <div class="items-center block w-auto max-h-screen overflow-auto basis-full">
+    <ul class="flex flex-col pl-0 mb-0">
         <li class="mt-2 w-full">
-          <a href="bonafide"
-            class="py-2 bg-indigo-100 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap rounded-lg px-4 font-semibold text-slate-700 transition-colors">
-            <div
-              class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
-              <i class="relative top-0 text-lg leading-normal text-blue-500 ni ni-tv-2"></i>
-            </div>
-            <span class="ml-1 duration-300 text-lg opacity-100 pointer-events-none ease">Bonafide</span>
+          <a href="dashboard" class="bg-white text-lg my-0 mx-2 flex items-center whitespace-nowrap rounded-lg px-4 py-3 font-medium text-slate-700 transition-colors">
+            <i class="ni ni-tv-2 text-indigo-600 mr-3"></i>
+            Dashboard
           </a>
         </li>
-
-        <!-- <li class="mt-0.5 w-full">
-            <a class=" dark:text-white dark:opacity-80 py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors" href="../pages/tables.html">
-              <div class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
-                <i class="relative top-0 text-sm leading-normal text-orange-500 ni ni-calendar-grid-58"></i>
-              </div>
-              <span class="ml-1 duration-300 opacity-100 pointer-events-none ease">Tables</span>
-            </a>
-          </li>
-
-          <li class="mt-0.5 w-full">
-            <a class=" dark:text-white dark:opacity-80 py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors" href="../pages/billing.html">
-              <div class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center fill-current stroke-0 text-center xl:p-2.5">
-                <i class="relative top-0 text-sm leading-normal text-emerald-500 ni ni-credit-card"></i>
-              </div>
-              <span class="ml-1 duration-300 opacity-100 pointer-events-none ease">Billing</span>
-            </a>
-          </li>
-
-          <li class="mt-0.5 w-full">
-            <a class=" dark:text-white dark:opacity-80 py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors" href="../pages/virtual-reality.html">
-              <div class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
-                <i class="relative top-0 text-sm leading-normal text-cyan-500 ni ni-app"></i>
-              </div>
-              <span class="ml-1 duration-300 opacity-100 pointer-events-none ease">Virtual Reality</span>
-            </a>
-          </li>
-
-          <li class="mt-0.5 w-full">
-            <a class=" dark:text-white dark:opacity-80 py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors" href="../pages/rtl.html">
-              <div class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
-                <i class="relative top-0 text-sm leading-normal text-red-600 ni ni-world-2"></i>
-              </div>
-              <span class="ml-1 duration-300 opacity-100 pointer-events-none ease">RTL</span>
-            </a>
-          </li>
-
-          <li class="w-full mt-4">
-            <h6 class="pl-6 ml-2 text-xs font-bold leading-tight uppercase dark:text-white opacity-60">Account pages</h6>
-          </li>
-
-          <li class="mt-0.5 w-full">
-            <a class=" dark:text-white dark:opacity-80 py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors" href="../pages/profile.html">
-              <div class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
-                <i class="relative top-0 text-sm leading-normal text-slate-700 ni ni-single-02"></i>
-              </div>
-              <span class="ml-1 duration-300 opacity-100 pointer-events-none ease">Profile</span>
-            </a>
-          </li>
-
-          <li class="mt-0.5 w-full">
-            <a class=" dark:text-white dark:opacity-80 py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors" href="signin">
-              <div class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
-                <i class="relative top-0 text-sm leading-normal text-orange-500 ni ni-single-copy-04"></i>
-              </div>
-              <span class="ml-1 duration-300 opacity-100 pointer-events-none ease">Sign In</span>
-            </a>
-          </li>
-
-          <li class="mt-0.5 w-full">
-            <a class=" dark:text-white dark:opacity-80 py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors" href="signup">
-              <div class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
-                <i class="relative top-0 text-sm leading-normal text-cyan-500 ni ni-collection"></i>
-              </div>
-              <span class="ml-1 duration-300 opacity-100 pointer-events-none ease">Sign Up</span>
-            </a>
-          </li> -->
-      </ul>
+        <li class="w-full">
+          <a href="bonafide" class="bg-indigo-200 text-lg my-0 mx-2 flex items-center whitespace-nowrap rounded-lg px-4 py-3 font-medium text-slate-700 transition-colors">
+            <i class="ni ni-tv-2 text-indigo-600 mr-3"></i>
+            Bonafide
+          </a>
+        </li>
+    </ul>
     </div>
-  </aside>
-
+  </section>
   <!-- end sidenav -->
 
-  <main class="relative h-full max-h-screen transition-all duration-200 ease-in-out xl:ml-68 rounded-xl">
+  <main class="relative h-full max-h-screen transition-all duration-200 ease-in-out xl:ml-68 rounded-xl overflow-y-scroll overflow-x-hidden scroll-smooth">
     <!-- Navbar -->
     <nav
       class="relative flex flex-wrap items-center justify-between px-0 pt-5 mx-6 transition-all ease-in shadow-none duration-250 rounded-2xl lg:flex-nowrap lg:justify-start"
       navbar-main navbar-scroll="false">
       <div class="flex items-center justify-between w-full px-4 py-1 mx-auto flex-wrap-inherit">
-        <nav class="pl-80">
+        <nav class="xl:pl-80">
           <!-- breadcrumb -->
           <ol class="flex flex-wrap pt-1 bg-transparent rounded-lg">
             <li class="text-sm leading-normal">
@@ -179,7 +112,7 @@ if ($_SESSION['type'] == "Clerk" && isset($_GET['deliver_id'])) {
             <!-- <li class="flex items-center">
                 <a class="inline-block px-8 py-2 mb-0 mr-4 text-xs font-bold text-center text-blue-500 uppercase align-middle transition-all ease-in bg-transparent border border-blue-500 border-solid rounded-lg shadow-none cursor-pointer leading-pro hover:-translate-y-px active:shadow-xs hover:border-blue-500 active:bg-blue-500 active:hover:text-blue-500 hover:text-blue-500 tracking-tight-rem hover:bg-transparent hover:opacity-75 hover:shadow-none active:text-white active:hover:bg-transparent" target="_blank" href="https://www.creative-tim.com/builder/soft-ui?ref=navbar-dashboard&amp;_ga=2.76518741.1192788655.1647724933-1242940210.1644448053">Online Builder</a>
               </li> -->
-            <li class="flex items-center mr-3">
+            <li class="flex items-center xl:mr-3">
               <?php
               if ($_SESSION['name'] == "") {
                 ?>
@@ -294,7 +227,7 @@ if ($_SESSION['type'] == "Clerk" && isset($_GET['deliver_id'])) {
         </div>
     </nav>
     <!-- cards -->
-    <div class="w-4/5 px-6 py-8 ml-80">
+    <div class="w-4/5 px-6 py-8 xl:ml-80">
       <?php
       if ($_SESSION['type'] == "Head") {
         ?>
@@ -400,7 +333,7 @@ if ($_SESSION['type'] == "Clerk" && isset($_GET['deliver_id'])) {
       }
       ?>
       <!-- end Navbar -->
-      <div class="w-full bg-white shadow-2xl rounded-2xl mt-0 py-4">
+      <div class="min-w-full bg-white shadow-2xl rounded-2xl mt-0 py-4">
         <div class="flex flex-col justify-start">
           <h1 class="text-2xl font-medium text-indigo-600 py-2 pl-3">Bonafide Verification</h1>
         </div>
@@ -490,9 +423,9 @@ if ($_SESSION['type'] == "Clerk" && isset($_GET['deliver_id'])) {
           </table>
         </div>
       </div>
-  </main>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
-  <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+    </main>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
   <script>
     $('.btn_xls').click(function () {
       var valueOfButton = $(this).val();
@@ -506,9 +439,5 @@ if ($_SESSION['type'] == "Clerk" && isset($_GET['deliver_id'])) {
     $('#myTable').DataTable();
   </script>
 </body>
-<!-- plugin for charts  -->
-<script src="private/assets/js/plugins/chartjs.min.js" async></script>
-<!-- plugin for scrollbar  -->
-<script src="private/assets/js/plugins/perfect-scrollbar.min.js" async></script>
 
 </html>

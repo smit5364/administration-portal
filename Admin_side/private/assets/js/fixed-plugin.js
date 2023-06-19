@@ -13,7 +13,7 @@ var buttonNavbarFixed = document.querySelector("[navbarFixed]");
 var sidenav = document.querySelector("aside");
 var sidenav_icons = sidenav.querySelectorAll("li a div");
 
-var sidenav_target = "../pages/" + pageName + ".html";
+var sidenav_target = "public/" + pageName + ".php";
 
 var whiteBtn = document.querySelector("[transparent-style-btn]");
 var darkBtn = document.querySelector("[white-style-btn]");

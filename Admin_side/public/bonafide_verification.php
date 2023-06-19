@@ -393,7 +393,7 @@ if (isset($_POST['approve'])) {
       }
       ?>
       <!-- end Navbar -->
-      <div class="w-auto absolute bg-white shadow-2xl rounded-2xl mt-0 py-4">
+      <div class="w-full bg-white shadow-2xl rounded-2xl mt-0 py-4">
         <div class="flex flex-col justify-start">
           <h1 class="text-2xl font-medium text-indigo-600 pl-3">Bonafide Verification</h1>
         </div>
