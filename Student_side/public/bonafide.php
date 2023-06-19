@@ -76,31 +76,31 @@ if (isset($_POST['insert'])) {
                     <div class="row-span-1 flex flex-col gap-y-1 ">
                         <label for="Fullname" class="text-xl">Full Name</label>
                         <!-- pattern="^[A-Za-z]+\s[A-Za-z]+\s[A-Za-z]+$" -->
-                        <input required type="text" name="fullname" placeholder="Enter Your Fullname" value="<?php if (isset($name)) {
+                        <input required readonly type="text" name="fullname" placeholder="Enter Your Fullname" value="<?php if (isset($name)) {
                             echo $name;
                         } ?>"
-                            class="bg-white h-12 rounded-lg pl-3 text-lg outline-none focus:ring-2 focus:ring-indigo-800">
+                            class="bg-white h-12 rounded-lg pl-3 text-lg outline-none focus:ring-2 focus:ring-indigo-800 cursor-not-allowed" id="fullname">
                     </div>
                     <div class="row-span-2 flex flex-col gap-y-1 ">
                         <label for="Fathername" class="text-xl">Father Name</label>
-                        <input required type="text" name="fathername" placeholder="Enter Your Father Name" value="<?php if (isset($fathername)) {
+                        <input required readonly type="text" name="fathername" placeholder="Enter Your Father Name" value="<?php if (isset($fathername)) {
                             echo $fathername;
                         } ?>"
-                            class="bg-white h-12 rounded-lg pl-3 text-lg outline-none focus:ring-2 focus:ring-indigo-800">
+                            class="bg-white h-12 rounded-lg pl-3 text-lg outline-none focus:ring-2 focus:ring-indigo-800 cursor-not-allowed">
                     </div>
                 </div>
                 <div class="grid grid-cols-4 mt-8 gap-x-10">
                     <div class="col-span-2 flex flex-col gap-y-1 ">
                         <label for="Enrollment" class="text-xl">Enrollment Number</label>
-                        <input required type="text" name="enrollment" value="<?php if (isset($enroll)) {
+                        <input required readonly type="text" name="enrollment" value="<?php if (isset($enroll)) {
                             echo $enroll;
                         } ?>" placeholder="Enter Your Enrollment Number"
-                            class="bg-white h-12 rounded-lg pl-3 text-lg outline-none focus:ring-2 focus:ring-indigo-800">
+                            class="bg-white h-12 rounded-lg pl-3 text-lg outline-none focus:ring-2 focus:ring-indigo-800 cursor-not-allowed">
                     </div>
                     <div class="row-span-2 flex flex-col gap-y-1 ">
                         <label for="Course" class="text-xl">Course</label>
                         <select required name="course" id=""
-                            class="bg-white h-12 rounded-lg pl-2 text-lg outline-none focus:ring-2 focus:ring-indigo-800">
+                            class="bg-white h-12 rounded-lg pl-2 text-lg outline-none focus:ring-2 focus:ring-indigo-800 cursor-not-allowed">
                             <option value="Choose Course" class="hidden">Choose Course</option>
                             <?php
                             $courses = $bonafide->fetch_courses_from_table();
@@ -114,7 +114,7 @@ if (isset($_POST['insert'])) {
                     <div class="row-span-2 flex flex-col gap-y-1 ">
                         <label for="Semester" class="text-xl">Semester</label>
                         <select required name="semester" id=""
-                            class="bg-white h-12 rounded-lg pl-2 text-lg outline-none focus:ring-2 focus:ring-indigo-800">
+                            class="bg-white h-12 rounded-lg pl-2 text-lg outline-none focus:ring-2 focus:ring-indigo-800 cursor-not-allowed">
                             <option value="Choose semester" class="hidden">Choose Semester</option>
                             <?php
                             if (!empty($crs)) {
@@ -149,15 +149,15 @@ if (isset($_POST['insert'])) {
                 <div class="grid grid-cols-2 mt-6 gap-x-10">
                     <div class="row-span-1 flex flex-col gap-y-1 ">
                         <label for="Email" class="text-xl">Email</label>
-                        <input required type="email" name="email" placeholder="Enter Your Email"
-                            class="bg-white h-12 rounded-lg pl-3 text-lg outline-none focus:ring-2 focus:ring-indigo-800" value="<?php if (isset($email)) {
+                        <input required readonly type="email" name="email" placeholder="Enter Your Email"
+                            class="bg-white h-12 rounded-lg pl-3 text-lg outline-none focus:ring-2 focus:ring-indigo-800 cursor-not-allowed" value="<?php if (isset($email)) {
                             echo $email;
                         } ?>">
                     </div>
                     <div class="row-span-2 flex flex-col gap-y-1 ">
                         <label for="Mobile No" class="text-xl">Mobile No</label>
-                        <input required type="tel" name="mobile" pattern="[0-9]{10}" placeholder="Enter Your Mobile No"
-                            class="bg-white h-12 rounded-lg pl-3 text-lg outline-none focus:ring-2 focus:ring-indigo-800" value="<?php if (isset($mobile)) {
+                        <input required readonly type="tel" name="mobile" pattern="[0-9]{10}" placeholder="Enter Your Mobile No"
+                            class="bg-white h-12 rounded-lg pl-3 text-lg outline-none focus:ring-2 focus:ring-indigo-800 cursor-not-allowed" value="<?php if (isset($mobile)) {
                             echo $mobile;
                         } ?>">
                     </div>
@@ -172,11 +172,10 @@ if (isset($_POST['insert'])) {
                                 <label for="BRTS Pass" class="text-lg cursor-pointer ml-2">BRTS Pass</label>
                             </div>
                             <div class="flex items-center col-span-1">
-                                <input required type="radio" name="reason" id="MYSY Scholarship"
-                                    value="MYSY Scholarship"
+                                <input required type="radio" name="reason" id="Digital India"
+                                    value="Digital India"
                                     class="h-4 w-4 cursor-pointer border-indigo-800 text-indigo-800 focus:ring-2 focus:ring-offset-2 rounded-full focus:outline-none focus:ring-indigo-800">
-                                <label for="MYSY Scholarship" class="text-lg cursor-pointer ml-2">MYSY
-                                    Scholarship</label>
+                                <label for="Digital India" class="text-lg cursor-pointer ml-2">Digital India</label>
                             </div>
                             <div class="flex items-center col-span-1 py-2">
                                 <input required type="radio" name="reason" id="Education Loan" value="Education Loan"
@@ -238,7 +237,7 @@ if (isset($_POST['insert'])) {
 
             }
         });
-        const mysy_radio = document.getElementById('MYSY Scholarship');
+        const mysy_radio = document.getElementById('Digital India');
         mysy_radio.addEventListener('change', function () {
             if (mysy_radio.checked) {
                 other_reason.classList.add('hidden');
