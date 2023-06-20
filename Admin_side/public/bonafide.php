@@ -238,7 +238,7 @@ if ($_SESSION['type'] == "Clerk" && isset($_GET['deliver_id'])) {
         <!-- row 1 -->
         <div class="flex flex-wrap -mx-3 mb-6">
           <!-- card1 -->
-          <div class="w-full max-w-full px-3 mb-6 sm:w-1/2 sm:flex-none xl:mb-0 xl:w-1/4">
+          <div class="w-full max-w-full px-3 mb-6 sm:w-1/2 sm:flex-none xl:mb-0 xl:w-1/4 cursor-pointer" id="pending_verify">
             <div class="relative flex flex-col min-w-0 break-words bg-white shadow-xl rounded-2xl bg-clip-border">
               <div class="flex-auto p-4">
                 <div class="flex flex-row -mx-3">
@@ -262,7 +262,7 @@ if ($_SESSION['type'] == "Clerk" && isset($_GET['deliver_id'])) {
           </div>
 
           <!-- card2 -->
-          <div class="w-full max-w-full px-3 mb-6 sm:w-1/2 sm:flex-none xl:mb-0 xl:w-1/4">
+          <div class="w-full max-w-full px-3 mb-6 sm:w-1/2 sm:flex-none xl:mb-0 xl:w-1/4 cursor-pointer" id="pending_approval">
             <div class="relative flex flex-col min-w-0 break-words bg-white shadow-xl rounded-2xl bg-clip-border">
               <div class="flex-auto p-4">
                 <div class="flex flex-row -mx-3">
@@ -286,7 +286,7 @@ if ($_SESSION['type'] == "Clerk" && isset($_GET['deliver_id'])) {
           </div>
 
           <!-- card3 -->
-          <div class="w-full max-w-full px-3 mb-6 sm:w-1/2 sm:flex-none xl:mb-0 xl:w-1/4">
+          <div class="w-full max-w-full px-3 mb-6 sm:w-1/2 sm:flex-none xl:mb-0 xl:w-1/4 cursor-pointer" id="complete_verify">
             <div class="relative flex flex-col min-w-0 break-words bg-white shadow-xl rounded-2xl bg-clip-border">
               <div class="flex-auto p-4">
                 <div class="flex flex-row -mx-3">
@@ -310,7 +310,7 @@ if ($_SESSION['type'] == "Clerk" && isset($_GET['deliver_id'])) {
           </div>
 
           <!-- card4 -->
-          <div class="w-full max-w-full px-3 sm:w-1/2 sm:flex-none xl:w-1/4">
+          <div class="w-full max-w-full px-3 sm:w-1/2 sm:flex-none xl:w-1/4 cursor-pointer" id="complete_delivery">
             <div class="relative flex flex-col min-w-0 break-words bg-white shadow-xl rounded-2xl bg-clip-border">
               <div class="flex-auto p-4">
                 <div class="flex flex-row -mx-3">
@@ -414,7 +414,7 @@ if ($_SESSION['type'] == "Clerk" && isset($_GET['deliver_id'])) {
                             <p class="text-md bg-green-500 mr-3 py-1 px-2 text-white font-medium text-center rounded-full">
                               Delivered
                             </p>
-                            <a target="_blank" href="bonafide?deliver_id=<?php echo $row['id']; ?>"><img class="h-6 m-auto"
+                            <a href="bonafide?deliver_id=<?php echo $row['id']; ?>"><img class="h-6 m-auto"
                                 src="private/Images/printer.png" alt="" srcset=""></a>
                           </div>
                     <?php } ?>
@@ -441,6 +441,31 @@ if ($_SESSION['type'] == "Clerk" && isset($_GET['deliver_id'])) {
     });
 
     $('#myTable').DataTable();
+
+    const pending_verify = document.getElementById('pending_verify');
+    const pending_approval = document.getElementById('pending_approval');
+    const complete_verify = document.getElementById('complete_verify');
+    const complete_delivery = document.getElementById('complete_delivery');
+
+    pending_verify.addEventListener('click',function(event){
+      event.preventDefault();
+      window.location.href = "private/excel_file.php?action=pending_bonafide_verification";
+    });
+
+    pending_approval.addEventListener('click',function(event){
+      event.preventDefault();
+      window.location.href = "private/excel_file.php?action=pending_bonafide_approval";
+    });
+
+    complete_verify.addEventListener('click',function(event){
+      event.preventDefault();
+      window.location.href = "private/excel_file.php?action=bonafide_Verification_complete";
+    });
+    
+    complete_delivery.addEventListener('click',function(event){
+      event.preventDefault();
+      window.location.href = "private/excel_file.php?action=bonafide_Delivery_complete";
+    });
   </script>
 </body>
 

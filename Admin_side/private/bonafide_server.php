@@ -1,6 +1,7 @@
 <?php
 session_start();
-include('private/connection.php');
+// error_reporting(0);
+include('connection.php');
 require('tcpdf/tcpdf.php');
 // require('fpdf/fpdf.php');
 require 'vendor/autoload.php';
@@ -108,7 +109,7 @@ class Bonafide
 
 
         // Load the Word document
-        $templateProcessor = new TemplateProcessor('C:/wamp64/www/administration-portal/Admin_side/private/bonafide/bonafida.docx');
+        $templateProcessor = new TemplateProcessor('C:/wamp64/www/Administration/administration-portal/Admin_side/private/bonafide/bonafida.docx');
 
         // Modify the text
         $templateProcessor->setValue('id', $id);
@@ -122,7 +123,7 @@ class Bonafide
         $templateProcessor->setValue('enrollment', $enrollment_no);
 
         // Save the modified document as a temporary Word file
-        $docxFilePath = 'C:/wamp64/www/administration-portal/Admin_side/private/bonafide/bonafide_print.docx';
+        $docxFilePath = 'C:/wamp64/www/Administration/administration-portal/Admin_side/private/bonafide/bonafida.docx';
         $templateProcessor->saveAs($docxFilePath);
 
         // Set the headers to tell the browser to open the file in Word
@@ -500,7 +501,6 @@ class Bonafide
         }
     }
 
-
-
 }
+
 ?>
