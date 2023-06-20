@@ -108,7 +108,7 @@ class Bonafide
 
 
         // Load the Word document
-        $templateProcessor = new TemplateProcessor('C:/wamp64/www/Administration/administration-portal/Admin_side/private/bonafide/bonafida.docx');
+        $templateProcessor = new TemplateProcessor('C:/wamp64/www/administration-portal/Admin_side/private/bonafide/bonafida.docx');
 
         // Modify the text
         $templateProcessor->setValue('id', $id);
@@ -129,7 +129,7 @@ class Bonafide
         header('Content-type: application/msword');
         header('Content-disposition: attachment; filename="' . $enrollment_no . '_bonafide.docx"');
 
-        // Read the file contents and output them to the browser
+        // // Read the file contents and output them to the browser
         readfile($docxFilePath);
 
     }

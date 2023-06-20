@@ -49,8 +49,9 @@ if ($_SESSION['type'] == "Clerk" && isset($_GET['deliver_id'])) {
 <body class="m-0 font-sans text-base antialiased font-normal bg-gray-50 text-slate-500 overflow-hidden">
   <div class="absolute w-full bg-indigo-600 min-h-[25%]"></div>
   <!-- sidenav  -->
-  <section class="fixed inset-y-0 flex-wrap items-center justify-between w-1/5 p-0 my-4 overflow-y-auto antialiased transition-transform duration-200 -translate-x-full bg-white border-0 shadow-xl max-w-64 ease-in-out z-[990] xl:ml-6 rounded-2xl xl:left-0 xl:translate-x-0">
-  <div class="h-19 pt-2">
+  <section
+    class="fixed inset-y-0 flex-wrap items-center justify-between w-1/5 p-0 my-4 overflow-y-auto antialiased transition-transform duration-200 -translate-x-full bg-white border-0 shadow-xl max-w-64 ease-in-out z-[990] xl:ml-6 rounded-2xl xl:left-0 xl:translate-x-0">
+    <div class="h-19 pt-2">
       <i class="absolute top-0 right-0 p-4 opacity-50 cursor-pointer fas fa-times text-slate-400 xl:hidden"
         sidenav-close></i>
       <a href="dashboard" class="flex justify-center">
@@ -61,25 +62,28 @@ if ($_SESSION['type'] == "Clerk" && isset($_GET['deliver_id'])) {
     <hr class="h-px mt-1 bg-transparent bg-gradient-to-r from-transparent via-black/40 to-transparent" />
 
     <div class="items-center block w-auto max-h-screen overflow-auto basis-full">
-    <ul class="flex flex-col pl-0 mb-0">
+      <ul class="flex flex-col pl-0 mb-0">
         <li class="mt-2 w-full">
-          <a href="dashboard" class="bg-white text-lg my-0 mx-2 flex items-center whitespace-nowrap rounded-lg px-4 py-3 font-medium text-slate-700 transition-colors">
+          <a href="dashboard"
+            class="bg-white text-lg my-0 mx-2 flex items-center whitespace-nowrap rounded-lg px-4 py-3 font-medium text-slate-700 transition-colors">
             <i class="ni ni-tv-2 text-indigo-600 mr-3"></i>
             Dashboard
           </a>
         </li>
         <li class="w-full">
-          <a href="bonafide" class="bg-indigo-200 text-lg my-0 mx-2 flex items-center whitespace-nowrap rounded-lg px-4 py-3 font-medium text-slate-700 transition-colors">
+          <a href="bonafide"
+            class="bg-indigo-200 text-lg my-0 mx-2 flex items-center whitespace-nowrap rounded-lg px-4 py-3 font-medium text-slate-700 transition-colors">
             <i class="ni ni-tv-2 text-indigo-600 mr-3"></i>
             Bonafide
           </a>
         </li>
-    </ul>
+      </ul>
     </div>
   </section>
   <!-- end sidenav -->
 
-  <main class="relative h-full max-h-screen transition-all duration-200 ease-in-out xl:ml-68 rounded-xl overflow-y-scroll overflow-x-hidden scroll-smooth">
+  <main
+    class="relative h-full max-h-screen transition-all duration-200 ease-in-out xl:ml-68 rounded-xl overflow-y-scroll overflow-x-hidden scroll-smooth">
     <!-- Navbar -->
     <nav
       class="relative flex flex-wrap items-center justify-between px-0 pt-5 mx-6 transition-all ease-in shadow-none duration-250 rounded-2xl lg:flex-nowrap lg:justify-start"
@@ -423,9 +427,9 @@ if ($_SESSION['type'] == "Clerk" && isset($_GET['deliver_id'])) {
           </table>
         </div>
       </div>
-    </main>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
-    <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+  </main>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+  <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
   <script>
     $('.btn_xls').click(function () {
       var valueOfButton = $(this).val();
