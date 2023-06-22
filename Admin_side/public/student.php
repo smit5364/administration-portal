@@ -26,6 +26,9 @@ $student = new Students;
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Data Tables -->
   <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css">
+  <!-- Data Tables Button -->
+  <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.3.6/css/buttons.dataTables.min.css">
+
 </head>
 
 <body class="m-0 font-sans text-base antialiased font-normal bg-gray-50 text-slate-500 overflow-hidden">
@@ -228,7 +231,7 @@ $student = new Students;
           <h1 class="text-2xl font-medium text-indigo-600 py-2 pl-3">Student Authorization</h1>
         </div>
         <div class="px-4 min-w-full text-left text-md mt-2">
-          <table id="myTable">
+          <table id="myTable" class="display" style="width:100%">
             <thead class="border-b font-medium text-lg">
               <tr>
                 <th scope="col" class="px-6 py-3">Sr.No</th>
@@ -256,7 +259,7 @@ $student = new Students;
                     <?php echo $row['enrollment_no']; ?>
                   </td>
                   <td class="whitespace-nowrap px-0 py-4">
-                    <?php echo $row['last_name'].' ' . $row['first_name'] .' '. $row['middle_name']; ?>
+                    <?php echo $row['last_name'] . ' ' . $row['first_name'] . ' ' . $row['middle_name']; ?>
                   </td>
                   <td class="whitespace-nowrap py-4">
                     <?php echo $row['course']; ?>
@@ -271,14 +274,15 @@ $student = new Students;
                     <?php echo $row['mobile']; ?>
                   </td>
                   <td class="whitespace-nowrap py-4">
-                    <?php if($row['Authority'] == 0){?>
-                    <button onclick="authority(<?php echo $row['id'];?>)" class="bg-indigo-600 text-white font-medium py-1 px-2 rounded-lg hover:bg-indigo-500">Approve</button>
-                    <?php } else {?>
-                    <p class="bg-green-600 text-white text-center py-1 rounded-full">Authorized</p>
-                    <?php }?>
+                    <?php if ($row['Authority'] == 0) { ?>
+                      <button onclick="authority(<?php echo $row['id']; ?>)"
+                        class="bg-indigo-600 text-white font-medium py-1 px-2 rounded-lg hover:bg-indigo-500">Approve</button>
+                    <?php } else { ?>
+                      <p class="bg-green-600 text-white text-center py-1 rounded-full">Authorized</p>
+                    <?php } ?>
                   </td>
                 </tr>
-                
+
                 <?php
                 $count++;
               }
@@ -289,19 +293,41 @@ $student = new Students;
       </div>
   </main>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
   <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/buttons/2.3.6/js/dataTables.buttons.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+  <script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.html5.min.js"></script>
   <script>
-    $('#myTable').DataTable();
+    $(document).ready(function () {
+      $('#myTable').DataTable({
+        dom: 'Bfrtip',
+        lengthMenu: [
+          [5, 10, 25, -1],
+          ['5', '10', '25', 'Show all']
+        ],
+        buttons: [
+          'pageLength',
+          'print',
+          'copyHtml5',
+          'excelHtml5',
+          'csvHtml5',
+          'pdfHtml5'
+        ]
+      });
+    });
 
-    function authority(authority_id){
-        jQuery.ajax({
-            url: 'private/student_server.php',
-            type: 'POST',
-            data: "&approve=" + authority_id,
-            success: function(response){
-                window.location.href = "student";
-            }
-        })
+    function authority(authority_id) {
+      jQuery.ajax({
+        url: 'private/student_server.php',
+        type: 'POST',
+        data: "&approve=" + authority_id,
+        success: function (response) {
+          window.location.href = "student";
+        }
+      })
     }
   </script>
 </body>

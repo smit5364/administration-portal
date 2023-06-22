@@ -15,16 +15,16 @@ if ($_SESSION['type'] == "Clerk" && isset($_GET['pickup_id'])) {
   header("home");
 
 }
-if ($_SESSION['type'] == "Clerk" && isset($_GET['deliver_id'])) {
+if (isset($_GET['deliver_id'])) {
   $id = $_GET['deliver_id'];
   // $bonafide->print_bonafide($id);
   $bonafide->edit_doc($id);
 }
 
-if(isset($_POST['remark']) && isset($_POST['id'])){
+if (isset($_POST['remark']) && isset($_POST['id'])) {
   $remark_id = $_POST['id'];
   $remark = $_POST['remark'];
-  $bonafide->cancel_verify($remark_id,$remark);
+  $bonafide->cancel_verify($remark_id, $remark);
 }
 ?>
 <!DOCTYPE html>
@@ -50,6 +50,7 @@ if(isset($_POST['remark']) && isset($_POST['id'])){
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Data Tables -->
   <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.3.6/css/buttons.dataTables.min.css">
 </head>
 
 <body class="m-0 font-sans text-base antialiased font-normal bg-gray-50 text-slate-500 overflow-hidden">
@@ -76,15 +77,15 @@ if(isset($_POST['remark']) && isset($_POST['id'])){
             Dashboard
           </a>
         </li>
-        <?php if($_SESSION['type'] == "Head"){?>
+        <?php if ($_SESSION['type'] == "Head") { ?>
           <li class="w-full">
-          <a href="student"
-            class="bg-white text-lg my-0 mx-2 flex items-center whitespace-nowrap rounded-lg px-4 py-3 font-medium text-slate-700 transition-colors">
-            <i class="ni ni-tv-2 text-indigo-600 mr-3"></i>
-            Student
-          </a>
-        </li>
-        <?php }?>
+            <a href="student"
+              class="bg-white text-lg my-0 mx-2 flex items-center whitespace-nowrap rounded-lg px-4 py-3 font-medium text-slate-700 transition-colors">
+              <i class="ni ni-tv-2 text-indigo-600 mr-3"></i>
+              Student
+            </a>
+          </li>
+        <?php } ?>
         <li class="w-full">
           <a href="bonafide"
             class="bg-indigo-200 text-lg my-0 mx-2 flex items-center whitespace-nowrap rounded-lg px-4 py-3 font-medium text-slate-700 transition-colors">
@@ -253,7 +254,8 @@ if(isset($_POST['remark']) && isset($_POST['id'])){
         <!-- row 1 -->
         <div class="flex flex-wrap -mx-3 mb-6">
           <!-- card1 -->
-          <div class="w-full max-w-full px-3 mb-6 sm:w-1/2 sm:flex-none xl:mb-0 xl:w-1/4 cursor-pointer" id="pending_verify">
+          <div class="w-full max-w-full px-3 mb-6 sm:w-1/2 sm:flex-none xl:mb-0 xl:w-1/4 cursor-pointer"
+            id="pending_verify">
             <div class="relative flex flex-col min-w-0 break-words bg-white shadow-xl rounded-2xl bg-clip-border">
               <div class="flex-auto p-4">
                 <div class="flex flex-row -mx-3">
@@ -277,7 +279,8 @@ if(isset($_POST['remark']) && isset($_POST['id'])){
           </div>
 
           <!-- card2 -->
-          <div class="w-full max-w-full px-3 mb-6 sm:w-1/2 sm:flex-none xl:mb-0 xl:w-1/4 cursor-pointer" id="pending_approval">
+          <div class="w-full max-w-full px-3 mb-6 sm:w-1/2 sm:flex-none xl:mb-0 xl:w-1/4 cursor-pointer"
+            id="pending_approval">
             <div class="relative flex flex-col min-w-0 break-words bg-white shadow-xl rounded-2xl bg-clip-border">
               <div class="flex-auto p-4">
                 <div class="flex flex-row -mx-3">
@@ -301,7 +304,8 @@ if(isset($_POST['remark']) && isset($_POST['id'])){
           </div>
 
           <!-- card3 -->
-          <div class="w-full max-w-full px-3 mb-6 sm:w-1/2 sm:flex-none xl:mb-0 xl:w-1/4 cursor-pointer" id="reject_bonafide">
+          <div class="w-full max-w-full px-3 mb-6 sm:w-1/2 sm:flex-none xl:mb-0 xl:w-1/4 cursor-pointer"
+            id="reject_bonafide">
             <div class="relative flex flex-col min-w-0 break-words bg-white shadow-xl rounded-2xl bg-clip-border">
               <div class="flex-auto p-4">
                 <div class="flex flex-row -mx-3">
@@ -405,7 +409,7 @@ if(isset($_POST['remark']) && isset($_POST['id'])){
                     <?php } else if ($row['verify_flag'] == 1 && $row['remark'] == "") { ?>
                           <p class="text-md bg-green-500 mr-3 p-1 text-white font-medium text-center rounded-full">Verified</p>
                     <?php } else if ($row['verify_flag'] == 0 || $row['verify_flag'] == 1 && $row['remark'] != "") { ?>
-                          <p class="text-md bg-red-500 mr-3 p-1 text-white font-medium text-center rounded-full">Canceled</p>
+                            <p class="text-md bg-red-500 mr-3 p-1 text-white font-medium text-center rounded-full">Canceled</p>
                     <?php } ?>
                   </td>
 
@@ -420,7 +424,7 @@ if(isset($_POST['remark']) && isset($_POST['id'])){
                     <?php } else if ($row['approve_flag'] == 1 && $row['remark'] == "") { ?>
                           <p class="text-md bg-green-500 mr-3 p-1 text-white font-medium text-center rounded-full">Approved</p>
                     <?php } else if ($row['approve_flag'] == 0 && $row['remark'] != "") { ?>
-                          <p class="text-md bg-red-500 mr-3 p-1 text-white font-medium text-center rounded-full">Canceled</p>
+                            <p class="text-md bg-red-500 mr-3 p-1 text-white font-medium text-center rounded-full">Canceled</p>
                     <?php } ?>
                   </td>
 
@@ -429,33 +433,36 @@ if(isset($_POST['remark']) && isset($_POST['id'])){
                     <?php if ($row['approve_flag'] == 1 && $_SESSION['type'] == "Clerk" && $row['delever_flag'] == 0 && $row['remark'] == "") { ?>
                       <div class="flex"> <a href="bonafide?pickup_id=<?php echo $row['id']; ?>"><button name="print"
                             id="print"
-                            class="bg-indigo-600 px-4 py-2 rounded-lg text-white font-medium hover:bg-indigo-500 shadow-md">Deliver</button></a><a
-                          target="_blank" href="bonafide?deliver_id=<?php echo $row['id']; ?>"><img class="h-6 my-2 ml-2"
-                            src=" private/Images/printer.png" alt="" srcset=""></a></div>
-                    <?php } else if ($_SESSION['type'] == "Head" &&  $row['delever_flag'] == 0 && $row['remark'] == "") { ?>
+                            class="bg-indigo-600 px-4 py-2 rounded-lg text-white font-medium hover:bg-indigo-500 shadow-md">Deliver</button></a>
+                        <a href="bonafide?deliver_id=<?php echo $row['id']; ?>"><img class="h-6 my-2 ml-2"
+                            src=" private/Images/printer.png" alt="" srcset=""></a>
+                      </div>
+                    <?php } else if ($_SESSION['type'] == "Head" && $row['delever_flag'] == 0 && $row['remark'] == "") { ?>
                         <div class="flex">
-                        <p class="text-md bg-yellow-600 mr-3 py-1 px-2 text-white font-medium text-center rounded-full">Pending</p>
+                          <p class="text-md bg-yellow-600 mr-3 py-1 px-2 text-white font-medium text-center rounded-full">
+                            Pending</p>
                         </div>
-                    <?php } else if ($_SESSION['type'] == "Clerk" &&  $row['delever_flag'] == 0 && $row['remark'] == "") { ?>
-                        <div class="flex">
-                        <p class="text-md bg-yellow-600 mr-3 py-1 px-2 text-white font-medium text-center rounded-full">Pending</p>
-                        </div>
+                    <?php } else if ($_SESSION['type'] == "Clerk" && $row['delever_flag'] == 0 && $row['remark'] == "") { ?>
+                          <div class="flex">
+                            <p class="text-md bg-yellow-600 mr-3 py-1 px-2 text-white font-medium text-center rounded-full">
+                              Pending</p>
+                          </div>
                     <?php } else if ($row['delever_flag'] == 1 && $row['remark'] == "") { ?>
-                          <div class="flex ">
-                            <p class="text-md bg-green-500 mr-3 py-1 px-2 text-white font-medium text-center rounded-full">
-                              Delivered
-                            </p>
-                            <a href="bonafide?deliver_id=<?php echo $row['id']; ?>"><img class="h-6 m-auto"
-                                src="private/Images/printer.png" alt="" srcset=""></a>
-                          </div>
+                            <div class="flex ">
+                              <p class="text-md bg-green-500 mr-3 py-1 px-2 text-white font-medium text-center rounded-full">
+                                Delivered
+                              </p>
+                              <a href="bonafide?deliver_id=<?php echo $row['id']; ?>"><img class="h-6 m-auto"
+                                  src="private/Images/printer.png" alt="" srcset=""></a>
+                            </div>
                     <?php } else if ($row['verify_flag'] == 1 || $row['verify_flag'] == 0 && $row['delever_flag'] == 0 && $row['remark'] != "") { ?>
-                          <div class="flex ">
-                            <p class="text-md bg-red-500 mr-3 py-1 px-2 text-white font-medium text-center rounded-full">
-                              Canceled
-                            </p>
-                            <!-- <a href="bonafide?deliver_id=<?php echo $row['id']; ?>"><img class="h-6 m-auto"
+                              <div class="flex ">
+                                <p class="text-md bg-red-500 mr-3 py-1 px-2 text-white font-medium text-center rounded-full">
+                                  Canceled
+                                </p>
+                                <!-- <a href="bonafide?deliver_id=<?php echo $row['id']; ?>"><img class="h-6 m-auto"
                                 src="private/Images/printer.png" alt="" srcset=""></a> -->
-                          </div>
+                              </div>
                     <?php } ?>
                   </td>
                 </tr>
@@ -468,35 +475,58 @@ if(isset($_POST['remark']) && isset($_POST['id'])){
       </div>
   </main>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
   <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/buttons/2.3.6/js/dataTables.buttons.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+  <script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.html5.min.js"></script>
   <script>
-    $('#myTable').DataTable();
+    $(document).ready(function () {
+      $('#myTable').DataTable({
+        dom: 'Bfrtip',
+        lengthMenu: [
+          [5, 10, 25, -1],
+          ['5', '10', '25', 'Show all']
+        ],
+        buttons: [
+          'pageLength',
+          'print',
+          'copyHtml5',
+          'excelHtml5',
+          'csvHtml5',
+          'pdfHtml5'
+        ]
+      });
+    });
 
     const pending_verify = document.getElementById('pending_verify');
     const pending_approval = document.getElementById('pending_approval');
     const reject_bonafide = document.getElementById('reject_bonafide');
     const complete_delivery = document.getElementById('complete_delivery');
 
-    pending_verify.addEventListener('click',function(event){
+    pending_verify.addEventListener('click', function (event) {
       event.preventDefault();
       window.location.href = "private/excel_file.php?action=pending_bonafide_verification";
     });
 
-    pending_approval.addEventListener('click',function(event){
+    pending_approval.addEventListener('click', function (event) {
       event.preventDefault();
       window.location.href = "private/excel_file.php?action=pending_bonafide_approval";
     });
 
-    reject_bonafide.addEventListener('click',function(event){
+    reject_bonafide.addEventListener('click', function (event) {
       event.preventDefault();
       window.location.href = "private/excel_file.php?action=bonafide_rejection";
     });
-    
-    complete_delivery.addEventListener('click',function(event){
+
+    complete_delivery.addEventListener('click', function (event) {
       event.preventDefault();
       window.location.href = "private/excel_file.php?action=bonafide_Delivery_complete";
     });
   </script>
+
 </body>
 
 </html>

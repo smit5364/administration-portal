@@ -1,12 +1,14 @@
 <?php
-error_reporting(0);
+// error_reporting(0);
 try {
-    $con = new mysqli("localhost","root","","admin_portal");
-  } catch (Exception $e) {
-    echo $e ->getMessage();
-  }
-class excel{
-    function pending_bonafide_verification(){
+    $con = new mysqli("localhost", "root", "", "admin_portal");
+} catch (Exception $e) {
+    echo $e->getMessage();
+}
+class excel
+{
+    function pending_bonafide_verification()
+    {
         global $con;
         $query = "SELECT * FROM `bonafide` WHERE `verify_flag` = '0' AND `remark` = ''";
         $result = mysqli_query($con, $query);
@@ -22,17 +24,17 @@ class excel{
             <th>Reason of Issue</th>
             <th>Apply Date</th>
         </tr>";
-        while($row = mysqli_fetch_assoc($result)){
-        $html .= "<tr>
-        <td>".$row['enrollment_no']."</td>
-        <td>".$row['name']."</td>
-        <td>".$row['father_name']."</td>
-        <td>".$row['course']."</td>
-        <td>".$row['semester']."</td>
-        <td>".$row['mobile_no']."</td>
-        <td>".$row['email']."</td>
-        <td>".$row['purpose']."</td>
-        <td>".$row['apply_date']."</td>
+        while ($row = mysqli_fetch_assoc($result)) {
+            $html .= "<tr>
+        <td>" . $row['enrollment_no'] . "</td>
+        <td>" . $row['name'] . "</td>
+        <td>" . $row['father_name'] . "</td>
+        <td>" . $row['course'] . "</td>
+        <td>" . $row['semester'] . "</td>
+        <td>" . $row['mobile_no'] . "</td>
+        <td>" . $row['email'] . "</td>
+        <td>" . $row['purpose'] . "</td>
+        <td>" . $row['apply_date'] . "</td>
         </tr>";
         }
         $html .= "</table>";
@@ -41,7 +43,8 @@ class excel{
         echo $html;
     }
 
-    function pending_bonafide_approval(){
+    function pending_bonafide_approval()
+    {
         global $con;
         $query = "SELECT * FROM `bonafide` WHERE `approve_flag` = '0' AND `verify_flag` = '1' AND `remark` = ''";
         $result = mysqli_query($con, $query);
@@ -57,17 +60,17 @@ class excel{
             <th>Reason of Issue</th>
             <th>Apply Date</th>
         </tr>";
-        while($row = mysqli_fetch_assoc($result)){
-        $html .= "<tr>
-        <td>".$row['enrollment_no']."</td>
-        <td>".$row['name']."</td>
-        <td>".$row['father_name']."</td>
-        <td>".$row['course']."</td>
-        <td>".$row['semester']."</td>
-        <td>".$row['mobile_no']."</td>
-        <td>".$row['email']."</td>
-        <td>".$row['purpose']."</td>
-        <td>".$row['apply_date']."</td>
+        while ($row = mysqli_fetch_assoc($result)) {
+            $html .= "<tr>
+        <td>" . $row['enrollment_no'] . "</td>
+        <td>" . $row['name'] . "</td>
+        <td>" . $row['father_name'] . "</td>
+        <td>" . $row['course'] . "</td>
+        <td>" . $row['semester'] . "</td>
+        <td>" . $row['mobile_no'] . "</td>
+        <td>" . $row['email'] . "</td>
+        <td>" . $row['purpose'] . "</td>
+        <td>" . $row['apply_date'] . "</td>
         </tr>";
         }
         $html .= "</table>";
@@ -76,7 +79,8 @@ class excel{
         echo $html;
     }
 
-    function bonafide_rejection(){
+    function bonafide_rejection()
+    {
         global $con;
         $query = "SELECT * FROM `bonafide` WHERE `remark` != ''";
         $result = mysqli_query($con, $query);
@@ -93,18 +97,18 @@ class excel{
             <th>Apply Date</th>
             <th>Reason For Cancel</th>
         </tr>";
-        while($row = mysqli_fetch_assoc($result)){
-        $html .= "<tr>
-        <td>".$row['enrollment_no']."</td>
-        <td>".$row['name']."</td>
-        <td>".$row['father_name']."</td>
-        <td>".$row['course']."</td>
-        <td>".$row['semester']."</td>
-        <td>".$row['mobile_no']."</td>
-        <td>".$row['email']."</td>
-        <td>".$row['purpose']."</td>
-        <td>".$row['apply_date']."</td>
-        <td>".$row['remark']."</td>
+        while ($row = mysqli_fetch_assoc($result)) {
+            $html .= "<tr>
+        <td>" . $row['enrollment_no'] . "</td>
+        <td>" . $row['name'] . "</td>
+        <td>" . $row['father_name'] . "</td>
+        <td>" . $row['course'] . "</td>
+        <td>" . $row['semester'] . "</td>
+        <td>" . $row['mobile_no'] . "</td>
+        <td>" . $row['email'] . "</td>
+        <td>" . $row['purpose'] . "</td>
+        <td>" . $row['apply_date'] . "</td>
+        <td>" . $row['remark'] . "</td>
         </tr>";
         }
         $html .= "</table>";
@@ -113,7 +117,8 @@ class excel{
         echo $html;
     }
 
-    function bonafide_Delivery_complete(){
+    function bonafide_Delivery_complete()
+    {
         global $con;
         $query = "SELECT * FROM `bonafide` WHERE `delever_flag` = '1' AND `remark` = ''";
         $result = mysqli_query($con, $query);
@@ -129,17 +134,17 @@ class excel{
             <th>Reason of Issue</th>
             <th>Apply Date</th>
         </tr>";
-        while($row = mysqli_fetch_assoc($result)){
-        $html .= "<tr>
-        <td>".$row['enrollment_no']."</td>
-        <td>".$row['name']."</td>
-        <td>".$row['father_name']."</td>
-        <td>".$row['course']."</td>
-        <td>".$row['semester']."</td>
-        <td>".$row['mobile_no']."</td>
-        <td>".$row['email']."</td>
-        <td>".$row['purpose']."</td>
-        <td>".$row['apply_date']."</td>
+        while ($row = mysqli_fetch_assoc($result)) {
+            $html .= "<tr>
+        <td>" . $row['enrollment_no'] . "</td>
+        <td>" . $row['name'] . "</td>
+        <td>" . $row['father_name'] . "</td>
+        <td>" . $row['course'] . "</td>
+        <td>" . $row['semester'] . "</td>
+        <td>" . $row['mobile_no'] . "</td>
+        <td>" . $row['email'] . "</td>
+        <td>" . $row['purpose'] . "</td>
+        <td>" . $row['apply_date'] . "</td>
         </tr>";
         }
         $html .= "</table>";
@@ -148,7 +153,8 @@ class excel{
         echo $html;
     }
 }
-function download_bonafide_report($action){
+function download_bonafide_report($action)
+{
     $exe = new excel;
     switch ($action) {
         case 'pending_bonafide_verification':
@@ -158,7 +164,7 @@ function download_bonafide_report($action){
         case 'pending_bonafide_approval':
             $exe->pending_bonafide_approval();
             break;
-        
+
         case 'bonafide_rejection':
             $exe->bonafide_rejection();
             break;
