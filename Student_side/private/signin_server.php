@@ -17,6 +17,7 @@
                     $data[] = $row['email'];
                     $data[] = $row['mobile'];
                     $data[] = $row['password'];
+                    $data[] = $row['Authority'];
                 }
                 return $data;
             }else{

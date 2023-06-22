@@ -168,10 +168,17 @@ class Bonafide
         header('location:bonafide');
     }
 
+    function cancel_verify($id,$remark){
+        $con = connect();
+        $query = "UPDATE `bonafide` SET `remark`='$remark' WHERE id = '$id'";
+        mysqli_query($con, $query);
+        header('location:bonafide');
+    }
+
     function pending_verify()
     {
         $con = connect();
-        $query = "SELECT COUNT(*) FROM `bonafide` WHERE `verify_flag` = '0'";
+        $query = "SELECT COUNT(*) FROM `bonafide` WHERE `verify_flag` = '0' AND `remark` = ''";
         $result = mysqli_query($con, $query);
         $data = mysqli_fetch_assoc($result);
         return $data['COUNT(*)'];
@@ -180,16 +187,16 @@ class Bonafide
     function pending_approval()
     {
         $con = connect();
-        $query = "SELECT COUNT(*) FROM `bonafide` WHERE `approve_flag` = '0' AND `verify_flag` = '1'";
+        $query = "SELECT COUNT(*) FROM `bonafide` WHERE `approve_flag` = '0' AND `verify_flag` = '1' AND `remark` = ''";
         $result = mysqli_query($con, $query);
         $data = mysqli_fetch_assoc($result);
         return $data['COUNT(*)'];
     }
 
-    function complete_verify()
+    function reject_bonafide()
     {
         $con = connect();
-        $query = "SELECT COUNT(*) FROM `bonafide` WHERE `verify_flag` = '1'";
+        $query = "SELECT COUNT(*) FROM `bonafide` WHERE `remark` != '' ";
         $result = mysqli_query($con, $query);
         $data = mysqli_fetch_assoc($result);
         return $data['COUNT(*)'];
@@ -198,7 +205,7 @@ class Bonafide
     function complete_deliver()
     {
         $con = connect();
-        $query = "SELECT COUNT(*) FROM `bonafide` WHERE `delever_flag` = '1'";
+        $query = "SELECT COUNT(*) FROM `bonafide` WHERE `delever_flag` = '1' AND `remark` = ''";
         $result = mysqli_query($con, $query);
         $data = mysqli_fetch_assoc($result);
         return $data['COUNT(*)'];
@@ -502,5 +509,4 @@ class Bonafide
     }
 
 }
-
 ?>

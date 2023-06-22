@@ -7,11 +7,13 @@ if (isset($_POST['validate'])) {
     $email = addslashes($_POST['email']);
     $pass = addslashes($_POST['password']);
     $data = $signin->Search($email);
-    if ($data[9] == $pass) {
+    if ($data[9] == $pass && $data[10] == "1") {
         $_SESSION['enrollment'] = $data[6];
         header('location:home');
-    } else {
-        echo "Email and Password is Wrong";
+    } else if($data[10] == "0"){
+        echo "Don't provide Authority for Login";
+    }else{
+        echo "Please Enter Your Email and Password is Correct";
     }
 }
 ?>

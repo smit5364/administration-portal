@@ -1,5 +1,8 @@
 <?php
 // error_reporting(0);
+
+use FontLib\Table\Type\head;
+
 include('private/bonafide_server.php');
 if ($_SESSION['name'] == "") {
   header('location:signin');
@@ -15,6 +18,10 @@ if (isset($_POST['approve'])) {
   $bonafide->approve_verify($id);
   header('location:bonafide');
 }
+// if(isset($_POST['remark'])){
+//   $remark = $_POST['remark'];
+//   $bonafide->cancel_verify($id,$remark);
+// }
 ?>
 <!DOCTYPE html>
 <html>
@@ -41,102 +48,46 @@ if (isset($_POST['approve'])) {
 <body class="m-0 font-sans text-base antialiased font-normal leading-default bg-gray-50 text-slate-500 overflow-hidden">
   <div class="absolute w-full bg-indigo-600 min-h-[25%]"></div>
   <!-- sidenav  -->
-  <aside
-    class="fixed inset-y-0 flex-wrap items-center justify-between block w-1/5 p-0 my-4 overflow-y-auto antialiased transition-transform duration-200 -translate-x-full bg-white border-0 shadow-xl max-w-64 ease-nav-brand z-990 xl:ml-6 rounded-2xl xl:left-0 xl:translate-x-0"
-    aria-expanded="false">
-    <div class="h-19">
+  <section
+    class="fixed inset-y-0 flex-wrap items-center justify-between w-1/5 p-0 my-4 overflow-y-auto antialiased transition-transform duration-200 -translate-x-full bg-white border-0 shadow-xl max-w-64 ease-in-out z-[990] xl:ml-6 rounded-2xl xl:left-0 xl:translate-x-0">
+    <div class="h-19 pt-2">
       <i class="absolute top-0 right-0 p-4 opacity-50 cursor-pointer fas fa-times text-slate-400 xl:hidden"
         sidenav-close></i>
-      <a href="dashboard.php" class="flex justify-center pt-2">
+      <a href="dashboard" class="flex justify-center">
         <img src="private/assets/img/logo.png" alt="" width="140px">
       </a>
     </div>
 
-    <hr class="h-px mt-0 bg-transparent bg-gradient-to-r from-transparent via-black/40 to-transparent" />
+    <hr class="h-px mt-1 bg-transparent bg-gradient-to-r from-transparent via-black/40 to-transparent" />
 
-    <div class="items-center block w-auto max-h-screen overflow-auto h-sidenav grow basis-full">
+    <div class="items-center block w-auto max-h-screen overflow-auto basis-full">
       <ul class="flex flex-col pl-0 mb-0">
         <li class="mt-2 w-full">
-          <a class="py-2 bg-indigo-100 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap rounded-lg px-4 font-semibold text-slate-700 transition-colors"
-            href="bonafide">
-            <div
-              class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
-              <i class="relative top-0 text-lg leading-normal text-blue-500 ni ni-tv-2"></i>
-            </div>
-            <span class="ml-1 duration-300 text-lg opacity-100 pointer-events-none ease">Bonafide</span>
+          <a href="dashboard"
+            class="bg-white text-lg my-0 mx-2 flex items-center whitespace-nowrap rounded-lg px-4 py-3 font-medium text-slate-700 transition-colors">
+            <i class="ni ni-tv-2 text-indigo-600 mr-3"></i>
+            Dashboard
           </a>
         </li>
-
-        <!-- <li class="mt-0.5 w-full">
-            <a class=" dark:text-white dark:opacity-80 py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors" href="../pages/tables.html">
-              <div class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
-                <i class="relative top-0 text-sm leading-normal text-orange-500 ni ni-calendar-grid-58"></i>
-              </div>
-              <span class="ml-1 duration-300 opacity-100 pointer-events-none ease">Tables</span>
-            </a>
-          </li>
-
-          <li class="mt-0.5 w-full">
-            <a class=" dark:text-white dark:opacity-80 py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors" href="../pages/billing.html">
-              <div class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center fill-current stroke-0 text-center xl:p-2.5">
-                <i class="relative top-0 text-sm leading-normal text-emerald-500 ni ni-credit-card"></i>
-              </div>
-              <span class="ml-1 duration-300 opacity-100 pointer-events-none ease">Billing</span>
-            </a>
-          </li>
-
-          <li class="mt-0.5 w-full">
-            <a class=" dark:text-white dark:opacity-80 py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors" href="../pages/virtual-reality.html">
-              <div class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
-                <i class="relative top-0 text-sm leading-normal text-cyan-500 ni ni-app"></i>
-              </div>
-              <span class="ml-1 duration-300 opacity-100 pointer-events-none ease">Virtual Reality</span>
-            </a>
-          </li>
-
-          <li class="mt-0.5 w-full">
-            <a class=" dark:text-white dark:opacity-80 py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors" href="../pages/rtl.html">
-              <div class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
-                <i class="relative top-0 text-sm leading-normal text-red-600 ni ni-world-2"></i>
-              </div>
-              <span class="ml-1 duration-300 opacity-100 pointer-events-none ease">RTL</span>
-            </a>
-          </li>
-
-          <li class="w-full mt-4">
-            <h6 class="pl-6 ml-2 text-xs font-bold leading-tight uppercase dark:text-white opacity-60">Account pages</h6>
-          </li>
-
-          <li class="mt-0.5 w-full">
-            <a class=" dark:text-white dark:opacity-80 py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors" href="../pages/profile.html">
-              <div class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
-                <i class="relative top-0 text-sm leading-normal text-slate-700 ni ni-single-02"></i>
-              </div>
-              <span class="ml-1 duration-300 opacity-100 pointer-events-none ease">Profile</span>
-            </a>
-          </li>
-
-          <li class="mt-0.5 w-full">
-            <a class=" dark:text-white dark:opacity-80 py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors" href="signin">
-              <div class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
-                <i class="relative top-0 text-sm leading-normal text-orange-500 ni ni-single-copy-04"></i>
-              </div>
-              <span class="ml-1 duration-300 opacity-100 pointer-events-none ease">Sign In</span>
-            </a>
-          </li>
-
-          <li class="mt-0.5 w-full">
-            <a class=" dark:text-white dark:opacity-80 py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors" href="signup">
-              <div class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
-                <i class="relative top-0 text-sm leading-normal text-cyan-500 ni ni-collection"></i>
-              </div>
-              <span class="ml-1 duration-300 opacity-100 pointer-events-none ease">Sign Up</span>
-            </a>
-          </li> -->
+        <?php if($_SESSION['type'] == "Head"){?>
+          <li class="w-full">
+          <a href="student"
+            class="bg-white text-lg my-0 mx-2 flex items-center whitespace-nowrap rounded-lg px-4 py-3 font-medium text-slate-700 transition-colors">
+            <i class="ni ni-tv-2 text-indigo-600 mr-3"></i>
+            Student
+          </a>
+        </li>
+        <?php }?>
+        <li class="w-full">
+          <a href="bonafide"
+            class="bg-indigo-200 text-lg my-0 mx-2 flex items-center whitespace-nowrap rounded-lg px-4 py-3 font-medium text-slate-700 transition-colors">
+            <i class="ni ni-tv-2 text-indigo-600 mr-3"></i>
+            Bonafide
+          </a>
+        </li>
       </ul>
     </div>
-  </aside>
-
+  </section>
   <!-- end sidenav -->
 
   <main class="relative h-full max-h-screen transition-all duration-200 ease-in-out xl:ml-68 rounded-xl">
@@ -294,7 +245,7 @@ if (isset($_POST['approve'])) {
         <!-- row 1 -->
         <div class="flex flex-wrap -mx-3 mb-6">
           <!-- card1 -->
-          <div class="w-full max-w-full px-3 mb-6 sm:w-1/2 sm:flex-none xl:mb-0 xl:w-1/4">
+          <div class="w-full max-w-full px-3 mb-6 sm:w-1/2 sm:flex-none xl:mb-0 xl:w-1/4 cursor-pointer" onclick="pending_verify_2()">
             <div class="relative flex flex-col min-w-0 break-words bg-white shadow-xl rounded-2xl bg-clip-border">
               <div class="flex-auto p-4">
                 <div class="flex flex-row -mx-3">
@@ -318,7 +269,7 @@ if (isset($_POST['approve'])) {
           </div>
 
           <!-- card2 -->
-          <div class="w-full max-w-full px-3 mb-6 sm:w-1/2 sm:flex-none xl:mb-0 xl:w-1/4">
+          <div class="w-full max-w-full px-3 mb-6 sm:w-1/2 sm:flex-none xl:mb-0 xl:w-1/4 cursor-pointer" onclick="pending_approval()">
             <div class="relative flex flex-col min-w-0 break-words bg-white shadow-xl rounded-2xl bg-clip-border">
               <div class="flex-auto p-4">
                 <div class="flex flex-row -mx-3">
@@ -342,15 +293,15 @@ if (isset($_POST['approve'])) {
           </div>
 
           <!-- card3 -->
-          <div class="w-full max-w-full px-3 mb-6 sm:w-1/2 sm:flex-none xl:mb-0 xl:w-1/4">
+          <div class="w-full max-w-full px-3 mb-6 sm:w-1/2 sm:flex-none xl:mb-0 xl:w-1/4 cursor-pointer" onclick="reject_bonafide()">
             <div class="relative flex flex-col min-w-0 break-words bg-white shadow-xl rounded-2xl bg-clip-border">
               <div class="flex-auto p-4">
                 <div class="flex flex-row -mx-3">
                   <div class="flex-none w-2/3 max-w-full px-3">
                     <div>
-                      <p class="mb-0 font-sans text-md font-semibold leading-normal uppercase">Verify Complete</p>
+                      <p class="mb-0 font-sans text-md font-semibold leading-normal uppercase">Rejected Bonafide</p>
                       <h5 class="mb-2 font-bold text-2xl">
-                        <?php echo $bonafide->complete_verify(); ?>
+                        <?php echo $bonafide->reject_bonafide(); ?>
                       </h5>
                     </div>
                   </div>
@@ -366,7 +317,7 @@ if (isset($_POST['approve'])) {
           </div>
 
           <!-- card4 -->
-          <div class="w-full max-w-full px-3 sm:w-1/2 sm:flex-none xl:w-1/4">
+          <div class="w-full max-w-full px-3 sm:w-1/2 sm:flex-none xl:w-1/4 cursor-pointer" onclick="complete_delivery()">
             <div class="relative flex flex-col min-w-0 break-words bg-white shadow-xl rounded-2xl bg-clip-border">
               <div class="flex-auto p-4">
                 <div class="flex flex-row -mx-3">
@@ -461,6 +412,13 @@ if (isset($_POST['approve'])) {
                     <?php echo $row['pickup_date']; ?>
                   </p>
                 </div>
+              <?php } else if (($_SESSION['type'] == "Head" || $_SESSION['type'] == "Clerk") && $row['remark'] != "") { ?>
+                <div class="col-span-1">
+                  <h1 class="text-lg font-medium">Reason for Cancel</h1>
+                  <p class="text-lg">
+                    <?php echo $row['remark']; ?>
+                  </p>
+                </div>
               <?php } ?>
             </div>
             <div class="grid grid-cols-3 mt-6">
@@ -479,20 +437,29 @@ if (isset($_POST['approve'])) {
                 </a>
               </div>
             </div>
+            <div class="grid-cols-2 mt-6 hidden" id="cancel_input">
+                <div class="flex flex-col col-span-1">
+                <label for="" class="text-lg font-medium">Reason for Cancel</label>
+                <input type="text" name="remark" placeholder="Enter Your Remark" class="w-96 h-12 bg-gray-50 border-2 border-indigo-600 outline-none text-lg pl-3 rounded-xl focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2 mt-1 font-medium" id="remark">
+                </div>
+            </div>
             <div class="grid grid-cols-2 mt-6">
-              <?php if ($row['verify_flag'] == 0 && $_SESSION['type'] == "Clerk") { ?>
+              <?php if ($row['verify_flag'] == 0 && $_SESSION['type'] == "Clerk" && $row['remark'] == "") { ?>
                 <div class="col-span-1">
                   <form method="post"><button type="submit" name="verify"
                       class="bg-indigo-600 px-4 py-2 text-white font-medium rounded-lg hover:bg-indigo-500">Verify</button>
+                      <button type="button" id="cancel" name="cancel" class="bg-red-600 px-4 py-2 text-white font-medium rounded-lg hover:bg-red-500">Cancel</button>
+                      <input type="hidden" name="cancel_flag" value="0" id="cancel_flag">
                   </form>
                 <?php } ?>
-                <?php if ($row['verify_flag'] == 1 && $_SESSION['type'] == "Head" && $row['approve_flag'] == 0) { ?>
+                <?php if ($row['verify_flag'] == 1 && $_SESSION['type'] == "Head" && $row['approve_flag'] == 0 && $row['remark'] == "") { ?>
                   <div class="col-span-1">
                     <form method="post"><button type="submit" name="approve"
                         class="bg-indigo-600 px-4 py-2 text-white font-medium rounded-lg hover:bg-indigo-500">Approve</button>
+                        <button type="button" id="cancel" name="cancel" class="bg-red-600 px-4 py-2 text-white font-medium rounded-lg hover:bg-red-500">Cancel</button>
+                      <input type="hidden" name="cancel_flag" value="0" id="cancel_flag">
                     </form>
                   <?php } ?>
-                  <!-- <p class="text-lg"><?php //echo $row['purpose'];?></p> -->
                 </div>
               </div>
               <?php
@@ -501,10 +468,53 @@ if (isset($_POST['approve'])) {
           </div>
         </div>
   </main>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+  <script>
+    const cancel = document.getElementById('cancel');
+    const cancel_input = document.getElementById('cancel_input');
+    const remark = document.getElementById('remark');
+    cancel.addEventListener('click',function(event){
+      event.preventDefault();
+        if(cancel_input.classList.contains('hidden')){
+          cancel_input.classList.remove('hidden');
+          remark.focus();
+          $('#cancel_flag').val("1");          
+        }
+    });
+    cancel.addEventListener('click',function(event){
+      event.preventDefault();
+      const cancel_flag = document.getElementById('cancel_flag').value;
+      const remark_value = document.getElementById('remark').value;
+      const verify_id = <?php echo $_GET['verify_id'];?>;
+      console.log(verify_id);
+      if(cancel_flag == "1" && remark_value != "" && remark_value != null){
+        jQuery.ajax({
+          url: 'bonafide',
+          type: 'POST',
+          data: "&id=" + verify_id + "&remark=" + remark_value,
+          success: function(){
+            window.location.href = "bonafide";
+          }
+        })
+      }
+    });
+
+    function pending_verify_2(){
+      window.location.href = "private/excel_file.php?action=pending_bonafide_verification";
+    }
+
+    function pending_approval(){
+      window.location.href = "private/excel_file.php?action=pending_bonafide_approval";
+    }
+
+    function reject_bonafide(){
+      window.location.href = "private/excel_file.php?action=bonafide_rejection";
+    }
+    
+    function complete_delivery(){
+      window.location.href = "private/excel_file.php?action=bonafide_Delivery_complete";
+    }
+  </script>
 </body>
-<!-- plugin for charts  -->
-<script src="private/assets/js/plugins/chartjs.min.js" async></script>
-<!-- plugin for scrollbar  -->
-<script src="private/assets/js/plugins/perfect-scrollbar.min.js" async></script>
 
 </html>

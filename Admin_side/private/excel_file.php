@@ -8,7 +8,7 @@ try {
 class excel{
     function pending_bonafide_verification(){
         global $con;
-        $query = "SELECT * FROM `bonafide` WHERE `verify_flag` = '0'";
+        $query = "SELECT * FROM `bonafide` WHERE `verify_flag` = '0' AND `remark` = ''";
         $result = mysqli_query($con, $query);
         $html = "<table>
         <tr>
@@ -43,7 +43,7 @@ class excel{
 
     function pending_bonafide_approval(){
         global $con;
-        $query = "SELECT * FROM `bonafide` WHERE `approve_flag` = '0' AND `verify_flag` = '1'";
+        $query = "SELECT * FROM `bonafide` WHERE `approve_flag` = '0' AND `verify_flag` = '1' AND `remark` = ''";
         $result = mysqli_query($con, $query);
         $html = "<table>
         <tr>
@@ -76,9 +76,9 @@ class excel{
         echo $html;
     }
 
-    function bonafide_Verification_complete(){
+    function bonafide_rejection(){
         global $con;
-        $query = "SELECT * FROM `bonafide` WHERE `verify_flag` = '1'";
+        $query = "SELECT * FROM `bonafide` WHERE `remark` != ''";
         $result = mysqli_query($con, $query);
         $html = "<table>
         <tr>
@@ -91,6 +91,7 @@ class excel{
             <th>Email</th>
             <th>Reason of Issue</th>
             <th>Apply Date</th>
+            <th>Reason For Cancel</th>
         </tr>";
         while($row = mysqli_fetch_assoc($result)){
         $html .= "<tr>
@@ -103,17 +104,18 @@ class excel{
         <td>".$row['email']."</td>
         <td>".$row['purpose']."</td>
         <td>".$row['apply_date']."</td>
+        <td>".$row['remark']."</td>
         </tr>";
         }
         $html .= "</table>";
         header('Content-Type: application/xls');
-        header('Content-Disposition: attachment; filename=Bonafide_Verification_complete.xls');
+        header('Content-Disposition: attachment; filename=bonafide_rejection.xls');
         echo $html;
     }
 
     function bonafide_Delivery_complete(){
         global $con;
-        $query = "SELECT * FROM `bonafide` WHERE `delever_flag` = '1'";
+        $query = "SELECT * FROM `bonafide` WHERE `delever_flag` = '1' AND `remark` = ''";
         $result = mysqli_query($con, $query);
         $html = "<table>
         <tr>
@@ -157,8 +159,8 @@ function download_bonafide_report($action){
             $exe->pending_bonafide_approval();
             break;
         
-        case 'bonafide_Verification_complete':
-            $exe->bonafide_Verification_complete();
+        case 'bonafide_rejection':
+            $exe->bonafide_rejection();
             break;
 
         case 'bonafide_Delivery_complete':
