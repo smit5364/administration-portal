@@ -484,21 +484,7 @@ if (isset($_POST['remark']) && isset($_POST['id'])) {
   <script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.html5.min.js"></script>
   <script>
     $(document).ready(function () {
-      $('#myTable').DataTable({
-        dom: 'Bfrtip',
-        lengthMenu: [
-          [5, 10, 25, -1],
-          ['5', '10', '25', 'Show all']
-        ],
-        buttons: [
-          'pageLength',
-          'print',
-          'copyHtml5',
-          'excelHtml5',
-          'csvHtml5',
-          'pdfHtml5'
-        ]
-      });
+      $('#myTable').DataTable();
     });
 
     const pending_verify = document.getElementById('pending_verify');
@@ -526,7 +512,7 @@ if (isset($_POST['remark']) && isset($_POST['id'])) {
       window.location.href = "private/excel_file.php?action=bonafide_Delivery_complete";
     });
   </script>
-
+  <?php include('private/sweet_alert.php');?>
 </body>
 
 </html>

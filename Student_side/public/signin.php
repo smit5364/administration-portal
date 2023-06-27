@@ -51,7 +51,7 @@ if (isset($_POST['validate'])) {
                     <input type="password" name="password" placeholder="Enter Your Password" class="h-12 rounded-lg text-lg pl-2 focus:ring-2 focus:outline-none outline-none focus:ring-offset-2 focus:ring-indigo-600 w-full">
                 </div>
                 <div class="flex justify-center mt-5">
-                    <button name="validate" class="bg-indigo-600 text-white text-lg font-medium w-full rounded-lg px-5 py-2 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-800">Login</button>
+                    <button name="validate" class="bg-indigo-600 text-white text-lg font-medium w-full rounded-lg px-5 py-2 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600 hover:bg-indigo-500">Login</button>
                 </div>
                 <div class="flex justify-center mt-4">
                     <p class="text-lg text-gray-500">Don't have an account? <a href="signup" class="text-indigo-600">Sign Up</a></p>
@@ -60,6 +60,8 @@ if (isset($_POST['validate'])) {
             </div>
         </div>
     </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+    <?php include('private/sweet_alert.php')?>;
 </body>
 
 </html>

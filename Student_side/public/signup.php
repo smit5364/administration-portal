@@ -1,5 +1,7 @@
 <?php
+session_start();
 include('private/bonafide_server.php');
+// include('private/sweet_alert.php');
 $bonafide = new Bonafide;
 ?>
 <!DOCTYPE html>
@@ -11,7 +13,7 @@ $bonafide = new Bonafide;
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SignUp Administration</title>
     <link rel="icon" href="private/images/fav.png">
-    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="style.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -24,18 +26,19 @@ $bonafide = new Bonafide;
     <div class="flex justify-center mt-28">
         <div class="bg-gray-100 w-fit rounded-xl shadow-lg">
             <div class="w-full flex justify-center"><img src="private/images/logo.png" alt="" class="w-36 mt-3"></div>
+            <form action="" method="post" id="signup_form">
             <div class="grid grid-cols-3 px-10 py-4 gap-x-10">
                 <div class="flex flex-col w-72">
                     <label for="" class="text-lg">First Name</label>
-                    <input type="text" name="firstname" id="firstname" placeholder="Enter Your First Name" class="h-12 rounded-lg text-lg pl-2 focus:ring-2 focus:outline-none outline-none focus:ring-offset-2 focus:ring-indigo-800" required>
+                    <input type="text" name="firstname" id="firstname" placeholder="Enter Your Name" class="h-12 rounded-lg text-lg pl-2 focus:ring-2 focus:outline-none outline-none focus:ring-offset-2 focus:ring-indigo-800" required>
                 </div>
                 <div class="flex flex-col w-72">
                     <label for="" class="text-lg">Middle Name</label>
-                    <input type="text" name="middlename" id="middlename" placeholder="Enter Your Middle Name" class="h-12 rounded-lg text-lg pl-2 focus:ring-2 focus:outline-none outline-none focus:ring-offset-2 focus:ring-indigo-800 w-full" required>
+                    <input type="text" name="middlename" id="middlename" placeholder="Enter Your Father Name" class="h-12 rounded-lg text-lg pl-2 focus:ring-2 focus:outline-none outline-none focus:ring-offset-2 focus:ring-indigo-800 w-full" required>
                 </div>
                 <div class="flex flex-col w-72">
                     <label for="" class="text-lg">Last Name</label>
-                    <input type="text" name="lastname" id="lastname" placeholder="Enter Your Last Name" class="h-12 rounded-lg text-lg pl-2 focus:ring-2 focus:outline-none outline-none focus:ring-offset-2 focus:ring-indigo-800" required>
+                    <input type="text" name="lastname" id="lastname" placeholder="Enter Your Surname" class="h-12 rounded-lg text-lg pl-2 focus:ring-2 focus:outline-none outline-none focus:ring-offset-2 focus:ring-indigo-800" required>
                 </div>
             </div>
             <div class="grid grid-cols-3 px-10 py-4 gap-x-10">
@@ -68,7 +71,7 @@ $bonafide = new Bonafide;
                 </div>
                 <div class="flex flex-col w-72">
                     <label for="" class="text-lg">Mobile Number</label>
-                    <input type="text" name="mobile" id="mobile" placeholder="Enter Your Mobile Number" class="h-12 rounded-lg text-lg pl-2 focus:ring-2 focus:outline-none outline-none focus:ring-offset-2 focus:ring-indigo-800 w-full" required>
+                    <input type="text" name="mobile" id="mobile" pattern="[0-9]{10}" placeholder="Enter Your Mobile Number" class="h-12 rounded-lg text-lg pl-2 focus:ring-2 focus:outline-none outline-none focus:ring-offset-2 focus:ring-indigo-800 w-full" required>
                 </div>
                 <div class="flex flex-col w-72">
                     <label for="" class="text-lg">Enrollment Number</label>
@@ -86,14 +89,16 @@ $bonafide = new Bonafide;
                 </div>
             </div>
             <div class="flex justify-end pr-10 py-5">
-                <button id="signup" class="bg-indigo-800 text-white text-lg font-medium rounded-lg px-3 py-2 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-800">Sign Up</button>
+                <button id="signup" type="submit" class="bg-indigo-600 text-white text-lg font-medium rounded-lg px-3 py-2 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600 hover:bg-indigo-500">Sign Up</button>
             </div>
+            </form>
         </div>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script>
-        const btn = document.getElementById('signup');
-        btn.addEventListener('click', function(event) {
+        const form = document.getElementById('signup_form');
+        form.addEventListener('submit', function(event) {
             event.preventDefault();
             var fname = document.getElementById('firstname').value;
             var mname = document.getElementById('middlename').value;

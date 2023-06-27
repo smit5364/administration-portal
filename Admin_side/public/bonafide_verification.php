@@ -253,7 +253,7 @@ if (isset($_POST['approve'])) {
                     <div>
                       <p class="mb-0 font-sans text-md font-semibold leading-normal uppercase">Pending Verify</p>
                       <h5 class="mb-2 font-bold text-2xl">
-                        <?php echo $bonafide->pending_approval(); ?>
+                        <?php echo $bonafide->pending_verify(); ?>
                       </h5>
                     </div>
                   </div>

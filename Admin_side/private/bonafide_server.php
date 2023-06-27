@@ -160,7 +160,14 @@ class Bonafide
     {
         $con = connect();
         $query = "UPDATE `bonafide` SET `verify_flag`='1',`verify_by`='$_SESSION[name]' WHERE id = '$id'";
-        mysqli_query($con, $query);
+        $result = mysqli_query($con, $query);
+        if($result){
+            $_SESSION['title'] = "Verified Successfull!";
+            $_SESSION['status_code'] = "success";
+        }else{
+            $_SESSION['title'] = "Verified Failed!";
+            $_SESSION['status_code'] = "error";
+        }
         header('location:bonafide');
     }
 
@@ -168,7 +175,14 @@ class Bonafide
     {
         $con = connect();
         $query = "UPDATE `bonafide` SET `approve_flag`='1',`approve_by`='$_SESSION[name]' WHERE id = '$id'";
-        mysqli_query($con, $query);
+        $result = mysqli_query($con, $query);
+        if($result){
+            $_SESSION['title'] = "Approved Successfull!";
+            $_SESSION['status_code'] = "success";
+        }else{
+            $_SESSION['title'] = "Approved Failed!";
+            $_SESSION['status_code'] = "error";
+        }
         $this->sendmail($id);
         header('location:bonafide');
     }
