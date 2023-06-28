@@ -5,6 +5,7 @@ session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -27,15 +28,20 @@ session_start();
             <ul class="flex justify-between">
                 <li><a href="home"><img src="private/images/logo.png" alt="bmu" class="w-32"></a></li>
                 <?php
-                    if(!$_SESSION['enrollment']){
-                ?>
-                <li><a href="signin"><button class="bg-blue-800 text-white border-2 border-blue-800 rounded-lg hover:bg-transparent hover:text-blue-800 hover:border-2 hover:border-blue-800 px-4 py-2 text-lg font-medium ml-[1200px]">Login</button></a></li>
-                <?php
-                    }else{
-                ?>
-                <li><a href="signout"><button class="bg-blue-800 text-white border-2 border-blue-800 rounded-lg hover:bg-transparent hover:text-blue-800 hover:border-2 hover:border-blue-800 px-2 py-2 text-lg font-medium ml-[1100px]">Logout <?php echo getnamebyenroll($_SESSION['enrollment']);?></button></a></li>
-                <?php
-                    }
+                if (!$_SESSION['enrollment']) {
+                    ?>
+                    <li><a href="signin"><button
+                                class="bg-blue-800 text-white border-2 border-blue-800 rounded-lg hover:bg-transparent hover:text-blue-800 hover:border-2 hover:border-blue-800 px-4 py-2 text-lg font-medium ml-[1200px]">Login</button></a>
+                    </li>
+                    <?php
+                } else {
+                    ?>
+                    <li><a href="signout"><button
+                                class="bg-blue-800 text-white border-2 border-blue-800 rounded-lg hover:bg-transparent hover:text-blue-800 hover:border-2 hover:border-blue-800 px-2 py-2 text-lg font-medium ml-[1100px]">Logout
+                                <?php echo getnamebyenroll($_SESSION['enrollment']); ?>
+                            </button></a></li>
+                    <?php
+                }
                 ?>
             </ul>
         </nav>
@@ -51,14 +57,18 @@ session_start();
         <div class="absolute w-full px-28 top-[29rem]">
             <div class="flex justify-between" style="font-family: 'Geologica', sans-serif;">
                 <div class="getEnroll m-2 cursor-pointer" data-certificate-url="bonafide" data-aos="fade-right">
-                    <a href="bonafide"><div class="bg-white flex items-center w-[22rem] h-48 rounded-xl shadow-lg">
-                        <p class="text-4xl font-medium text-center px-6 m-auto">Bonafide Certificate</p>
-                    </div></a>
+                    <a href="bonafide">
+                        <div class="bg-white flex items-center w-[22rem] h-48 rounded-xl shadow-lg">
+                            <p class="text-4xl font-medium text-center px-6 m-auto">Bonafide Certificate</p>
+                        </div>
+                    </a>
                 </div>
                 <div class="getEnroll  m-2 cursor-pointer" data-certificate-url="bonafide2" data-aos="fade-up">
-                    <div class="bg-white flex items-center w-[22rem] h-48 rounded-xl shadow-lg">
-                        <p class="text-4xl font-medium text-center px-6 m-auto">2 Certificate</p>
-                    </div>
+                    <a href="hdf">
+                        <div class="bg-white flex items-center w-[22rem] h-48 rounded-xl shadow-lg">
+                            <p class="text-4xl font-medium text-center px-6 m-auto">2 Certificate</p>
+                        </div>
+                    </a>
                 </div>
                 <div class="getEnroll  m-2 cursor-pointer" data-certificate-url="bonafide3" data-aos="fade-left">
                     <div class="bg-white flex items-center w-[22rem] h-48 rounded-xl shadow-lg">
@@ -68,7 +78,7 @@ session_start();
 
             </div>
         </div>
-</div>
+    </div>
 
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>

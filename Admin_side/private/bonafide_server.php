@@ -161,10 +161,10 @@ class Bonafide
         $con = connect();
         $query = "UPDATE `bonafide` SET `verify_flag`='1',`verify_by`='$_SESSION[name]' WHERE id = '$id'";
         $result = mysqli_query($con, $query);
-        if($result){
+        if ($result) {
             $_SESSION['title'] = "Verified Successfull!";
             $_SESSION['status_code'] = "success";
-        }else{
+        } else {
             $_SESSION['title'] = "Verified Failed!";
             $_SESSION['status_code'] = "error";
         }
@@ -176,10 +176,10 @@ class Bonafide
         $con = connect();
         $query = "UPDATE `bonafide` SET `approve_flag`='1',`approve_by`='$_SESSION[name]' WHERE id = '$id'";
         $result = mysqli_query($con, $query);
-        if($result){
+        if ($result) {
             $_SESSION['title'] = "Approved Successfull!";
             $_SESSION['status_code'] = "success";
-        }else{
+        } else {
             $_SESSION['title'] = "Approved Failed!";
             $_SESSION['status_code'] = "error";
         }
@@ -526,6 +526,7 @@ class Bonafide
         }
 
         $pickup_date = $twoDaysLater->format('d-m-Y');
+        $weekday_name = $twoDaysLater->format('l');
 
         $pdf->AddFont('CALIBRIB', '', 'CALIBRIB.php');
         $pdf->AddFont('Calibri', '', 'Calibri.php');
@@ -559,7 +560,7 @@ class Bonafide
         $pdf->SetFont('CALIBRIB', '', 14.5);
         $pdf->Cell(38, 10, "Pick-up Date : ", 0, 0, "L");
         $pdf->SetFont('Calibri', '', 14.5);
-        $pdf->Cell(150, 10, $pickup_date, 0, 1, "L");
+        $pdf->Cell(150, 10, $weekday_name . ', ' . $pickup_date, 0, 1, "L");
         $pdfoutputfile = './private/pdf/temp-file.pdf';
         $pdfdoc = $pdf->Output($pdfoutputfile, 'F');
         $mail = new PHPMailer;
@@ -625,7 +626,7 @@ class Bonafide
                             <p>We are pleased to inform you that your Bonafide Certificate has been approved and is now ready for pickup at Bhagwan Mahavir University. Congratulations!</p>
                             <p>Please make a note of the pickup details:</p>
                             <ul>
-                                <li><strong>Pickup Date:</strong> ' . $pickup_date . '</li>
+                            <li><strong>Pickup Date:</strong> ' . $weekday_name . ', ' . $pickup_date . '</li>
                             </ul>
                             <p>Kindly ensure that you bring a valid ID proof when you come to collect your Bonafide Certificate.</p>
                             <p>If you have any questions or require further assistance, please don\'t hesitate to contact our support team. They will be more than happy to help you.</p>

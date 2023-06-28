@@ -29,26 +29,30 @@ $student = new Students;
   <!-- Data Tables Button -->
   <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.3.6/css/buttons.dataTables.min.css">
   <style>
-    .swal-modal{
+    .swal-modal {
       padding-top: 10px;
       padding-bottom: 15px;
     }
-    .swal-text{
-        font-size: 20px;
-        text-align: center;
+
+    .swal-text {
+      font-size: 20px;
+      text-align: center;
     }
-    .swal-button{
-        background-color: #4F46E5;
+
+    .swal-button {
+      background-color: #4F46E5;
     }
-</style>
+  </style>
 </head>
 
 <body class="m-0 font-sans text-base antialiased font-normal bg-gray-50 text-slate-500 overflow-hidden">
   <div class="absolute w-full bg-indigo-600 min-h-[25%]"></div>
   <!-- sidenav  -->
-  <section class="fixed inset-y-0 flex-wrap items-center justify-between w-1/5 p-0 my-4 overflow-y-auto antialiased transition-transform duration-200 -translate-x-full bg-white border-0 shadow-xl max-w-64 ease-in-out z-[990] xl:ml-6 rounded-2xl xl:left-0 xl:translate-x-0">
+  <section
+    class="fixed inset-y-0 flex-wrap items-center justify-between w-1/5 p-0 my-4 overflow-y-auto antialiased transition-transform duration-200 -translate-x-full bg-white border-0 shadow-xl max-w-64 ease-in-out z-[990] xl:ml-6 rounded-2xl xl:left-0 xl:translate-x-0">
     <div class="h-19 pt-2">
-      <i class="absolute top-0 right-0 p-4 opacity-50 cursor-pointer fas fa-times text-slate-400 xl:hidden" sidenav-close></i>
+      <i class="absolute top-0 right-0 p-4 opacity-50 cursor-pointer fas fa-times text-slate-400 xl:hidden"
+        sidenav-close></i>
       <a href="dashboard" class="flex justify-center">
         <img src="private/assets/img/logo.png" alt="" width="140px">
       </a>
@@ -59,19 +63,22 @@ $student = new Students;
     <div class="items-center block w-auto max-h-screen overflow-auto basis-full">
       <ul class="flex flex-col pl-0 mb-0">
         <li class="mt-2 w-full">
-          <a href="dashboard" class="bg-white text-lg my-0 mx-2 flex items-center whitespace-nowrap rounded-lg px-4 py-3 font-medium text-slate-700 transition-colors">
+          <a href="dashboard"
+            class="bg-white text-lg my-0 mx-2 flex items-center whitespace-nowrap rounded-lg px-4 py-3 font-medium text-slate-700 transition-colors">
             <i class="ni ni-tv-2 text-indigo-600 mr-3"></i>
             Dashboard
           </a>
         </li>
         <li class="w-full">
-          <a href="student" class="bg-indigo-200 text-lg my-0 mx-2 flex items-center whitespace-nowrap rounded-lg px-4 py-3 font-medium text-slate-700 transition-colors">
+          <a href="student"
+            class="bg-indigo-200 text-lg my-0 mx-2 flex items-center whitespace-nowrap rounded-lg px-4 py-3 font-medium text-slate-700 transition-colors">
             <i class="ni ni-tv-2 text-indigo-600 mr-3"></i>
             Student
           </a>
         </li>
         <li class="w-full">
-          <a href="bonafide" class="bg-white text-lg my-0 mx-2 flex items-center whitespace-nowrap rounded-lg px-4 py-3 font-medium text-slate-700 transition-colors">
+          <a href="bonafide"
+            class="bg-white text-lg my-0 mx-2 flex items-center whitespace-nowrap rounded-lg px-4 py-3 font-medium text-slate-700 transition-colors">
             <i class="ni ni-tv-2 text-indigo-600 mr-3"></i>
             Bonafide
           </a>
@@ -81,9 +88,12 @@ $student = new Students;
   </section>
   <!-- end sidenav -->
 
-  <main class="relative h-full max-h-screen transition-all duration-200 ease-in-out xl:ml-68 rounded-xl overflow-x-hidden scroll-smooth overflow-y-visible">
+  <main
+    class="relative h-full max-h-screen transition-all duration-200 ease-in-out xl:ml-68 rounded-xl overflow-x-hidden scroll-smooth overflow-y-visible">
     <!-- Navbar -->
-    <nav class="relative flex flex-wrap items-center justify-between px-0 pt-5 mx-6 transition-all ease-in shadow-none duration-250 rounded-2xl lg:flex-nowrap lg:justify-start" navbar-main navbar-scroll="false">
+    <nav
+      class="relative flex flex-wrap items-center justify-between px-0 pt-5 mx-6 transition-all ease-in shadow-none duration-250 rounded-2xl lg:flex-nowrap lg:justify-start"
+      navbar-main navbar-scroll="false">
       <div class="flex items-center justify-between w-full px-4 py-1 mx-auto flex-wrap-inherit">
         <nav class="xl:pl-80">
           <!-- breadcrumb -->
@@ -91,7 +101,9 @@ $student = new Students;
             <li class="text-sm leading-normal">
               <a class="text-white opacity-50 text-md" href="javascript:;">Pages</a>
             </li>
-            <li class="text-md pl-2 capitalize leading-normal text-white before:float-left before:pr-2 before:text-white before:content-['/']" aria-current="page">Student</li>
+            <li
+              class="text-md pl-2 capitalize leading-normal text-white before:float-left before:pr-2 before:text-white before:content-['/']"
+              aria-current="page">Student</li>
           </ol>
           <h6 class="mb-0 font-bold text-white capitalize text-lg">Student</h6>
         </nav>
@@ -113,21 +125,21 @@ $student = new Students;
             <li class="flex items-center xl:mr-3">
               <?php
               if ($_SESSION['name'] == "") {
-              ?>
+                ?>
                 <a href="signin" class="block px-0 py-2 text-lg font-semibold text-white transition-all ease-nav-brand">
                   <i class="fa fa-user sm:mr-1"></i>
                   <span class="hidden sm:inline">Sign In</span>
                 </a>
-              <?php
+                <?php
               } else {
-              ?>
+                ?>
                 <a href="signout">
                   <i class="fa fa-user sm:mr-2 text-white font-semibold text-lg"></i>
                   <span class="hidden sm:inline text-white font-semibold text-lg">
                     <?php echo $_SESSION['name']; ?>
                   </span>
                 </a>
-              <?php
+                <?php
               }
               ?>
             </li>
@@ -252,7 +264,7 @@ $student = new Students;
               $get_deatils = $student->get_student_details();
               $count = 1;
               while ($row = mysqli_fetch_assoc($get_deatils)) {
-              ?>
+                ?>
                 <tr class="border-b transition duration-300 ease-in-out hover:bg-neutral-100">
                   <td class="whitespace-nowrap px-6 py-4 font-medium">
                     <?php echo $count; ?>
@@ -277,14 +289,15 @@ $student = new Students;
                   </td>
                   <td class="whitespace-nowrap py-4">
                     <?php if ($row['Authority'] == 0) { ?>
-                      <button onclick="authority(<?php echo $row['id']; ?>)" class="bg-indigo-600 text-white font-medium py-1 px-2 rounded-lg hover:bg-indigo-500">Approve</button>
+                      <button onclick="authority(<?php echo $row['id']; ?>)"
+                        class="bg-indigo-600 text-white font-medium py-1 px-2 rounded-lg hover:bg-indigo-500">Approve</button>
                     <?php } else { ?>
                       <p class="bg-green-600 text-white text-center py-1 rounded-full">Authorized</p>
                     <?php } ?>
                   </td>
                 </tr>
 
-              <?php
+                <?php
                 $count++;
               }
               ?>
@@ -304,7 +317,7 @@ $student = new Students;
   <script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.html5.min.js"></script>
   <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
   <script>
-    $(document).ready(function() {
+    $(document).ready(function () {
       $('#myTable').DataTable();
     });
 
@@ -314,14 +327,14 @@ $student = new Students;
         url: 'private/student_server.php',
         type: 'POST',
         data: "&approve=" + authority_id,
-        success: function(response) {
+        success: function (response) {
           swal({
             title: "Approved Authority",
             icon: "success",
             button: false,
             timer: 1500,
-          }).then(() =>{
-              window.location.href = location_new;
+          }).then(() => {
+            window.location.href = location_new;
           });
         }
       })

@@ -61,6 +61,21 @@ class bonafide
         return $courses;
     }
 
+    function fetch_course_by_code($crs)
+    {
+        $conn = connect();
+        $query = "SELECT * FROM courses WHERE course_code = '$crs'";
+        $result = mysqli_query($conn, $query);
+        $courses = array();
+        if (mysqli_num_rows($result) > 0) {
+            while ($row = mysqli_fetch_assoc($result)) {
+                $courses[] = $row;
+            }
+        }
+        return $courses;
+    }
+
+
     function fetch_semesters_from_table($course)
     {
         $conn = connect();
