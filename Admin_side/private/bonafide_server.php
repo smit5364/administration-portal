@@ -235,9 +235,16 @@ class Bonafide
     {
         $con = connect();
         $query = "UPDATE `bonafide` SET `delever_flag`='1', `pickup_date`= curdate() WHERE id = '$id'";
-        mysqli_query($con, $query);
-        header('location:bonafide');
-
+        $result = mysqli_query($con, $query);
+        if($result){
+            $_SESSION['title'] = "Delivered Successfull!";
+            $_SESSION['status_code'] = "success";
+            header('Location: ../bonafide');
+        }else{
+            $_SESSION['title'] = "Delivered Failed!";
+            $_SESSION['status_code'] = "error";
+            header('Location: bonafide');
+        }
     }
 
     // function print_bonafide($id)
@@ -636,4 +643,11 @@ class Bonafide
     }
 
 }
+
+$bonafide = new Bonafide;
+if ($_SESSION['type'] == "Clerk" && isset($_GET['pickup_id'])) {
+    $id = $_GET['pickup_id'];
+    $bonafide->date_for_pickup($id);
+    // header('Location: bonafide');
+  }
 ?>

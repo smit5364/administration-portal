@@ -12,8 +12,7 @@ if ($_SESSION['type'] == "Head" && isset($_GET['approve_id'])) {
 if ($_SESSION['type'] == "Clerk" && isset($_GET['pickup_id'])) {
   $id = $_GET['pickup_id'];
   $bonafide->date_for_pickup($id);
-  header("home");
-
+  // header('Location: bonafide');
 }
 if (isset($_GET['deliver_id'])) {
   $id = $_GET['deliver_id'];
@@ -390,7 +389,7 @@ if (isset($_POST['remark']) && isset($_POST['id'])) {
                     <?php echo $row['id']; ?>
                   </td>
                   <td class="whitespace-nowrap px-0 py-4">
-                    <a href="bonafide_verification?verify_id=<?php echo $row['id']; ?>"><?php echo $row['enrollment_no']; ?></a>
+                    <a href="bonafide_verification?verify_id=<?php echo $row['id']; ?>" class="text-indigo-600 font-medium"><?php echo $row['enrollment_no']; ?></a>
                   </td>
                   <td class="whitespace-nowrap pr-6 py-4">
                     <?php echo $row['name']; ?>
@@ -431,10 +430,10 @@ if (isset($_POST['remark']) && isset($_POST['id'])) {
                   <!-- Deliver Bonafide -->
                   <td class="whitespace-nowrap px-6 py-4">
                     <?php if ($row['approve_flag'] == 1 && $_SESSION['type'] == "Clerk" && $row['delever_flag'] == 0 && $row['remark'] == "") { ?>
-                      <div class="flex"> <a href="bonafide?pickup_id=<?php echo $row['id']; ?>"><button name="print"
-                            id="print"
-                            class="bg-indigo-600 px-4 py-2 rounded-lg text-white font-medium hover:bg-indigo-500 shadow-md">Deliver</button></a>
-                        <a href="bonafide?deliver_id=<?php echo $row['id']; ?>"><img class="h-6 my-2 ml-2"
+                      <div class="flex"> <a href="private/bonafide_server.php?pickup_id=<?php echo $row['id']; ?>"><button name="print"
+                            id="deliver"
+                            class="bg-indigo-600 px-4 py-2 rounded-lg text-white font-medium hover:bg-indigo-500 shadow-md disabled:cursor-not-allowed disabled:bg-indigo-500" disabled>Deliver</button></a>
+                        <a href="bonafide?deliver_id=<?php echo $row['id']; ?>" onclick="deliver_btn()"><img class="h-6 my-2 ml-2"
                             src=" private/Images/printer.png" alt="" srcset=""></a>
                       </div>
                     <?php } else if ($_SESSION['type'] == "Head" && $row['delever_flag'] == 0 && $row['remark'] == "") { ?>
@@ -511,6 +510,12 @@ if (isset($_POST['remark']) && isset($_POST['id'])) {
       event.preventDefault();
       window.location.href = "private/excel_file.php?action=bonafide_Delivery_complete";
     });
+
+    // Deliver button disabled and undisabled
+    function deliver_btn(){
+        const deliver = document.getElementById('deliver');
+        deliver.disabled = false;
+    }
   </script>
   <?php include('private/sweet_alert.php');?>
 </body>
