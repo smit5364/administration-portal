@@ -108,7 +108,7 @@ if (isset($_POST['insert'])) {
                         <label for="Course" class="text-xl">Course</label>
                         <input readonly required
                             class="bg-white h-12 rounded-lg pl-2 text-lg outline-none focus:ring-2 focus:ring-indigo-800 cursor-not-allowed"
-                            type="text" name="semester" value="<?php if (isset($crs)) {
+                            type="text" name="course" value="<?php if (isset($crs)) {
                                 echo $crs;
                             } ?>" id="">
                     </div>

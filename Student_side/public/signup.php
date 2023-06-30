@@ -71,9 +71,9 @@ $bonafide = new Bonafide;
                     </div>
                     <div class="flex flex-col w-72">
                         <label for="" class="text-lg">Semester</label>
-                        <input type="text" name="semester" id="semester" placeholder="Enter Your Semester"
-                            class="h-12 rounded-lg text-lg pl-2 focus:ring-2 focus:outline-none outline-none focus:ring-offset-2 focus:ring-indigo-800"
-                            required>
+                        <select name="semester" id="semester" class="bg-white h-12 rounded-lg pl-2 text-lg outline-none focus:ring-2 focus:ring-indigo-800" required>
+                            <option value="Choose Semester" class="hidden">Choose Semester</option>
+                        </select>
                     </div>
                 </div>
                 <div class="grid grid-cols-3 px-10 py-4 gap-x-10">
@@ -122,6 +122,19 @@ $bonafide = new Bonafide;
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script>
+        $('#course').change(function(){            
+            var course_code = $(this).val();
+            jQuery.ajax({
+                url: 'private/bonafide_server.php',
+                type: 'POST',
+                data: '&course_code='+ course_code,
+                success: function(result){
+                    let code = result;
+                    $('#semester').html(code);
+                }
+            })
+        });
+
         const form = document.getElementById('signup_form');
         form.addEventListener('submit', function (event) {
             event.preventDefault();

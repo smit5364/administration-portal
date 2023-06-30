@@ -431,9 +431,9 @@ if (isset($_POST['remark']) && isset($_POST['id'])) {
                   <td class="whitespace-nowrap px-6 py-4">
                     <?php if ($row['approve_flag'] == 1 && $_SESSION['type'] == "Clerk" && $row['delever_flag'] == 0 && $row['remark'] == "") { ?>
                       <div class="flex"> <a href="private/bonafide_server.php?pickup_id=<?php echo $row['id']; ?>"><button name="print"
-                            id="deliver"
-                            class="bg-indigo-600 px-4 py-2 rounded-lg text-white font-medium hover:bg-indigo-500 shadow-md disabled:cursor-not-allowed disabled:bg-indigo-500" disabled>Deliver</button></a>
-                        <a href="bonafide?deliver_id=<?php echo $row['id']; ?>" onclick="deliver_btn()"><img class="h-6 my-2 ml-2"
+                            class="bg-indigo-600 px-4 py-2 rounded-lg text-white font-medium hover:bg-indigo-500 shadow-md disabled:cursor-not-allowed disabled:bg-indigo-500 deliver" disabled>Deliver</button></a>
+                            <input type="hidden" name="print_flag" class="print_flag" value="<?php echo $row['print_flag'];?>">
+                        <a href="bonafide?deliver_id=<?php echo $row['id']; ?>" onclick="disable_toggle()"><img class="h-6 my-2 ml-2"
                             src=" private/Images/printer.png" alt="" srcset=""></a>
                       </div>
                     <?php } else if ($_SESSION['type'] == "Head" && $row['delever_flag'] == 0 && $row['remark'] == "") { ?>
@@ -490,7 +490,7 @@ if (isset($_POST['remark']) && isset($_POST['id'])) {
     const pending_approval = document.getElementById('pending_approval');
     const reject_bonafide = document.getElementById('reject_bonafide');
     const complete_delivery = document.getElementById('complete_delivery');
-
+    <?php if($_SESSION['type'] == "Head"){?>
     pending_verify.addEventListener('click', function (event) {
       event.preventDefault();
       window.location.href = "private/excel_file.php?action=pending_bonafide_verification";
@@ -510,13 +510,23 @@ if (isset($_POST['remark']) && isset($_POST['id'])) {
       event.preventDefault();
       window.location.href = "private/excel_file.php?action=bonafide_Delivery_complete";
     });
+    <?php }?>
 
     // Deliver button disabled and undisabled
-    function deliver_btn(){
-        const deliver = document.getElementById('deliver');
-        deliver.disabled = false;
+    const print_flag = document.getElementsByClassName('print_flag');
+    for(var i = 0; i <= print_flag.length; i++){     
+      if(print_flag[i].value == '1'){
+        const deliver = document.getElementsByClassName('deliver');
+        deliver[i].disabled = false;
+      }
     }
-  </script>
+
+    function disable_toggle(){
+      setTimeout(()=>{
+        window.location.reload();
+      },3000);
+    }
+    </script>
   <?php include('private/sweet_alert.php');?>
 </body>
 

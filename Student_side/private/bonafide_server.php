@@ -90,4 +90,22 @@ class bonafide
     }
 }
 
+$bonafide = new bonafide;
+if(isset($_POST['course_code'])){
+    $course_code = $_POST['course_code'];
+    $result = $bonafide->fetch_semesters_from_table($course_code);
+    for($i = 1; $i <= $result; $i++){
+        if($i == "1"){
+            echo '<option value="'.$i.'">'.$i.'st Semester</option>';
+            continue;       
+        }elseif($i == "2"){
+            echo '<option value="'.$i.'">'.$i.'nd Semester</option>';
+            continue;
+        }elseif($i == "3"){
+            echo '<option value="'.$i.'">'.$i.'rd Semester</option>';
+            continue;
+        }
+        echo '<option value="'.$i.'">'.$i.'th Semester</option>';        
+    }
+}
 ?>

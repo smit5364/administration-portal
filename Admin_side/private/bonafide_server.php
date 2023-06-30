@@ -108,6 +108,9 @@ class Bonafide
         } else {
             $sem = "Invalid Semester";
         }
+            // print flag update
+            $query = "UPDATE `bonafide` SET `print_flag` = '1' WHERE `id` = '$id'";
+            mysqli_query($con,$query);
 
 
         // Load the Word document
@@ -129,6 +132,7 @@ class Bonafide
         $templateProcessor->saveAs($tempFilePath);
 
         // Set the appropriate headers to force a download
+        header("Refresh:0");
         header('Content-Type: application/vnd.openxmlformats-officedocument.wordprocessingml.document');
         header('Content-Disposition: attachment; filename="' . $enrollment_no . '_bonafide.docx"');
         header('Content-Length: ' . filesize($tempFilePath));
@@ -138,6 +142,7 @@ class Bonafide
 
         // Clean up the temporary file
         unlink($tempFilePath);
+
     }
 
     function get_details()
