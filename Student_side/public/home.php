@@ -38,7 +38,7 @@ session_start();
                     ?>
                     <li><a href="signout"><button
                                 class="bg-blue-800 text-white border-2 border-blue-800 rounded-lg hover:bg-transparent hover:text-blue-800 hover:border-2 hover:border-blue-800 px-2 py-2 text-lg font-medium ml-[1100px]">Logout
-                                <?php echo getnamebyenroll($_SESSION['enrollment']); ?>
+                                <?php echo getnamebyenroll(); ?>
                             </button></a></li>
                     <?php
                 }

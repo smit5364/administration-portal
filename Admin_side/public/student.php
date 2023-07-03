@@ -1,6 +1,7 @@
 <?php
 session_start();
 include('private/student_server.php');
+include('private/sidebar_pending_counting.php');
 $student = new Students;
 ?>
 <!DOCTYPE html>
@@ -74,6 +75,7 @@ $student = new Students;
             class="bg-indigo-200 text-lg my-0 mx-2 flex items-center whitespace-nowrap rounded-lg px-4 py-3 font-medium text-slate-700 transition-colors">
             <i class="ni ni-tv-2 text-indigo-600 mr-3"></i>
             Student
+            <div class="bg-indigo-600 ml-[7.5rem] text-white font-medium px-4 text-xl py-0 rounded-full"><?php echo pending_provide_authority();?></div>
           </a>
         </li>
         <li class="w-full">
@@ -81,6 +83,7 @@ $student = new Students;
             class="bg-white text-lg my-0 mx-2 flex items-center whitespace-nowrap rounded-lg px-4 py-3 font-medium text-slate-700 transition-colors">
             <i class="ni ni-tv-2 text-indigo-600 mr-3"></i>
             Bonafide
+            <div class="bg-indigo-600 ml-28 text-white font-medium px-4 text-xl py-0 rounded-full"><?php echo pending__bonafide_approval();?></div>
           </a>
         </li>
       </ul>

@@ -16,8 +16,21 @@ class SignUp{
             $_SESSION['status_code'] = "error";
         }
     }
+
+    function check_enrollment_exist($enrollment){
+        $con = connect();
+        $query = "SELECT * FROM `student` WHERE `enrollment_no` = '$enrollment'";
+        $result = mysqli_query($con , $query);
+        if(mysqli_num_rows($result) > 0){
+            return 1;
+        }else{
+            return 0;
+        }
+    }
 }
-$fname = $_POST['fname'];
+$signup = new SignUp;
+if(isset($_POST['insert']) == "true"){
+    $fname = $_POST['fname'];
 $mname = $_POST['mname'];
 $lname = $_POST['lname'];
 $father = $_POST['father'];
@@ -28,6 +41,12 @@ $email = $_POST['email'];
 $mobile = $_POST['mobile'];
 $pass = $_POST['pass'];
 
-$signup = new SignUp;
 $signup->signup($fname,$mname,$lname,$father,$course,$sem,$enrollment,$email,$mobile,$pass);
+}
+
+if(isset($_POST['enrollment'])){
+    $enrollment = $_POST['enrollment'];
+    $result = $signup->check_enrollment_exist($enrollment);
+    echo $result;
+}
 ?>

@@ -21,9 +21,13 @@ if (isset($_POST['validate'])) {
             header('location:home');
         }
     } else if ($data[10] == "0") {
-        echo "Don't provide Authority for Login";
+        $_SESSION['status_code'] = "error";
+        $_SESSION['status'] = "";
+        $_SESSION['title'] = "You don't have authority for Login";
     } else {
-        echo "Please Enter Your Email and Password is Correct";
+        $_SESSION['status_code'] = "error";
+        $_SESSION['status'] = "";
+        $_SESSION['title'] = "Invalid Email or Password";
     }
 }
 ?>
