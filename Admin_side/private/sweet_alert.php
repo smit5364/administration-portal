@@ -15,7 +15,8 @@
 </style>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script>
-        <?php if(isset($_SESSION['title']) && $_SESSION['title'] != ""){?>
+        <?php
+        if(isset($_SESSION['title']) && $_SESSION['title'] != ""){?>
             swal({
                 title: "<?php echo $_SESSION['title'];?>",
                 icon: "<?php echo $_SESSION['status_code'];?>",

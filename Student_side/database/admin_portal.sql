@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jul 03, 2023 at 08:59 AM
+-- Generation Time: Jul 14, 2023 at 06:21 AM
 -- Server version: 8.0.31
 -- PHP Version: 8.0.26
 
@@ -56,27 +56,27 @@ INSERT INTO `admin_info` (`id`, `password`, `name`, `email`, `type`) VALUES
 DROP TABLE IF EXISTS `bonafide`;
 CREATE TABLE IF NOT EXISTS `bonafide` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `enrollment_no` varchar(500) NOT NULL,
-  `name` varchar(500) NOT NULL,
-  `father_name` varchar(500) NOT NULL,
-  `course` varchar(500) NOT NULL,
-  `semester` varchar(500) NOT NULL,
-  `mobile_no` varchar(500) NOT NULL,
-  `email` varchar(500) NOT NULL,
-  `purpose` varchar(500) NOT NULL,
+  `enrollment_no` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `name` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `father_name` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `course` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `semester` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `mobile_no` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `email` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `purpose` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `fee_recipt` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `remark` varchar(500) NOT NULL,
-  `status` varchar(500) NOT NULL,
+  `remark` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `status` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT 'In Process',
   `verify_flag` tinyint(1) NOT NULL DEFAULT '0',
-  `verify_by` varchar(500) NOT NULL,
+  `verify_by` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `approve_flag` tinyint(1) NOT NULL DEFAULT '0',
-  `approve_by` varchar(500) NOT NULL,
+  `approve_by` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `delever_flag` tinyint(1) NOT NULL DEFAULT '0',
   `print_flag` tinyint(1) NOT NULL DEFAULT '0',
   `apply_date` date NOT NULL,
   `pickup_date` date NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `bonafide`
@@ -85,9 +85,11 @@ CREATE TABLE IF NOT EXISTS `bonafide` (
 INSERT INTO `bonafide` (`id`, `enrollment_no`, `name`, `father_name`, `course`, `semester`, `mobile_no`, `email`, `purpose`, `fee_recipt`, `remark`, `status`, `verify_flag`, `verify_by`, `approve_flag`, `approve_by`, `delever_flag`, `print_flag`, `apply_date`, `pickup_date`) VALUES
 (1, '20020201458', 'Pandya Dhruv Lalit', 'Lalit Pandya', 'BCA', '6', '9909137648', 'dhruvpandya2002@gmail.com', 'Driving License', '20020201458_6_20020201458_17_11_2022.pdf', '', '', 1, 'Hemant', 1, 'Deepak', 0, 1, '2023-06-27', '2023-06-28'),
 (2, '20020201533', 'Rawal Deepak Kumar Kailash Kumar', 'Kailash Kumar Rawal', 'BCA', '6', '9979920290', 'deepakrawal3736@gmail.com', 'Education Loan', '20020201533_6_20020201533_17_11_2022.pdf', '', '', 1, 'Hemant', 1, 'Deepak', 1, 1, '2023-06-27', '2023-06-29'),
-(3, '20020201099', 'singh yuvraj ranjeet', 'ranjeet singh', '', '6', '1234567890', 'demorwl3055@gmail.com', 'Passport and Visa', '20020201099_6_java.png', 'course is not available', '', 0, '', 0, '', 0, 0, '2023-06-30', '0000-00-00'),
+(3, '20020201099', 'singh yuvraj ranjeet', 'ranjeet singh', 'BCA', '6', '1234567890', 'demorwl3055@gmail.com', 'Passport and Visa', '20020201099_6_java.png', 'course is not available', '', 0, '', 0, '', 0, 0, '2023-06-30', '0000-00-00'),
 (4, '20020201099', 'singh yuvraj ranjeet', 'ranjeet singh', 'BCA', '6', '1234567890', 'demorwl3055@gmail.com', 'Passport and Visa', '20020201099_6_3d-render-code-testing-functional-test-usability.jpg', '', '', 1, 'Hemant', 1, 'Deepak', 1, 1, '2023-06-30', '2023-06-30'),
-(5, '20020201533', 'Rawal Deepak Kumar Kailash Kumar', 'Kailash Kumar Rawal', 'BCA', '6', '9979920290', 'deepakrawal3736@gmail.com', 'pasport and visa', '20020201533_6_ai.jpg', '', '', 1, 'Hemant', 1, 'Deepak', 1, 1, '2023-07-02', '2023-07-02');
+(5, '20020201533', 'Rawal Deepak Kumar Kailash Kumar', 'Kailash Kumar Rawal', 'BCA', '6', '9979920290', 'deepakrawal3736@gmail.com', 'pasport and visa', '20020201533_6_ai.jpg', '', '', 1, 'Hemant', 1, 'Deepak', 1, 1, '2023-07-02', '2023-07-02'),
+(6, '20020201458', 'Pandya Dhruv Lalit', 'Lalit Pandya', 'BCA', '6th Semester', '9909137648', 'dhruvpandya2002@gmail.com', 'Driving License', '20020201458_6th Semester_મહેરબાની કરી ને ઉધાર માંગવુ નહી.docx', 'fees wrong', '', 0, '', 0, '', 0, 0, '2023-07-13', '0000-00-00'),
+(7, '20020201485', 'preet rakul ram', 'ram', 'BCA', '1st Semester', '9909137648', 'dhruv560h@gmail.com', 'BRTS Pass', '20020201485_1st Semester_ai.jpg', '', 'In Process', 1, 'Hemant', 1, 'Deepak', 1, 1, '2023-07-13', '2023-07-13');
 
 -- --------------------------------------------------------
 
@@ -188,7 +190,7 @@ CREATE TABLE IF NOT EXISTS `student` (
   `password` varchar(500) NOT NULL,
   `Authority` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `student`
@@ -199,7 +201,9 @@ INSERT INTO `student` (`id`, `first_name`, `middle_name`, `last_name`, `father_n
 (2, 'Dhruv', 'Lalit', 'Pandya', 'Lalit Pandya', 'BCA', '6', '20020201458', 'dhruvpandya2002@gmail.com', '9909137648', 'Dhruv', 1),
 (3, 'smit', 'suhasbhai', 'zaveri', 'suhasbhai zaveri', 'BCA', '6', '32132321112', 'smitzaveri123@gmail.com', '1234567890', 'smit', 1),
 (4, 'yuvraj', 'ranjeet', 'singh', 'ranjeet singh', 'BCA', '6', '20020201099', 'demorwl3055@gmail.com', '1234567890', 'yuvraj', 1),
-(5, 'Khush', 'Kailashji', 'rawal', 'kailashji rawal', 'BCA', '4', '20020201534', 'rwlkhush@gmail.com', '9979920290', 'khush', 1);
+(5, 'Khush', 'Kailashji', 'rawal', 'kailashji rawal', 'BCA', '4', '20020201534', 'rwlkhush@gmail.com', '9979920290', 'khush', 1),
+(11, 'ghujtydrtg', 'sdfsdf', 'sd', 'sdffgfg', 'MAHumaniti', '2', '645631231231312', 'dhrusdfgv@fg.comn', '2345346756', '123', 0),
+(12, 'rakul', 'ram', 'preet', 'ram', 'BCA', '1', '20020201485', 'dhruv560h@gmail.com', '9909137648', 'hell', 1);
 
 -- --------------------------------------------------------
 

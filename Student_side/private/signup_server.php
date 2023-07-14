@@ -30,22 +30,22 @@ class SignUp{
 }
 $signup = new SignUp;
 if(isset($_POST['insert']) == "true"){
-    $fname = $_POST['fname'];
-$mname = $_POST['mname'];
-$lname = $_POST['lname'];
-$father = $_POST['father'];
-$course = $_POST['course'];
-$sem = $_POST['sem'];
-$enrollment = $_POST['enrollment'];
-$email = $_POST['email'];
-$mobile = $_POST['mobile'];
-$pass = $_POST['pass'];
+    $fname = addslashes($_POST['fname']);
+$mname = addslashes($_POST['mname']);
+$lname = addslashes($_POST['lname']);
+$father = addslashes($_POST['father']);
+$course = addslashes($_POST['course']);
+$sem = addslashes($_POST['sem']);
+$enrollment = addslashes($_POST['enrollment']);
+$email = addslashes($_POST['email']);
+$mobile = addslashes($_POST['mobile']);
+$pass = addslashes($_POST['pass']);
 
 $signup->signup($fname,$mname,$lname,$father,$course,$sem,$enrollment,$email,$mobile,$pass);
 }
 
 if(isset($_POST['enrollment'])){
-    $enrollment = $_POST['enrollment'];
+    $enrollment = addslashes($_POST['enrollment']);
     $result = $signup->check_enrollment_exist($enrollment);
     echo $result;
 }

@@ -11,10 +11,10 @@ class Signup{
        }
     }
 }
-$name = $_POST['name'];
-$email = $_POST['email'];
-$type = $_POST['type'];
-$password = $_POST['password'];
+$name = addslashes($_POST['name']);
+$email = addslashes($_POST['email']);
+$type = addslashes($_POST['type']);
+$password = addslashes($_POST['password']);
 $signup = new Signup;
 $signup->insert($password,$name,$email,$type);
 

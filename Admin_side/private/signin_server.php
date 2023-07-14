@@ -14,7 +14,7 @@
                 return $data;
             }else{
                 $msg = "Email Or Password are Wrong";
-                echo $msg;
+                return $msg;
             }
         }
     }    

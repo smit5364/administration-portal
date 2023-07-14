@@ -7,9 +7,9 @@ if (isset($_SESSION['enrollment'])) {
     header('location:home');
 }
 if (isset($_POST['validate'])) {
-    $email = addslashes($_POST['email']);
+    $enroll = addslashes($_POST['enrollment']);
     $pass = addslashes($_POST['password']);
-    $data = $signin->Search($email);
+    $data = $signin->Search($enroll);
     if ($data[9] == $pass && $data[10] == "1") {
         $_SESSION['enrollment'] = $data[6];
 
@@ -49,6 +49,13 @@ if (isset($_POST['validate'])) {
     <link href="https://fonts.googleapis.com/css2?family=Geologica:wght@300;400;500;600;700;800;900&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <style>
+        .enrollment::-webkit-outer-spin-button,
+        .enrollment::-webkit-inner-spin-button{
+            -webkit-appearance: none;
+            margin: 0;
+        }
+    </style>
 </head>
 
 <body style="font-family: 'Geologica', sans-serif;" class="bg-gray-200">
@@ -58,12 +65,12 @@ if (isset($_POST['validate'])) {
             <div class="grid grid-cols-1 py-4 gap-x-10">
                 <form action="" method="post">
                     <div class="flex flex-col w-80">
-                        <label for="" class="text-lg">Email</label>
-                        <input type="email" name="email" placeholder="Enter Your Email"
-                            class="h-12 rounded-lg text-lg pl-2 focus:ring-2 focus:outline-none outline-none focus:ring-offset-2 focus:ring-indigo-600">
+                        <label for="" class="text-lg mb-1">Enrollment Number</label>
+                        <input type="number" name="enrollment" placeholder="Enter Your Enrollment Number"
+                            class="enrollment h-12 rounded-lg text-lg pl-2 focus:ring-2 focus:outline-none outline-none focus:ring-offset-2 focus:ring-indigo-600">
                     </div>
                     <div class="flex flex-col w-80 mt-4">
-                        <label for="" class="text-lg">Password</label>
+                        <label for="" class="text-lg mb-1">Password</label>
                         <input type="password" name="password" placeholder="Enter Your Password"
                             class="h-12 rounded-lg text-lg pl-2 focus:ring-2 focus:outline-none outline-none focus:ring-offset-2 focus:ring-indigo-600 w-full">
                     </div>

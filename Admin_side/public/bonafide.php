@@ -22,8 +22,8 @@ if (isset($_GET['deliver_id'])) {
 }
 
 if (isset($_POST['remark']) && isset($_POST['id'])) {
-  $remark_id = $_POST['id'];
-  $remark = $_POST['remark'];
+  $remark_id = addslashes($_POST['id']);
+  $remark = addslashes($_POST['remark']);
   $bonafide->cancel_verify($remark_id, $remark);
 }
 ?>
@@ -92,7 +92,11 @@ if (isset($_POST['remark']) && isset($_POST['id'])) {
             class="bg-indigo-200 text-lg my-0 mx-2 flex items-center whitespace-nowrap rounded-lg px-4 py-3 font-medium text-slate-700 transition-colors">
             <i class="ni ni-tv-2 text-indigo-600 mr-3"></i>
             Bonafide
-            <div class="bg-indigo-600 ml-28 text-white font-medium px-4 text-xl py-0 rounded-full"><?php echo pending__bonafide_approval();?></div>
+            <div class="bg-indigo-600 ml-28 text-white font-medium px-4 text-xl py-0 rounded-full"><?php if($_SESSION['type'] == "Head"){
+              echo pending__bonafide_approval();}
+              else{
+                echo pending_bonafide_verify();
+              }?></div>
           </a>
         </li>
       </ul>
@@ -106,21 +110,21 @@ if (isset($_POST['remark']) && isset($_POST['id'])) {
     <nav
       class="relative flex flex-wrap items-center justify-between px-0 pt-5 mx-6 transition-all ease-in shadow-none duration-250 rounded-2xl lg:flex-nowrap lg:justify-start"
       navbar-main navbar-scroll="false">
-      <div class="flex items-center justify-between w-full px-4 py-1 mx-auto flex-wrap-inherit">
+      <div class="flex w-full 2xl:px-4 py-1 mx-auto flex-wrap-inherit">
         <nav class="xl:pl-80">
           <!-- breadcrumb -->
           <ol class="flex flex-wrap pt-1 bg-transparent rounded-lg">
             <li class="text-sm leading-normal">
-              <a class="text-white opacity-50 text-md" href="javascript:;">Pages</a>
+              <a class="text-white opacity-50 text-base" href="javascript:;">Pages</a>
             </li>
             <li
-              class="text-md pl-2 capitalize leading-normal text-white before:float-left before:pr-2 before:text-white before:content-['/']"
+              class="text-base pl-2 capitalize leading-normal text-white before:float-left before:pr-2 before:text-white before:content-['/']"
               aria-current="page">Bonafide</li>
           </ol>
           <h6 class="mb-0 font-bold text-white capitalize text-lg">Bonafide</h6>
         </nav>
 
-        <div class="flex items-center mt-2 grow sm:mt-0 sm:mr-6 md:mr-0 lg:flex lg:basis-auto">
+        <div class="flex items-center justify-end mt-2 grow sm:mt-0 sm:mr-6 md:mr-0 lg:flex lg:basis-auto">
           <div class="flex items-center md:ml-auto md:pr-4">
             <!-- <div class="relative flex flex-wrap items-stretch w-full transition-all rounded-lg ease">
                 <span class="text-sm ease leading-5.6 absolute z-50 -ml-px flex h-full items-center whitespace-nowrap rounded-lg rounded-tr-none rounded-br-none border border-r-0 border-transparent bg-transparent py-2 px-2.5 text-center font-normal text-slate-500 transition-all">
@@ -158,9 +162,9 @@ if (isset($_POST['remark']) && isset($_POST['id'])) {
             <li class="flex items-center pl-4 xl:hidden">
               <a href="javascript:;" class="block p-0 text-sm text-white transition-all ease-nav-brand" sidenav-trigger>
                 <div class="w-4.5 overflow-hidden">
-                  <i class="ease mb-0.75 relative block h-0.5 rounded-sm bg-white transition-all"></i>
-                  <i class="ease mb-0.75 relative block h-0.5 rounded-sm bg-white transition-all"></i>
-                  <i class="ease relative block h-0.5 rounded-sm bg-white transition-all"></i>
+                  <div class="ease mb-0.75 relative block h-0.5 rounded-sm bg-white transition-all"></div>
+                  <div class="ease mb-0.75 relative block h-0.5 rounded-sm bg-white transition-all"></div>
+                  <div class="ease relative block h-0.5 rounded-sm bg-white transition-all"></d>
                 </div>
               </a>
             </li>
@@ -249,21 +253,21 @@ if (isset($_POST['remark']) && isset($_POST['id'])) {
         </div>
     </nav>
     <!-- cards -->
-    <div class="w-4/5 px-6 py-8 xl:ml-80">
+    <div class="w-full py-3 px-4 2xl:w-4/5 2xl:px-6 2xl:pt-8 xl:ml-80">
       <?php
       if ($_SESSION['type'] == "Head") {
         ?>
         <!-- row 1 -->
-        <div class="flex flex-wrap -mx-3 mb-6">
+        <div class="flex flex-wrap -mx-3 mb-2">
           <!-- card1 -->
-          <div class="w-full max-w-full px-3 mb-6 sm:w-1/2 sm:flex-none xl:mb-0 xl:w-1/4 cursor-pointer"
+          <div class="w-full max-w-full px-3 mb-3 2xl:mb-6 sm:w-1/2 sm:flex-none xl:mb-0 xl:w-1/4 cursor-pointer"
             id="pending_verify">
             <div class="relative flex flex-col min-w-0 break-words bg-white shadow-xl rounded-2xl bg-clip-border">
               <div class="flex-auto p-4">
                 <div class="flex flex-row -mx-3">
                   <div class="flex-none w-2/3 max-w-full px-3">
                     <div>
-                      <p class="mb-0 font-sans text-md font-semibold leading-normal uppercase">Pending Verify</p>
+                      <p class="mb-0 font-sans text-lg 2xl:text-base font-semibold leading-normal uppercase">Pending Verify</p>
                       <h5 class="mb-2 font-bold text-2xl">
                         <?php echo $bonafide->pending_verify(); ?>
                       </h5>
@@ -288,7 +292,7 @@ if (isset($_POST['remark']) && isset($_POST['id'])) {
                 <div class="flex flex-row -mx-3">
                   <div class="flex-none w-2/3 max-w-full px-3">
                     <div>
-                      <p class="mb-0 font-sans text-md font-semibold leading-normal uppercase">Pending Approval</p>
+                      <p class="mb-0 font-sans text-base font-semibold leading-normal uppercase">Pending Approval</p>
                       <h5 class="mb-2 font-bold text-2xl">
                         <?php echo $bonafide->pending_approval(); ?>
                       </h5>
@@ -313,7 +317,7 @@ if (isset($_POST['remark']) && isset($_POST['id'])) {
                 <div class="flex flex-row -mx-3">
                   <div class="flex-none w-2/3 max-w-full px-3">
                     <div>
-                      <p class="mb-0 font-sans text-md font-semibold leading-normal uppercase">Rejected Bonafide</p>
+                      <p class="mb-0 font-sans text-base font-semibold leading-normal uppercase">Reject Bonafide</p>
                       <h5 class="mb-2 font-bold text-2xl">
                         <?php echo $bonafide->reject_bonafide(); ?>
                       </h5>
@@ -337,7 +341,7 @@ if (isset($_POST['remark']) && isset($_POST['id'])) {
                 <div class="flex flex-row -mx-3">
                   <div class="flex-none w-2/3 max-w-full px-3">
                     <div>
-                      <p class="mb-0 font-sans text-md font-semibold leading-normal uppercase">Deliver Complete</p>
+                      <p class="mb-0 font-sans text-base font-semibold leading-normal uppercase">Deliver Complete</p>
                       <h5 class="mb-2 font-bold text-2xl">
                         <?php echo $bonafide->complete_deliver(); ?>
                       </h5>
@@ -358,19 +362,19 @@ if (isset($_POST['remark']) && isset($_POST['id'])) {
       }
       ?>
       <!-- end Navbar -->
-      <div class="min-w-full bg-white shadow-xl rounded-2xl mt-0 py-4">
+      <div class="min-w-full bg-white shadow-lg rounded-2xl mt-0 py-4">
         <div class="flex flex-col justify-start">
           <h1 class="text-2xl font-medium text-indigo-600 py-2 pl-3">Bonafide Verification</h1>
         </div>
-        <div class="px-4 min-w-full text-left text-md mt-2">
+        <div class="px-4 min-w-full text-left text-base mt-2 overflow-x-auto">
           <table id="myTable">
             <thead class="border-b font-medium text-lg">
               <tr>
                 <th scope="col" class="px-6 py-3">Sr.No</th>
-                <th scope="col" class="px-6 py-3">Token No</th>
+                <th scope="col" class="px-6 py-3 hidden lg:table-cell">Token No</th>
                 <th scope="col" class="px-0 py-3">Enrollment No</th>
-                <th scope="col" class="pr-6 py-3">Name</th>
-                <th scope="col" class="py-3">Course</th>
+                <th scope="col" class="pr-6 py-3 hidden md:table-cell">Name</th>
+                <th scope="col" class="py-3 hidden xl:table-cell">Course</th>
                 <th scope="col" class="px-6 py-3">Verify</th>
                 <th scope="col" class="py-3">Approve</th>
                 <th scope="col" class="py-3">Deliver</th>
@@ -384,20 +388,20 @@ if (isset($_POST['remark']) && isset($_POST['id'])) {
               while ($row = mysqli_fetch_assoc($get_deatils)) {
                 $count++;
                 ?>
-                <tr class="border-b transition duration-300 ease-in-out hover:bg-neutral-100">
+                <tr class="border-b transition duration-300 ease-in-out hover:bg-neutral-100 2xl:text-lg">
                   <td class="whitespace-nowrap px-6 py-4 font-medium">
                     <?php echo $count; ?>
                   </td>
-                  <td class="whitespace-nowrap px-6 py-4">
+                  <td class="whitespace-nowrap px-6 py-4 hidden lg:table-cell">
                     <?php echo $row['id']; ?>
                   </td>
                   <td class="whitespace-nowrap px-0 py-4">
                     <a href="bonafide_verification?verify_id=<?php echo $row['id']; ?>" class="text-indigo-600 font-medium"><?php echo $row['enrollment_no']; ?></a>
                   </td>
-                  <td class="whitespace-nowrap pr-6 py-4">
+                  <td class="whitespace-nowrap pr-6 py-4 hidden md:table-cell">
                     <?php echo $row['name']; ?>
                   </td>
-                  <td class="whitespace-nowrap py-4">
+                  <td class="whitespace-nowrap py-4 hidden xl:table-cell">
                     <?php echo $row['course']; ?>
                   </td>
 
@@ -407,11 +411,11 @@ if (isset($_POST['remark']) && isset($_POST['id'])) {
                       <a href="bonafide_verification?verify_id=<?php echo $row['id']; ?>"><button name="view" id="view"
                           class="bg-indigo-600 px-4 py-2 rounded-lg text-white font-medium hover:bg-indigo-500 shadow-md">View</button></a>
                     <?php } else if ($_SESSION['type'] == "Head" && $row['verify_flag'] == 0 && $row['remark'] == "") { ?>
-                        <p class="text-md bg-yellow-600 mr-3 p-1 text-white font-medium text-center rounded-full">Pending</p>
+                        <p class="text-base bg-yellow-600 mr-3 p-1 text-white font-medium text-center rounded-full">Pending</p>
                     <?php } else if ($row['verify_flag'] == 1 && $row['remark'] == "") { ?>
-                          <p class="text-md bg-green-500 mr-3 p-1 text-white font-medium text-center rounded-full">Verified</p>
+                          <p class="text-base bg-green-500 mr-3 p-1 text-white font-medium text-center rounded-full">Verified</p>
                     <?php } else if ($row['verify_flag'] == 0 || $row['verify_flag'] == 1 && $row['remark'] != "") { ?>
-                            <p class="text-md bg-red-500 mr-3 p-1 text-white font-medium text-center rounded-full">Canceled</p>
+                            <p class="text-base bg-red-500 mr-3 p-1 text-white font-medium text-center rounded-full">Canceled</p>
                     <?php } ?>
                   </td>
 
@@ -422,11 +426,11 @@ if (isset($_POST['remark']) && isset($_POST['id'])) {
                           id="approve"
                           class="bg-indigo-600 px-4 py-2 rounded-lg text-white font-medium hover:bg-indigo-500 shadow-md">View</button></a>
                     <?php } else if (($_SESSION['type'] == "Clerk" || $_SESSION['type'] == "Head") && ($row['verify_flag'] == 1 || $row['verify_flag'] == 0) && $row['approve_flag'] == 0 && $row['remark'] == "") { ?>
-                        <p class="text-md bg-yellow-600 mr-3 p-1 text-white font-medium text-center rounded-full">Pending</p>
+                        <p class="text-base bg-yellow-600 mr-3 p-1 text-white font-medium text-center rounded-full">Pending</p>
                     <?php } else if ($row['approve_flag'] == 1 && $row['remark'] == "") { ?>
-                          <p class="text-md bg-green-500 mr-3 p-1 text-white font-medium text-center rounded-full">Approved</p>
+                          <p class="text-base bg-green-500 mr-3 p-1 text-white font-medium text-center rounded-full">Approved</p>
                     <?php } else if ($row['approve_flag'] == 0 && $row['remark'] != "") { ?>
-                            <p class="text-md bg-red-500 mr-3 p-1 text-white font-medium text-center rounded-full">Canceled</p>
+                            <p class="text-base bg-red-500 mr-3 p-1 text-white font-medium text-center rounded-full">Canceled</p>
                     <?php } ?>
                   </td>
 
@@ -436,30 +440,30 @@ if (isset($_POST['remark']) && isset($_POST['id'])) {
                       <div class="flex"> <a href="private/bonafide_server.php?pickup_id=<?php echo $row['id']; ?>"><button name="print"
                             class="bg-indigo-600 px-4 py-2 rounded-lg text-white font-medium hover:bg-indigo-500 shadow-md disabled:cursor-not-allowed disabled:bg-indigo-500 deliver" disabled>Deliver</button></a>
                             <input type="hidden" name="print_flag" class="print_flag" value="<?php echo $row['print_flag'];?>">
-                        <a href="bonafide?deliver_id=<?php echo $row['id']; ?>" onclick="disable_toggle()"><img class="h-6 my-2 ml-2"
+                        <a href="bonafide?deliver_id=<?php echo $row['id']; ?>" onclick="disable_toggle()" class="w-6 h-6"><img class="my-2 ml-2"
                             src=" private/Images/printer.png" alt="" srcset=""></a>
                       </div>
                     <?php } else if ($_SESSION['type'] == "Head" && $row['delever_flag'] == 0 && $row['remark'] == "") { ?>
                         <div class="flex">
-                          <p class="text-md bg-yellow-600 mr-3 py-1 px-2 text-white font-medium text-center rounded-full">
+                          <p class="text-base bg-yellow-600 mr-3 py-1 px-2 text-white font-medium text-center rounded-full">
                             Pending</p>
                         </div>
                     <?php } else if ($_SESSION['type'] == "Clerk" && $row['delever_flag'] == 0 && $row['remark'] == "") { ?>
                           <div class="flex">
-                            <p class="text-md bg-yellow-600 mr-3 py-1 px-2 text-white font-medium text-center rounded-full">
+                            <p class="text-base bg-yellow-600 mr-3 py-1 px-2 text-white font-medium text-center rounded-full">
                               Pending</p>
                           </div>
                     <?php } else if ($row['delever_flag'] == 1 && $row['remark'] == "") { ?>
                             <div class="flex ">
-                              <p class="text-md bg-green-500 mr-3 py-1 px-2 text-white font-medium text-center rounded-full">
+                              <p class="text-base bg-green-500 mr-3 py-1 px-2 text-white font-medium text-center rounded-full">
                                 Delivered
                               </p>
-                              <a href="bonafide?deliver_id=<?php echo $row['id']; ?>"><img class="h-6 m-auto"
+                              <a href="bonafide?deliver_id=<?php echo $row['id']; ?>" class="w-6 h-6 "><img class="m-auto"
                                   src="private/Images/printer.png" alt="" srcset=""></a>
                             </div>
                     <?php } else if ($row['verify_flag'] == 1 || $row['verify_flag'] == 0 && $row['delever_flag'] == 0 && $row['remark'] != "") { ?>
                               <div class="flex ">
-                                <p class="text-md bg-red-500 mr-3 py-1 px-2 text-white font-medium text-center rounded-full">
+                                <p class="text-base bg-red-500 mr-3 py-1 px-2 text-white font-medium text-center rounded-full">
                                   Canceled
                                 </p>
                                 <!-- <a href="bonafide?deliver_id=<?php echo $row['id']; ?>"><img class="h-6 m-auto"

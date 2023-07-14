@@ -22,17 +22,17 @@ if (isset($_SESSION['enrollment'])) {
     echo "No enrollment number found in session.";
 }
 if (isset($_POST['insert'])) {
-    $name = $_POST['fullname'];
-    $fathername = $_POST['fathername'];
-    $enroll = $_POST['enrollment'];
-    $course = $_POST['course'];
-    $sem = $_POST['semester'];
-    $email = $_POST['email'];
-    $mobile = $_POST['mobile'];
-    $purpose = $_POST['reason'];
+    $name = addslashes($_POST['fullname']);
+    $fathername = addslashes($_POST['fathername']);
+    $enroll = addslashes($_POST['enrollment']);
+    $course = addslashes($_POST['course']);
+    $sem = addslashes($_POST['semester']);
+    $email = addslashes($_POST['email']);
+    $mobile = addslashes($_POST['mobile']);
+    $purpose = addslashes($_POST['reason']);
     if ($purpose == "Other") {
         $purpose = '';
-        $purpose = $_POST['other_reason'];
+        $purpose = addslashes($_POST['other_reason']);
     }
     $feesrecipt = $_FILES['fees_recipt']['name'];
     $tempname = $_FILES['fees_recipt']['tmp_name'];
@@ -116,9 +116,16 @@ if (isset($_POST['insert'])) {
                         <label for="Semester" class="text-xl">Semester</label>
                         <input readonly required
                             class="bg-white h-12 rounded-lg pl-2 text-lg outline-none focus:ring-2 focus:ring-indigo-800 cursor-not-allowed"
-                            type="text" name="semester" value="<?php if (isset($sem)) {
-                                echo $sem;
-                            } ?>" id="">
+                            type="text" name="semester" value="<?php 
+                             if ($sem == "1") {
+                                echo "1st Semester";
+                            }elseif($sem == "2"){
+                                echo "2nd Semester";
+                            }elseif($sem == "3"){
+                                echo "3rd Semester";
+                            }else{
+                                echo $sem."th Semester";
+                            } ?>" id="Semester">
                     </div>
                 </div>
                 <div class="grid grid-cols-2 mt-6 gap-x-10">
@@ -144,7 +151,7 @@ if (isset($_POST['insert'])) {
                     <div class="row-span-1 flex flex-col gap-y-1">
                         <label for="Reason For Bonafide Issue" class="text-xl">Reason For Bonafide Issue</label>
                         <div role="radiogroup" class="mt-2 grid grid-cols-2">
-                            <div class="flex items-center col-span-1 py-2">
+                            <div class="flex items-center col-span-1 py-1">
                                 <input required type="radio" name="reason" id="BRTS Pass" value="BRTS Pass"
                                     class="h-4 w-4 cursor-pointer border-indigo-800 text-indigo-800 focus:ring-2 focus:ring-offset-2 rounded-full focus:outline-none focus:ring-indigo-800">
                                 <label for="BRTS Pass" class="text-lg cursor-pointer ml-2">BRTS Pass</label>
@@ -154,7 +161,7 @@ if (isset($_POST['insert'])) {
                                     class="h-4 w-4 cursor-pointer border-indigo-800 text-indigo-800 focus:ring-2 focus:ring-offset-2 rounded-full focus:outline-none focus:ring-indigo-800">
                                 <label for="Digital India" class="text-lg cursor-pointer ml-2">Digital India</label>
                             </div>
-                            <div class="flex items-center col-span-1 py-2">
+                            <div class="flex items-center col-span-1 py-1">
                                 <input required type="radio" name="reason" id="Education Loan" value="Education Loan"
                                     class="h-4 w-4 cursor-pointer border-indigo-800 text-indigo-800 focus:ring-2 focus:ring-offset-2 rounded-full focus:outline-none focus:ring-indigo-800">
                                 <label for="Education Loan" class="text-lg cursor-pointer ml-2">Education Loan</label>
@@ -164,7 +171,7 @@ if (isset($_POST['insert'])) {
                                     class="h-4 w-4 cursor-pointer border-indigo-800 text-indigo-800 focus:ring-2 focus:ring-offset-2 rounded-full focus:outline-none focus:ring-indigo-800">
                                 <label for="Driving License" class="text-lg cursor-pointer ml-2">Driving License</label>
                             </div>
-                            <div class="flex items-center col-span-1">
+                            <div class="flex items-center col-span-1 py-1">
                                 <input required type="radio" name="reason" id="Others" value="Other"
                                     class="h-4 w-4 cursor-pointer border-indigo-800 text-indigo-800 focus:ring-2 focus:ring-offset-2 rounded-full focus:outline-none focus:ring-indigo-800 peer">
                                 <label for="Others" class="text-lg cursor-pointer ml-2">Others</label>

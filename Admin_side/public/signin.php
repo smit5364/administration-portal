@@ -13,7 +13,8 @@ if(isset($_POST['validate'])){
     $_SESSION['type'] = $data[2];
     header('location:bonafide');
   }else{
-    echo "Email and Password is Wrong";
+    $_SESSION['status_code'] = "error";
+    $_SESSION['title'] = "Invalid Email,Password or Profession!";
   }
 }
 ?>
@@ -43,33 +44,32 @@ if(isset($_POST['validate'])){
     <section>
       <div class="relative flex items-center justify-center min-h-screen p-0 overflow-hidden bg-center bg-cover">
         <div class="container z-1">
-          <div class="flex flex-wrap ml-28">
-            <div class="flex flex-col w-full max-w-full px-4 mx-auto lg:mx-0 shrink-0 md:flex-0 md:w-7/12 lg:w-5/12 xl:w-4/12">
-              <div class="relative flex flex-col justify-center min-w-0 break-words bg-transparent border-0 shadow-none lg:py-4 rounded-2xl bg-clip-border pr-3">
+          <div class="flex flex-wrap xl:ml-28 w-full">
+            <div class="flex flex-col w-full max-w-full px-4 lg:px-16 xl:px-10 mx-auto lg:mx-0 shrink-0 md:flex-0 md:w-4/5 lg:w-2/4 xl:w-4/12">
+              <div class="relative flex flex-col justify-center min-w-0 break-words bg-transparent border-0 shadow-none lg:py-4 rounded-2xl bg-clip-border pr-3 lg:pr-0">
                 <div class="p-6 pb-0 mb-0">
-                  <h4 class="font-bold text-2xl mb-2 text-gray-700">Sign In</h4>
-                  <p class="mb-0 text-lg text-gray-500">Enter your email and password to sign in</p>
+                  <h4 class="font-bold text-2xl xl:text-2xl mb-2 md:text-5xl text-gray-700 lg:text-3xl">Sign In</h4>
+                  <p class="mb-0 xl:text-lg text-lg text-gray-500 md:text-3xl lg:text-xl">Enter your email and password to sign in</p>
                 </div>
                 <div class="flex-auto p-6">
                   <form role="form" method="post">
-                    <select name="type" id="type" class="mb-4 h-10 w-20 outline-none ring-1 ring-inset shadow-sm ring-gray-300 text-md rounded-md pr-5 pl-2 text-gray-800 appearance-none relative focus:ring-indigo-600 focus:ring-2 focus:ring-inset">
+                    <select name="type" id="type" class="mb-4 h-10 w-28 xl:h-10 md:h-16 md:w-28 xl:w-24 outline-none ring-1 ring-inset shadow-sm ring-gray-300 text-lg md:text-2xl xl:text-lg rounded-md pr-5 pl-2 md:pl-3 xl:pl-2 text-gray-800 focus:ring-indigo-600 focus:ring-2 focus:ring-inset lg:h-12 lg:w-24 lg:text-xl">
                       <option value="Head">Head</option>
                       <option value="Clerk">Clerk</option>
                     </select>
-                    <img src="private/assets/img/down-arrow.svg" alt="" class="w-6 absolute top-[8.8rem] ml-14">
                     <div class="mb-4">
-                      <input type="email" name="email" id="name" class="block w-full rounded-lg border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-500 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-md sm:leading-6 outline-none pl-3 h-12" placeholder="Email">
+                      <input type="email" name="email" id="name" class="block w-full rounded-lg border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-500 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-md sm:leading-6 outline-none pl-3 h-12 md:h-20 md:text-[27px] xl:h-12 xl:text-lg lg:h-14 lg:text-lg" placeholder="Email">
                     </div>
                     <div class="mb-4">
-                      <input type="password" name="password" id="password" class="block w-full rounded-lg border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-500 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-md sm:leading-6 outline-none pl-3 h-12" placeholder="Password">
+                      <input type="password" name="password" id="password" class="block w-full rounded-lg border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-500 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-md sm:leading-6 outline-none pl-3 h-12 md:h-20 md:text-[27px] xl:h-12 xl:text-lg lg:h-14 lg:text-lg" placeholder="Password">
                     </div>
                     <div class="text-center">
-                      <button type="submit" name="validate" id="validate" class="rounded-md w-full h-12 mt-2 bg-indigo-600 px-3 py-2 text-md font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Sign in</button>
+                      <button type="submit" name="validate" id="validate" class="rounded-md w-full h-12 mt-2 bg-indigo-600 px-3 py-2 text-md font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 md:h-16 md:text-[27px] xl:h-12 xl:text-lg lg:h-14 lg:text-xl">Sign in</button>
                     </div>
                   </form>
                 </div>
                 <div class="border-black/12.5 rounded-b-2xl border-t-0 border-solid p-6 text-center pt-0 px-1 sm:px-6">
-                  <p class="mx-auto mb-6 leading-normal text-md text-gray-500">Don't have an account? <a href="signup" class="font-semibold text-transparent bg-clip-text bg-gradient-to-tl from-blue-500 to-violet-500">Sign up</a></p>
+                  <p class="mx-auto mb-6 leading-normal text-base text-gray-500 xl:text-lg md:text-[26px] lg:text-lg">Don't have an account? <a href="signup" class="font-semibold bg-clip-text text-indigo-600">Sign up</a></p>
                 </div>
               </div>
             </div>
@@ -85,9 +85,9 @@ if(isset($_POST['validate'])){
       </div>
     </section>
   </main>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+  <?php include('private/sweet_alert.php');?>
 </body>
-<!-- plugin for scrollbar  -->
-<script src="private/assets/js/plugins/perfect-scrollbar.min.js" async></script>
-<!-- main script file  -->
 
 </html>

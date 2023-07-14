@@ -1,9 +1,7 @@
 <?php
 // error_reporting(0);
-
-use FontLib\Table\Type\head;
-
 include('private/bonafide_server.php');
+include('private/sidebar_pending_counting.php');
 if ($_SESSION['name'] == "") {
   header('location:signin');
 }
@@ -18,10 +16,6 @@ if (isset($_POST['approve'])) {
   $bonafide->approve_verify($id);
   header('location:bonafide');
 }
-// if(isset($_POST['remark'])){
-//   $remark = $_POST['remark'];
-//   $bonafide->cancel_verify($id,$remark);
-// }
 ?>
 <!DOCTYPE html>
 <html>
@@ -82,6 +76,7 @@ if (isset($_POST['approve'])) {
             <a href="student" class="bg-white text-lg my-0 mx-2 flex items-center whitespace-nowrap rounded-lg px-4 py-3 font-medium text-slate-700 transition-colors">
               <i class="ni ni-tv-2 text-indigo-600 mr-3"></i>
               Student
+              <div class="bg-indigo-600 ml-[7.5rem] text-white font-medium px-4 text-xl py-0 rounded-full"><?php echo pending_provide_authority();?></div>
             </a>
           </li>
         <?php } ?>
@@ -89,6 +84,11 @@ if (isset($_POST['approve'])) {
           <a href="bonafide" class="bg-indigo-200 text-lg my-0 mx-2 flex items-center whitespace-nowrap rounded-lg px-4 py-3 font-medium text-slate-700 transition-colors">
             <i class="ni ni-tv-2 text-indigo-600 mr-3"></i>
             Bonafide
+            <div class="bg-indigo-600 ml-28 text-white font-medium px-4 text-xl py-0 rounded-full"><?php if($_SESSION['type'] == "Head"){
+              echo pending__bonafide_approval();}
+              else{
+                echo pending_bonafide_verify();
+              }?></div>
           </a>
         </li>
       </ul>
@@ -428,11 +428,12 @@ if (isset($_POST['approve'])) {
               </div>
               <div class="col-span-1">
                 <h1 class="text-lg font-medium">Fees Recipt</h1>
+                <p class="text-lg flex items-center">
+                  <?php echo $row['fee_recipt']; ?>
                 <a href="private/Fees_recipt/<?php echo $row['fee_recipt']; ?>" target="_blank">
-                  <p class="text-lg text-indigo-600 underline">
-                    <?php echo $row['fee_recipt']; ?>
-                  </p>
+                <abbr title="View"><img src="private/Images/icons8-view-94.png" alt="" class="w-14"></abbr>
                 </a>
+                </p>
               </div>
             </div>
             <div class="grid-cols-2 mt-6 hidden" id="cancel_input">

@@ -156,7 +156,7 @@ class Bonafide
     function individual_detail($id)
     {
         $con = connect();
-        $query = "SELECT * FROM `bonafide` WHERE id = '$id'";
+        $query = "SELECT * FROM `bonafide` WHERE `id` = '$id'";
         $result = mysqli_query($con, $query);
         return $result;
     }
@@ -195,7 +195,7 @@ class Bonafide
     function cancel_verify($id, $remark)
     {
         $con = connect();
-        $query = "UPDATE `bonafide` SET `remark`='$remark' WHERE id = '$id'";
+        $query = "UPDATE `bonafide` SET `remark`='$remark' WHERE `id` = '$id'";
         mysqli_query($con, $query);
         header('location:bonafide');
     }
@@ -221,7 +221,7 @@ class Bonafide
     function reject_bonafide()
     {
         $con = connect();
-        $query = "SELECT COUNT(*) FROM `bonafide` WHERE `remark` != '' ";
+        $query = "SELECT COUNT(*) FROM `bonafide` WHERE `remark` != ''";
         $result = mysqli_query($con, $query);
         $data = mysqli_fetch_assoc($result);
         return $data['COUNT(*)'];
@@ -239,7 +239,7 @@ class Bonafide
     function date_for_pickup($id)
     {
         $con = connect();
-        $query = "UPDATE `bonafide` SET `delever_flag`='1', `pickup_date`= curdate() WHERE id = '$id'";
+        $query = "UPDATE `bonafide` SET `delever_flag`='1', `pickup_date`= 'curdate()' WHERE id = '$id'";
         $result = mysqli_query($con, $query);
         if($result){
             $_SESSION['title'] = "Delivered Successfull!";

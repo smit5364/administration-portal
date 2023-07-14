@@ -22,27 +22,28 @@ session_start();
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css"   />
 </head>
 
-<body class="bg-gray-200">
+<body class="bg-gray-200" style="font-family: 'Geologica', sans-serif;">
     <div class="overflow-hidden">
         <nav class="bg-white py-2 flex justify-center shadow-lg">
             <ul class="flex justify-between">
                 <li><a href="home"><img src="private/images/logo.png" alt="bmu" class="w-32"></a></li>
+                <li>
                 <?php
                 if (!$_SESSION['enrollment']) {
                     ?>
-                    <li><a href="signin"><button
-                                class="bg-blue-800 text-white border-2 border-blue-800 rounded-lg hover:bg-transparent hover:text-blue-800 hover:border-2 hover:border-blue-800 px-4 py-2 text-lg font-medium ml-[1200px]">Login</button></a>
-                    </li>
+                    <a href="signin" class="ml-[1200px]"><button
+                                class="bg-blue-800 text-white border-2 border-blue-800 rounded-lg hover:bg-transparent hover:text-blue-800 hover:border-2 hover:border-blue-800 px-4 py-2 text-lg font-medium">Login</button></a>
                     <?php
                 } else {
                     ?>
-                    <li><a href="signout"><button
-                                class="bg-blue-800 text-white border-2 border-blue-800 rounded-lg hover:bg-transparent hover:text-blue-800 hover:border-2 hover:border-blue-800 px-2 py-2 text-lg font-medium ml-[1100px]">Logout
+                    <a href="signout" class="ml-[1100px]"><button
+                                class="bg-blue-800 text-white border-2 border-blue-800 rounded-lg hover:bg-transparent hover:text-blue-800 hover:border-2 hover:border-blue-800 px-2 py-2 text-lg font-medium">Logout
                                 <?php echo getnamebyenroll(); ?>
-                            </button></a></li>
+                            </button></a>
                     <?php
                 }
                 ?>
+                </li>
             </ul>
         </nav>
         <div class="relative">
@@ -50,8 +51,7 @@ session_start();
                 <img src="private/images/img3.jpeg" alt="bmu" class="w-full h-[30rem] opacity-40 bg-cover">
             </div>
             <div class="flex justify-center">
-                <h1 class="absolute text-white top-[10rem] text-[5rem] font-serif animate__animated animate__zoomIn"
-                    style="font-family: 'Geologica', sans-serif;">Bhagwan Mahavir University</h1>
+                <h1 class="absolute text-white top-[10rem] text-[5rem] font-serif animate__animated animate__zoomIn" style="font-family: 'Geologica', sans-serif;">Bhagwan Mahavir University</h1>
             </div>
         </div>
         <div class="absolute w-full px-28 top-[29rem]">
@@ -64,9 +64,9 @@ session_start();
                     </a>
                 </div>
                 <div class="getEnroll  m-2 cursor-pointer" data-certificate-url="bonafide2" data-aos="fade-up">
-                    <a href="hdf">
+                    <a href="document">
                         <div class="bg-white flex items-center w-[22rem] h-48 rounded-xl shadow-lg">
-                            <p class="text-4xl font-medium text-center px-6 m-auto">2 Certificate</p>
+                            <p class="text-4xl font-medium text-center px-6 m-auto">Request For Document</p>
                         </div>
                     </a>
                 </div>

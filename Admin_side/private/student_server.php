@@ -103,7 +103,7 @@ class Students
 }
 $student = new Students;
 if (isset($_POST['approve'])) {
-    $id = $_POST['approve'];
+    $id = addslashes($_POST['approve']);
     $student->provide_authority($id);
 }
 ?>

@@ -1,9 +1,9 @@
 <?php
     include('private/db_connection.php');
     class Signin{
-        function Search($email){
+        function Search($enroll){
             $con = connect();
-            $query = "SELECT * FROM `student` WHERE email = '$email'";
+            $query = "SELECT * FROM `student` WHERE `enrollment_no` = '$enroll'";
             $result = mysqli_query($con,$query);
             if(mysqli_num_rows($result) > 0){
                 while($row = mysqli_fetch_assoc($result)){

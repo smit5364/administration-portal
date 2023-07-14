@@ -5,12 +5,11 @@ class bonafide
     function insert($enroll, $name, $fathername, $course, $sem, $mobile, $email, $purpose, $savefilename)
     {
         $conn = connect();
-        $sql = "INSERT INTO bonafide(enrollment_no, name, father_name, course ,  semester ,  mobile_no ,  email ,  purpose ,  fee_recipt , apply_date ) VALUES ('$enroll','$name','$fathername','$course','$sem','$mobile','$email','$purpose','$savefilename',curdate())";
+        $sql = "INSERT INTO `bonafide`(`enrollment_no`, `name`, `father_name`, `course`,  `semester` ,  `mobile_no` ,  `email` ,  `purpose` ,  `fee_recipt` , `apply_date` ) VALUES ('$enroll','$name','$fathername','$course','$sem','$mobile','$email','$purpose','$savefilename','curdate()')";
 
         $bona = mysqli_query($conn, $sql);
         if ($bona) {
             # code...
-            echo "done";
             header("Location: home");
         } else {
             echo "Error: " . mysqli_error($conn);
@@ -50,7 +49,7 @@ class bonafide
     function fetch_courses_from_table()
     {
         $conn = connect();
-        $query = "SELECT * FROM courses";
+        $query = "SELECT * FROM `courses`";
         $result = mysqli_query($conn, $query);
         $courses = array();
         if (mysqli_num_rows($result) > 0) {
@@ -64,7 +63,7 @@ class bonafide
     function fetch_course_by_code($crs)
     {
         $conn = connect();
-        $query = "SELECT * FROM courses WHERE course_code = '$crs'";
+        $query = "SELECT * FROM `courses` WHERE `course_code` = '$crs'";
         $result = mysqli_query($conn, $query);
         $courses = array();
         if (mysqli_num_rows($result) > 0) {
@@ -79,7 +78,7 @@ class bonafide
     function fetch_semesters_from_table($course)
     {
         $conn = connect();
-        $query = "SELECT no_of_semester FROM courses WHERE course_code = '$course'";
+        $query = "SELECT `no_of_semester` FROM `courses` WHERE `course_code` = '$course'";
         $result = mysqli_query($conn, $query);
         $semesters = 0;
         if (mysqli_num_rows($result) > 0) {
@@ -92,7 +91,7 @@ class bonafide
 
 $bonafide = new bonafide;
 if(isset($_POST['course_code'])){
-    $course_code = $_POST['course_code'];
+    $course_code = addslashes($_POST['course_code']);
     $result = $bonafide->fetch_semesters_from_table($course_code);
     for($i = 1; $i <= $result; $i++){
         if($i == "1"){

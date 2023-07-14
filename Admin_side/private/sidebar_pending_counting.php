@@ -19,7 +19,7 @@ function pending__bonafide_approval()
 
 function pending_provide_authority(){
     $con = connect();
-    $query = "SELECT COUNT(*) FROM `student` WHERE `Authority` = 0";
+    $query = "SELECT COUNT(*) FROM `student` WHERE `Authority` = '0'";
     $result = mysqli_query($con , $query);
     $data = mysqli_fetch_assoc($result);
     return $data['COUNT(*)'];
