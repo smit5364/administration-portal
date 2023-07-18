@@ -53,9 +53,11 @@ if (isset($_POST['approve'])) {
 <body class="m-0 font-sans text-base antialiased font-normal leading-default bg-gray-50 text-slate-500 overflow-hidden">
   <div class="absolute w-full bg-indigo-600 min-h-[25%]"></div>
   <!-- sidenav  -->
-  <section class="fixed inset-y-0 flex-wrap items-center justify-between w-1/5 p-0 my-4 overflow-y-auto antialiased transition-transform duration-200 -translate-x-full bg-white border-0 shadow-xl max-w-64 ease-in-out z-[990] xl:ml-6 rounded-2xl xl:left-0 xl:translate-x-0">
+  <section
+    class="fixed inset-y-0 flex-wrap items-center justify-between w-1/5 p-0 my-4 overflow-y-auto antialiased transition-transform duration-200 -translate-x-full bg-white border-0 shadow-xl max-w-64 ease-in-out z-[990] xl:ml-6 rounded-2xl xl:left-0 xl:translate-x-0">
     <div class="h-19 pt-2">
-      <i class="absolute top-0 right-0 p-4 opacity-50 cursor-pointer fas fa-times text-slate-400 xl:hidden" sidenav-close></i>
+      <i class="absolute top-0 right-0 p-4 opacity-50 cursor-pointer fas fa-times text-slate-400 xl:hidden"
+        sidenav-close></i>
       <a href="dashboard" class="flex justify-center">
         <img src="private/assets/img/logo.png" alt="" width="140px">
       </a>
@@ -66,14 +68,16 @@ if (isset($_POST['approve'])) {
     <div class="items-center block w-auto max-h-screen overflow-auto basis-full">
       <ul class="flex flex-col pl-0 mb-0">
         <li class="mt-2 w-full">
-          <a href="dashboard" class="bg-white text-lg my-0 mx-2 flex items-center whitespace-nowrap rounded-lg px-4 py-3 font-medium text-slate-700 transition-colors">
+          <a href="dashboard"
+            class="bg-white text-lg my-0 mx-2 flex items-center whitespace-nowrap rounded-lg px-4 py-3 font-medium text-slate-700 transition-colors">
             <i class="ni ni-tv-2 text-indigo-600 mr-3"></i>
             Dashboard
           </a>
         </li>
         <?php if ($_SESSION['type'] == "Head") { ?>
           <li class="w-full">
-            <a href="student" class="bg-white text-lg my-0 mx-2 flex items-center whitespace-nowrap rounded-lg px-4 py-3 font-medium text-slate-700 transition-colors">
+            <a href="student"
+              class="bg-white text-lg my-0 mx-2 flex items-center whitespace-nowrap rounded-lg px-4 py-3 font-medium text-slate-700 transition-colors">
               <i class="ni ni-tv-2 text-indigo-600 mr-3"></i>
               Student
               <div class="bg-indigo-600 ml-[7.5rem] text-white font-medium px-4 text-xl py-0 rounded-full"><?php echo pending_provide_authority();?></div>
@@ -81,7 +85,8 @@ if (isset($_POST['approve'])) {
           </li>
         <?php } ?>
         <li class="w-full">
-          <a href="bonafide" class="bg-indigo-200 text-lg my-0 mx-2 flex items-center whitespace-nowrap rounded-lg px-4 py-3 font-medium text-slate-700 transition-colors">
+          <a href="bonafide"
+            class="bg-indigo-200 text-lg my-0 mx-2 flex items-center whitespace-nowrap rounded-lg px-4 py-3 font-medium text-slate-700 transition-colors">
             <i class="ni ni-tv-2 text-indigo-600 mr-3"></i>
             Bonafide
             <div class="bg-indigo-600 ml-28 text-white font-medium px-4 text-xl py-0 rounded-full"><?php if($_SESSION['type'] == "Head"){
@@ -98,7 +103,9 @@ if (isset($_POST['approve'])) {
 
   <main class="relative h-full max-h-screen transition-all duration-200 ease-in-out xl:ml-68 rounded-xl">
     <!-- Navbar -->
-    <nav class="relative flex flex-wrap items-center justify-between px-0 pt-5 mx-6 transition-all ease-in shadow-none duration-250 rounded-2xl lg:flex-nowrap lg:justify-start" navbar-main navbar-scroll="false">
+    <nav
+      class="relative flex flex-wrap items-center justify-between px-0 pt-5 mx-6 transition-all ease-in shadow-none duration-250 rounded-2xl lg:flex-nowrap lg:justify-start"
+      navbar-main navbar-scroll="false">
       <div class="flex items-center justify-between w-full px-4 py-1 mx-auto flex-wrap-inherit">
         <nav class="pl-80">
           <!-- breadcrumb -->
@@ -106,7 +113,9 @@ if (isset($_POST['approve'])) {
             <li class="text-sm leading-normal">
               <a class="text-white opacity-50 text-md" href="javascript:;">Pages</a>
             </li>
-            <li class="text-md pl-2 capitalize leading-normal text-white before:float-left before:pr-2 before:text-white before:content-['/']" aria-current="page">Bonafide</li>
+            <li
+              class="text-md pl-2 capitalize leading-normal text-white before:float-left before:pr-2 before:text-white before:content-['/']"
+              aria-current="page">Bonafide</li>
           </ol>
           <h6 class="mb-0 font-bold text-white capitalize text-lg">Bonafide</h6>
         </nav>
@@ -128,21 +137,21 @@ if (isset($_POST['approve'])) {
             <li class="flex items-center mr-3">
               <?php
               if ($_SESSION['name'] == "") {
-              ?>
+                ?>
                 <a href="signin" class="block px-0 py-2 text-lg font-semibold text-white transition-all ease-nav-brand">
                   <i class="fa fa-user sm:mr-1"></i>
                   <span class="hidden sm:inline">Sign In</span>
                 </a>
-              <?php
+                <?php
               } else {
-              ?>
+                ?>
                 <a href="signout">
                   <i class="fa fa-user sm:mr-2 text-white font-semibold text-lg"></i>
                   <span class="hidden sm:inline text-white font-semibold text-lg">
                     <?php echo $_SESSION['name']; ?>
                   </span>
                 </a>
-              <?php
+                <?php
               }
               ?>
             </li>
@@ -243,11 +252,12 @@ if (isset($_POST['approve'])) {
     <div class="w-4/5 px-6 py-8 ml-80">
       <?php
       if ($_SESSION['type'] == "Head") {
-      ?>
+        ?>
         <!-- row 1 -->
         <div class="flex flex-wrap -mx-3 mb-6">
           <!-- card1 -->
-          <div class="w-full max-w-full px-3 mb-6 sm:w-1/2 sm:flex-none xl:mb-0 xl:w-1/4 cursor-pointer" onclick="pending_verify_2()">
+          <div class="w-full max-w-full px-3 mb-6 sm:w-1/2 sm:flex-none xl:mb-0 xl:w-1/4 cursor-pointer"
+            onclick="pending_verify_2()">
             <div class="relative flex flex-col min-w-0 break-words bg-white shadow-xl rounded-2xl bg-clip-border">
               <div class="flex-auto p-4">
                 <div class="flex flex-row -mx-3">
@@ -260,7 +270,8 @@ if (isset($_POST['approve'])) {
                     </div>
                   </div>
                   <div class="px-3 text-right basis-1/3">
-                    <div class="inline-block w-12 h-12 text-center rounded-circle bg-gradient-to-tl from-blue-500 to-violet-500">
+                    <div
+                      class="inline-block w-12 h-12 text-center rounded-circle bg-gradient-to-tl from-blue-500 to-violet-500">
                       <i class="ni leading-none ni-money-coins text-lg relative top-3.5 text-white"></i>
                     </div>
                   </div>
@@ -270,7 +281,8 @@ if (isset($_POST['approve'])) {
           </div>
 
           <!-- card2 -->
-          <div class="w-full max-w-full px-3 mb-6 sm:w-1/2 sm:flex-none xl:mb-0 xl:w-1/4 cursor-pointer" onclick="pending_approval()">
+          <div class="w-full max-w-full px-3 mb-6 sm:w-1/2 sm:flex-none xl:mb-0 xl:w-1/4 cursor-pointer"
+            onclick="pending_approval()">
             <div class="relative flex flex-col min-w-0 break-words bg-white shadow-xl rounded-2xl bg-clip-border">
               <div class="flex-auto p-4">
                 <div class="flex flex-row -mx-3">
@@ -283,7 +295,8 @@ if (isset($_POST['approve'])) {
                     </div>
                   </div>
                   <div class="px-3 text-right basis-1/3">
-                    <div class="inline-block w-12 h-12 text-center rounded-circle bg-gradient-to-tl from-red-600 to-orange-600">
+                    <div
+                      class="inline-block w-12 h-12 text-center rounded-circle bg-gradient-to-tl from-red-600 to-orange-600">
                       <i class="ni leading-none ni-world text-lg relative top-3.5 text-white"></i>
                     </div>
                   </div>
@@ -293,7 +306,8 @@ if (isset($_POST['approve'])) {
           </div>
 
           <!-- card3 -->
-          <div class="w-full max-w-full px-3 mb-6 sm:w-1/2 sm:flex-none xl:mb-0 xl:w-1/4 cursor-pointer" onclick="reject_bonafide()">
+          <div class="w-full max-w-full px-3 mb-6 sm:w-1/2 sm:flex-none xl:mb-0 xl:w-1/4 cursor-pointer"
+            onclick="reject_bonafide()">
             <div class="relative flex flex-col min-w-0 break-words bg-white shadow-xl rounded-2xl bg-clip-border">
               <div class="flex-auto p-4">
                 <div class="flex flex-row -mx-3">
@@ -306,7 +320,8 @@ if (isset($_POST['approve'])) {
                     </div>
                   </div>
                   <div class="px-3 text-right basis-1/3">
-                    <div class="inline-block w-12 h-12 text-center rounded-circle bg-gradient-to-tl from-emerald-500 to-teal-400">
+                    <div
+                      class="inline-block w-12 h-12 text-center rounded-circle bg-gradient-to-tl from-emerald-500 to-teal-400">
                       <i class="ni leading-none ni-paper-diploma text-lg relative top-3.5 text-white"></i>
                     </div>
                   </div>
@@ -329,7 +344,8 @@ if (isset($_POST['approve'])) {
                     </div>
                   </div>
                   <div class="px-3 text-right basis-1/3">
-                    <div class="inline-block w-12 h-12 text-center rounded-circle bg-gradient-to-tl from-orange-500 to-yellow-500">
+                    <div
+                      class="inline-block w-12 h-12 text-center rounded-circle bg-gradient-to-tl from-orange-500 to-yellow-500">
                       <i class="ni leading-none ni-cart text-lg relative top-3.5 text-white"></i>
                     </div>
                   </div>
@@ -338,7 +354,7 @@ if (isset($_POST['approve'])) {
             </div>
           </div>
         </div>
-      <?php
+        <?php
       }
       ?>
       <!-- end Navbar -->
@@ -349,7 +365,7 @@ if (isset($_POST['approve'])) {
         <div class="flex flex-col justify-start px-5">
           <?php
           while ($row = mysqli_fetch_assoc($bonafide_details)) {
-          ?>
+            ?>
             <div class="grid grid-cols-3">
               <div class="col-span-1">
                 <h1 class="text-lg font-medium">Token number</h1>
@@ -411,13 +427,13 @@ if (isset($_POST['approve'])) {
                   </p>
                 </div>
               <?php } else if (($_SESSION['type'] == "Head" || $_SESSION['type'] == "Clerk") && $row['remark'] != "") { ?>
-                <div class="col-span-1">
-                  <h1 class="text-lg font-medium">Reason for Cancel</h1>
-                  <p class="text-lg">
+                  <div class="col-span-1">
+                    <h1 class="text-lg font-medium">Reason for Cancel</h1>
+                    <p class="text-lg">
                     <?php echo $row['remark']; ?>
-                  </p>
-                </div>
-              <?php } ?>
+                    </p>
+                  </div>
+                <?php } ?>
             </div>
             <div class="grid grid-cols-3 mt-6">
               <div class="col-span-1">
@@ -439,30 +455,36 @@ if (isset($_POST['approve'])) {
             <div class="grid-cols-2 mt-6 hidden" id="cancel_input">
               <div class="flex flex-col col-span-1">
                 <label for="" class="text-lg font-medium">Reason for Cancel</label>
-                <input type="text" name="remark" placeholder="Enter Your Remark" class="w-96 h-12 bg-gray-50 border-2 border-indigo-600 outline-none text-lg pl-3 rounded-xl mt-1 font-medium" id="remark">
+                <input type="text" name="remark" placeholder="Enter Your Remark"
+                  class="w-96 h-12 bg-gray-50 border-2 border-indigo-600 outline-none text-lg pl-3 rounded-xl mt-1 font-medium"
+                  id="remark">
               </div>
             </div>
             <div class="grid grid-cols-2 mt-6">
               <?php if ($row['verify_flag'] == 0 && $_SESSION['type'] == "Clerk" && $row['remark'] == "") { ?>
                 <div class="col-span-1">
-                  <form method="post"><button type="submit" name="verify" class="bg-indigo-600 px-4 py-2 text-white font-medium rounded-lg hover:bg-indigo-500">Verify</button>
-                    <button type="button" id="cancel" name="cancel" class="bg-red-600 px-4 py-2 text-white font-medium rounded-lg hover:bg-red-500">Cancel</button>
+                  <form method="post"><button type="submit" name="verify"
+                      class="bg-indigo-600 px-4 py-2 text-white font-medium rounded-lg hover:bg-indigo-500">Verify</button>
+                    <button type="button" id="cancel" name="cancel"
+                      class="bg-red-600 px-4 py-2 text-white font-medium rounded-lg hover:bg-red-500">Cancel</button>
                     <input type="hidden" name="cancel_flag" value="0" id="cancel_flag">
                   </form>
                 <?php } ?>
                 <?php if ($row['verify_flag'] == 1 && $_SESSION['type'] == "Head" && $row['approve_flag'] == 0 && $row['remark'] == "") { ?>
                   <div class="col-span-1">
-                    <form method="post"><button type="submit" name="approve" class="bg-indigo-600 px-4 py-2 text-white font-medium rounded-lg hover:bg-indigo-500">Approve</button>
-                      <button type="button" id="cancel" name="cancel" class="bg-red-600 px-4 py-2 text-white font-medium rounded-lg hover:bg-red-500">Cancel</button>
+                    <form method="post"><button type="submit" name="approve"
+                        class="bg-indigo-600 px-4 py-2 text-white font-medium rounded-lg hover:bg-indigo-500">Approve</button>
+                      <button type="button" id="cancel" name="cancel"
+                        class="bg-red-600 px-4 py-2 text-white font-medium rounded-lg hover:bg-red-500">Cancel</button>
                       <input type="hidden" name="cancel_flag" value="0" id="cancel_flag">
                     </form>
                   <?php } ?>
-                  </div>
                 </div>
+              </div>
               <?php
-            }
-              ?>
-            </div>
+          }
+          ?>
+          </div>
         </div>
   </main>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
@@ -471,7 +493,7 @@ if (isset($_POST['approve'])) {
     const cancel = document.getElementById('cancel');
     const cancel_input = document.getElementById('cancel_input');
     const remark = document.getElementById('remark');
-    cancel.addEventListener('click', function(event) {
+    cancel.addEventListener('click', function (event) {
       event.preventDefault();
       if (cancel_input.classList.contains('hidden')) {
         cancel_input.classList.remove('hidden');
@@ -479,43 +501,47 @@ if (isset($_POST['approve'])) {
         $('#cancel_flag').val("1");
       }
     });
-    cancel.addEventListener('click', function(event) {
+    cancel.addEventListener('click', function (event) {
       event.preventDefault();
       const cancel_flag = document.getElementById('cancel_flag').value;
       const remark_value = document.getElementById('remark').value;
       const verify_id = <?php echo $_GET['verify_id']; ?>;
       if (cancel_flag == "1" && remark_value != "" && remark_value != null) {
         swal({
-            title: "Are you sure?",
-            text: "This bonafide request is cancel!",
-            icon: "warning",
-            buttons: true,
-            dangerMode: true,
-          })
+          title: "Are you sure?",
+          text: "This bonafide request is cancel!",
+          icon: "warning",
+          buttons: true,
+          dangerMode: true,
+        })
           .then((willDelete) => {
             if (willDelete) {
               jQuery.ajax({
                 url: 'bonafide',
                 type: 'POST',
                 data: "&id=" + verify_id + "&remark=" + remark_value,
-                success: function() {
+                success: function () {
+                  $('#myTable').DataTable().ajax.reload();
+
                   swal({
                     title: "Cancel Bonafide Request.",
                     icon: "success",
                     button: false,
                     timer: 1500,
-                  }).then(()=>{
+                  }).then(() => {
                     window.location.href = "bonafide";
                   })
                 }
               });
-            }else{
+            } else {
+              $('#myTable').DataTable().ajax.reload();
+
               swal({
                 title: "This Request is safe.",
                 icon: "success",
                 button: false,
                 timer: 1500,
-              }).then(()=>{
+              }).then(() => {
                 $('#remark').val("");
               })
             }

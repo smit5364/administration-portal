@@ -52,48 +52,7 @@ class Students
         $mail->Subject = 'Login Approver';
         $mail->isHTML(true);
 
-        $mail->Body = '<html>
-                        <head>
-                        <style>
-                            body {
-                            font-family: Arial, sans-serif;
-                            font-size: 16px;
-                            line-height: 1.5;
-                            color: #333;
-                            margin: 0;
-                            padding: 0;
-                            background-color: #f5f5f5;
-                        }
-                        h1 {
-                            font-size: 24px;
-                            font-weight: bold;
-                            margin-top: 0;
-                            }
-                            ul {
-                            list-style: none;
-                            margin: 0;
-                            padding: 0;
-                            }
-                            li {
-                            margin-bottom: 10px;
-                            }
-                            p {
-                                margin-bottom: 20px;
-                            }
-                            .container {
-                            max-width: 600px;
-                            margin: 0 auto;
-                            padding: 20px;
-                            background-color: #fff;
-                            }
-                        </style>
-                        </head>
-                        <body>
-                        <div class="container">
-                            <h1>Now You can login </h1>
-                        </div>
-                        </body>
-                        </html>';
+        $mail->Body = "Now You can login";
 
         $mail->send();
         $query = "UPDATE `student` SET `Authority`='1' WHERE `id` = '$id'";
