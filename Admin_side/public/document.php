@@ -465,7 +465,8 @@ if (isset($_POST['remark']) && isset($_POST['id'])) {
                             name="print"
                             class="bg-indigo-600 px-4 py-2 rounded-lg text-white font-medium hover:bg-indigo-500 shadow-md disabled:cursor-not-allowed disabled:bg-indigo-500 deliver"
                             disabled>Deliver</button></a>
-                        <input type="hidden" name="print_flag" class="print_flag" value="<?php echo $row['print_flag']; ?>">
+                        <input type="hidden" name="return_flag" class="return_flag"
+                          value="<?php echo $row['return_flag']; ?>">
                         <a href="document?deliver_id=<?php echo $row['id']; ?>" onclick="disable_toggle()"><img
                             class="h-6 my-2 ml-2" src=" private/Images/printer.png" alt="" srcset=""></a>
                       </div>
@@ -546,9 +547,9 @@ if (isset($_POST['remark']) && isset($_POST['id'])) {
     <?php } ?>
 
     // Deliver button disabled and undisabled
-    const print_flag = document.getElementsByClassName('print_flag');
-    for (var i = 0; i <= print_flag.length; i++) {
-      if (print_flag[i].value == '1') {
+    const return_flag = document.getElementsByClassName('return_flag');
+    for (var i = 0; i <= return_flag.length; i++) {
+      if (return_flag[i].value == '1') {
         const deliver = document.getElementsByClassName('deliver');
         deliver[i].disabled = false;
       }

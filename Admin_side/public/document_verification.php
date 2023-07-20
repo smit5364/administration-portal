@@ -422,32 +422,43 @@ if (isset($_POST['approve'])) {
             </div>
             <div class="grid grid-cols-3 mt-6">
               <div class="col-span-1">
-                <h1 class="text-lg font-medium">10<sup>th</sup> Document</h1>
+                <h1 class="text-lg font-medium">Document</h1>
                 <p class="text-lg">
-                  <?php if ($row['document10th'] === '1') {
-                    echo "Yes";
-                  } else
-                    echo "No"; ?>
+                  <?php $documents = array();
+                  if ($row['document10th'] === '1') {
+                    $documents[] = "10th Document";
+                  }
+                  if ($row['document12th'] === '1') {
+                    $documents[] = "12th Document";
+                  }
+                  if ($row['leaving_certificate'] === '1') {
+                    $documents[] = "Leaving Certificate";
+                  }
+                  $doc = implode(', ', $documents);
+                  echo $doc; ?>
                 </p>
               </div>
               <div class="col-span-1">
-                <h1 class="text-lg font-medium">12<sup>th</sup> Document</h1>
+                <h1 class="text-lg font-medium">Return Date</h1>
                 <p class="text-lg">
-                  <?php if ($row['document12th'] === '1') {
-                    echo "Yes";
-                  } else
-                    echo "No"; ?>
+                  <?php echo $row['date']; ?>
                 </p>
               </div>
-              <div class="col-span-1">
-                <h1 class="text-lg font-medium">Leaving Certificate</h1>
-                <p class="text-lg">
-                  <?php if ($row['leaving_certificate'] === '1') {
-                    echo "Yes";
-                  } else
-                    echo "No"; ?>
-                </p>
-              </div>
+              <?php if ($_SESSION['type'] == "Head" && $row['delever_flag'] == 1 || $_SESSION['type'] == "Clerk" && $row['delever_flag'] == 1) { ?>
+                <div class="col-span-1">
+                  <h1 class="text-lg font-medium">Pickup Date</h1>
+                  <p class="text-lg">
+                    <?php echo $row['pickup_date']; ?>
+                  </p>
+                </div>
+              <?php } else if (($_SESSION['type'] == "Head" || $_SESSION['type'] == "Clerk") && $row['remark'] != "") { ?>
+                  <div class="col-span-1">
+                    <h1 class="text-lg font-medium">Reason for Cancel</h1>
+                    <p class="text-lg">
+                    <?php echo $row['remark']; ?>
+                    </p>
+                  </div>
+                <?php } ?>
             </div>
             <div class="grid grid-cols-3 mt-6">
               <div class="col-span-1">
@@ -462,12 +473,7 @@ if (isset($_POST['approve'])) {
                   <?php echo $row['mobile_no']; ?>
                 </p>
               </div>
-              <div class="col-span-1">
-                <h1 class="text-lg font-medium">Return Date</h1>
-                <p class="text-lg">
-                  <?php echo $row['date']; ?>
-                </p>
-              </div>
+
 
             </div>
             <div class="grid grid-cols-3 mt-6">
@@ -486,21 +492,7 @@ if (isset($_POST['approve'])) {
                   </a>
                 </p>
               </div>
-              <?php if ($_SESSION['type'] == "Head" && $row['delever_flag'] == 1 || $_SESSION['type'] == "Clerk" && $row['delever_flag'] == 1) { ?>
-                <div class="col-span-1">
-                  <h1 class="text-lg font-medium">Pickup Date</h1>
-                  <p class="text-lg">
-                    <?php echo $row['pickup_date']; ?>
-                  </p>
-                </div>
-              <?php } else if (($_SESSION['type'] == "Head" || $_SESSION['type'] == "Clerk") && $row['remark'] != "") { ?>
-                  <div class="col-span-1">
-                    <h1 class="text-lg font-medium">Reason for Cancel</h1>
-                    <p class="text-lg">
-                    <?php echo $row['remark']; ?>
-                    </p>
-                  </div>
-                <?php } ?>
+
             </div>
             <div class="grid-cols-2 mt-6 hidden" id="cancel_input">
               <div class="flex flex-col col-span-1">

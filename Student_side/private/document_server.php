@@ -5,7 +5,7 @@ class document
     function insert($enroll, $name, $fathername, $course, $sem, $mobile, $email, $purpose, $date, $document10th, $document12th, $leaving_certificate, $savefilename)
     {
         $conn = connect();
-        $sql = "INSERT INTO `document`(`enrollment_no`, `name`, `father_name`, `course`,  `semester` ,  `mobile_no` ,  `email` ,  `purpose` ,`date`,`document10th`,`document12th`,`leaving_certificate`,  `fee_recipt` , `apply_date` ) VALUES ('$enroll','$name','$fathername','$course','$sem','$mobile','$email','$purpose','$date','$document10th','$document12th','$leaving_certificate','$savefilename',`curdate()`)";
+        $sql = "INSERT INTO `document`(`enrollment_no`, `name`, `father_name`, `course`,  `semester` ,  `mobile_no` ,  `email` ,  `purpose` ,`date`,`document10th`,`document12th`,`leaving_certificate`,  `fee_recipt` , `apply_date` ) VALUES ('$enroll','$name','$fathername','$course','$sem','$mobile','$email','$purpose','$date','$document10th','$document12th','$leaving_certificate','$savefilename','curdate()')";
 
         $bona = mysqli_query($conn, $sql);
         if ($bona) {

@@ -36,9 +36,18 @@ if (isset($_POST['insert'])) {
         $purpose = addslashes($_POST['other_reason']);
     }
     $date = addslashes($_POST['date']);
-    $document10th = addslashes($_POST['10th']);
-    $document12th = addslashes($_POST['12th']);
-    $leaving_certificate = addslashes($_POST['leaving_certificate']);
+    $document10th = '0';
+    $document12th = '0';
+    $leaving_certificate = '0';
+    if (isset($_POST['10th'])) {
+        $document10th = addslashes($_POST['10th']);
+    }
+    if (isset($_POST['12th'])) {
+        $document12th = addslashes($_POST['12th']);
+    }
+    if (isset($_POST['leaving_certificate'])) {
+        $leaving_certificate = addslashes($_POST['leaving_certificate']);
+    }
     $feesrecipt = $_FILES['fees_recipt']['name'];
     $tempname = $_FILES['fees_recipt']['tmp_name'];
     $savefilename = $enroll . "_" . $sem . "_" . $feesrecipt;

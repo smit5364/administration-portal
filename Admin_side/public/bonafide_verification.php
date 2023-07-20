@@ -81,7 +81,9 @@ if (isset($_POST['approve'])) {
               class="bg-white text-lg my-0 mx-2 flex items-center whitespace-nowrap rounded-lg px-4 py-3 font-medium text-slate-700 transition-colors">
               <i class="ni ni-tv-2 text-indigo-600 mr-3"></i>
               Student
-              <div class="bg-indigo-600 ml-[7.5rem] text-white font-medium px-4 text-xl py-0 rounded-full"><?php echo pending_provide_authority();?></div>
+              <div class="bg-indigo-600 ml-[7.5rem] text-white font-medium px-4 text-xl py-0 rounded-full">
+                <?php echo pending_provide_authority(); ?>
+              </div>
             </a>
           </li>
         <?php } ?>
@@ -90,11 +92,13 @@ if (isset($_POST['approve'])) {
             class="bg-indigo-200 text-lg my-0 mx-2 flex items-center whitespace-nowrap rounded-lg px-4 py-3 font-medium text-slate-700 transition-colors">
             <i class="ni ni-tv-2 text-indigo-600 mr-3"></i>
             Bonafide
-            <div class="bg-indigo-600 ml-28 text-white font-medium px-4 text-xl py-0 rounded-full"><?php if($_SESSION['type'] == "Head"){
-              echo pending__bonafide_approval();}
-              else{
+            <div class="bg-indigo-600 ml-28 text-white font-medium px-4 text-xl py-0 rounded-full">
+              <?php if ($_SESSION['type'] == "Head") {
+                echo pending__bonafide_approval();
+              } else {
                 echo pending_bonafide_verify();
-              }?></div>
+              } ?>
+            </div>
           </a>
         </li>
       </ul>
@@ -102,7 +106,8 @@ if (isset($_POST['approve'])) {
   </section>
   <!-- end sidenav -->
 
-  <main class="relative h-full max-h-screen transition-all duration-200 ease-in-out xl:ml-68 rounded-xl overflow-y-auto overflow-hidden">
+  <main
+    class="relative h-full max-h-screen transition-all duration-200 ease-in-out xl:ml-68 rounded-xl overflow-y-auto overflow-hidden">
     <!-- Navbar -->
     <nav
       class="relative flex flex-wrap items-center justify-between px-0 pt-5 mx-6 transition-all ease-in shadow-none duration-250 rounded-2xl lg:flex-nowrap lg:justify-start"
@@ -365,18 +370,13 @@ if (isset($_POST['approve'])) {
         </div>
         <div class="flex flex-col justify-start px-5">
           <?php
-<<<<<<< Updated upstream
-          while ($row = mysqli_fetch_assoc($bonafide_details)) {
-            ?>
-=======
           while ($row = mysqli_fetch_array($data)) {
-          ?>
->>>>>>> Stashed changes
+            ?>
             <div class="grid grid-cols-3">
               <div class="col-span-1">
                 <h1 class="text-lg font-medium">Token number</h1>
                 <p class="text-lg">
-                  <?php echo htmlspecialchars($row['id']);?>
+                  <?php echo htmlspecialchars($row['id']); ?>
                 </p>
               </div>
               <div class="col-span-1">
@@ -433,23 +433,13 @@ if (isset($_POST['approve'])) {
                   </p>
                 </div>
               <?php } else if (($_SESSION['type'] == "Head" || $_SESSION['type'] == "Clerk") && $row['remark'] != "") { ?>
-<<<<<<< Updated upstream
                   <div class="col-span-1">
                     <h1 class="text-lg font-medium">Reason for Cancel</h1>
                     <p class="text-lg">
-                    <?php echo $row['remark']; ?>
+                    <?php echo htmlspecialchars($row['remark']); ?>
                     </p>
                   </div>
                 <?php } ?>
-=======
-                <div class="col-span-1">
-                  <h1 class="text-lg font-medium">Reason for Cancel</h1>
-                  <p class="text-lg">
-                    <?php echo htmlspecialchars($row['remark']); ?>
-                  </p>
-                </div>
-              <?php } ?>
->>>>>>> Stashed changes
             </div>
             <div class="grid grid-cols-3 mt-6">
               <div class="col-span-1">
@@ -460,9 +450,10 @@ if (isset($_POST['approve'])) {
               </div>
               <div class="col-span-1">
                 <h1 class="text-lg font-medium">Fees Recipt</h1>
-                  <a href="private/Fees_recipt/<?php echo htmlspecialchars($row['fee_recipt']); ?>" target="_blank">
-                  <abbr title="<?php echo htmlspecialchars($row['fee_recipt']); ?>"><img src="private/Images/icons8-view-94.png" alt="" class="w-10"></abbr>
-                  </a>
+                <a href="private/Fees_recipt/<?php echo htmlspecialchars($row['fee_recipt']); ?>" target="_blank">
+                  <abbr title="<?php echo htmlspecialchars($row['fee_recipt']); ?>"><img
+                      src="private/Images/icons8-view-94.png" alt="" class="w-10"></abbr>
+                </a>
               </div>
             </div>
             <div class="grid-cols-2 mt-6 hidden" id="cancel_input">

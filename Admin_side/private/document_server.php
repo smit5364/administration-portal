@@ -447,13 +447,24 @@ class Document
             $result = mysqli_stmt_get_result($stmt);
             $row = mysqli_fetch_assoc($result);
             if ($row) {
-                $date = $row['apply_date']; // assuming $row['posting_date'] contains '2023-04-27 17:47:17'
+                $date = $row['apply_date'];
                 $date = date('d-m-Y', strtotime($date));
                 $name = $row['name'];
                 $email = $row['email'];
                 $enrollment_no = $row['enrollment_no'];
                 $semester = $row['semester'];
                 $course = $row['course'];
+                $documents = array();
+                if ($row['document10th'] === 1) {
+                    $documents[] = "10th Document";
+                }
+                if ($row['document12th'] === 1) {
+                    $documents[] = "12th Document";
+                }
+                if ($row['leaving_certificate'] === 1) {
+                    $documents[] = "Leaving Certificate";
+                }
+                $doc = implode(', ', $documents);
                 $purpose = $row['purpose'];
                 $year = date('Y', strtotime($date));
                 if (date('m', strtotime($date)) < 4) {
@@ -489,7 +500,7 @@ class Document
         $pdf->SetAuthor("Bhagwan Mahavir College of Computer Application");
 
         // Step 4: Add new pages as needed (optional)
-        $pdf->AddPage('H', array(205, 150), 0);
+        $pdf->AddPage('H', array(205, 160), 0);
         $pdf->AddFont('Times New Roman', '', 'times.php');
         $pdf->AddFont('Times New Roman Bold', '', 'times-bold.php');
         $pdf->Ln(2);
@@ -554,6 +565,10 @@ class Document
         $pdf->Cell(38, 10, "Enrollment No : ", 0, 0, "L");
         $pdf->SetFont('Calibri', '', 14.5);
         $pdf->Cell(150, 10, $enrollment_no, 0, 1, "L");
+        $pdf->SetFont('CALIBRIB', '', 14.5);
+        $pdf->Cell(38, 10, "Document : ", 0, 0, "L");
+        $pdf->SetFont('Calibri', '', 14.5);
+        $pdf->Cell(150, 10, $doc, 0, 1, "L");
         $pdf->SetFont('CALIBRIB', '', 14.5);
         $pdf->Cell(38, 10, "Reason : ", 0, 0, "L");
         $pdf->SetFont('Calibri', '', 14.5);
