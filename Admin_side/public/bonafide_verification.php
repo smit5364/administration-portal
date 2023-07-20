@@ -5,9 +5,10 @@ include('private/sidebar_pending_counting.php');
 if ($_SESSION['name'] == "") {
   header('location:signin');
 }
-$id = $_GET['verify_id'];
 $bonafide = new Bonafide;
-$bonafide_details = $bonafide->individual_detail($id);
+$id = htmlspecialchars($_SESSION['id']);
+$data = $bonafide->individual_detail($id);
+
 if (isset($_POST['verify'])) {
   $bonafide->update_verify($id);
   header('location:bonafide');
@@ -101,7 +102,7 @@ if (isset($_POST['approve'])) {
   </section>
   <!-- end sidenav -->
 
-  <main class="relative h-full max-h-screen transition-all duration-200 ease-in-out xl:ml-68 rounded-xl">
+  <main class="relative h-full max-h-screen transition-all duration-200 ease-in-out xl:ml-68 rounded-xl overflow-y-auto overflow-hidden">
     <!-- Navbar -->
     <nav
       class="relative flex flex-wrap items-center justify-between px-0 pt-5 mx-6 transition-all ease-in shadow-none duration-250 rounded-2xl lg:flex-nowrap lg:justify-start"
@@ -364,25 +365,30 @@ if (isset($_POST['approve'])) {
         </div>
         <div class="flex flex-col justify-start px-5">
           <?php
+<<<<<<< Updated upstream
           while ($row = mysqli_fetch_assoc($bonafide_details)) {
             ?>
+=======
+          while ($row = mysqli_fetch_array($data)) {
+          ?>
+>>>>>>> Stashed changes
             <div class="grid grid-cols-3">
               <div class="col-span-1">
                 <h1 class="text-lg font-medium">Token number</h1>
                 <p class="text-lg">
-                  <?php echo $row['id']; ?>
+                  <?php echo htmlspecialchars($row['id']);?>
                 </p>
               </div>
               <div class="col-span-1">
                 <h1 class="text-lg font-medium">Name</h1>
                 <p class="text-lg">
-                  <?php echo $row['name']; ?>
+                  <?php echo htmlspecialchars($row['name']); ?>
                 </p>
               </div>
               <div class="col-span-1">
                 <h1 class="text-lg font-medium">Father Name</h1>
                 <p class="text-lg">
-                  <?php echo $row['father_name']; ?>
+                  <?php echo htmlspecialchars($row['father_name']); ?>
                 </p>
               </div>
             </div>
@@ -390,19 +396,19 @@ if (isset($_POST['approve'])) {
               <div class="col-span-1">
                 <h1 class="text-lg font-medium">Enrollment Number</h1>
                 <p class="text-lg">
-                  <?php echo $row['enrollment_no']; ?>
+                  <?php echo htmlspecialchars($row['enrollment_no']); ?>
                 </p>
               </div>
               <div class="col-span-1">
                 <h1 class="text-lg font-medium">Course</h1>
                 <p class="text-lg">
-                  <?php echo $row['course']; ?>
+                  <?php echo htmlspecialchars($row['course']); ?>
                 </p>
               </div>
               <div class="col-span-1">
                 <h1 class="text-lg font-medium">Semester</h1>
                 <p class="text-lg">
-                  <?php echo $row['semester']; ?>
+                  <?php echo htmlspecialchars($row['semester']); ?>
                 </p>
               </div>
             </div>
@@ -410,23 +416,24 @@ if (isset($_POST['approve'])) {
               <div class="col-span-1">
                 <h1 class="text-lg font-medium">Email</h1>
                 <p class="text-lg">
-                  <?php echo $row['email']; ?>
+                  <?php echo htmlspecialchars($row['email']); ?>
                 </p>
               </div>
               <div class="col-span-1">
                 <h1 class="text-lg font-medium">Mobile No</h1>
                 <p class="text-lg">
-                  <?php echo $row['mobile_no']; ?>
+                  <?php echo htmlspecialchars($row['mobile_no']); ?>
                 </p>
               </div>
               <?php if ($_SESSION['type'] == "Head" && $row['delever_flag'] == 1 || $_SESSION['type'] == "Clerk" && $row['delever_flag'] == 1) { ?>
                 <div class="col-span-1">
                   <h1 class="text-lg font-medium">Pickup Date</h1>
                   <p class="text-lg">
-                    <?php echo $row['pickup_date']; ?>
+                    <?php echo htmlspecialchars($row['pickup_date']); ?>
                   </p>
                 </div>
               <?php } else if (($_SESSION['type'] == "Head" || $_SESSION['type'] == "Clerk") && $row['remark'] != "") { ?>
+<<<<<<< Updated upstream
                   <div class="col-span-1">
                     <h1 class="text-lg font-medium">Reason for Cancel</h1>
                     <p class="text-lg">
@@ -434,22 +441,28 @@ if (isset($_POST['approve'])) {
                     </p>
                   </div>
                 <?php } ?>
+=======
+                <div class="col-span-1">
+                  <h1 class="text-lg font-medium">Reason for Cancel</h1>
+                  <p class="text-lg">
+                    <?php echo htmlspecialchars($row['remark']); ?>
+                  </p>
+                </div>
+              <?php } ?>
+>>>>>>> Stashed changes
             </div>
             <div class="grid grid-cols-3 mt-6">
               <div class="col-span-1">
                 <h1 class="text-lg font-medium">Reason for Bonafide</h1>
                 <p class="text-lg">
-                  <?php echo $row['purpose']; ?>
+                  <?php echo htmlspecialchars($row['purpose']); ?>
                 </p>
               </div>
               <div class="col-span-1">
                 <h1 class="text-lg font-medium">Fees Recipt</h1>
-                <p class="text-lg flex items-center">
-                  <?php echo $row['fee_recipt']; ?>
-                <a href="private/Fees_recipt/<?php echo $row['fee_recipt']; ?>" target="_blank">
-                <abbr title="View"><img src="private/Images/icons8-view-94.png" alt="" class="w-14"></abbr>
-                </a>
-                </p>
+                  <a href="private/Fees_recipt/<?php echo htmlspecialchars($row['fee_recipt']); ?>" target="_blank">
+                  <abbr title="<?php echo htmlspecialchars($row['fee_recipt']); ?>"><img src="private/Images/icons8-view-94.png" alt="" class="w-10"></abbr>
+                  </a>
               </div>
             </div>
             <div class="grid-cols-2 mt-6 hidden" id="cancel_input">
@@ -505,7 +518,7 @@ if (isset($_POST['approve'])) {
       event.preventDefault();
       const cancel_flag = document.getElementById('cancel_flag').value;
       const remark_value = document.getElementById('remark').value;
-      const verify_id = <?php echo $_GET['verify_id']; ?>;
+      const verify_id = <?php echo $verify_id; ?>;
       if (cancel_flag == "1" && remark_value != "" && remark_value != null) {
         swal({
           title: "Are you sure?",

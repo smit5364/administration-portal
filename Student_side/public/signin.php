@@ -40,8 +40,8 @@ if (isset($_POST['validate'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SignUp Administration</title>
-    <link rel="icon" href="private/images/fav.png">
-    <link rel="stylesheet" href="../style.css">
+    <link rel="icon" href="private/images/BMCCA_logo.png">
+    <link rel="stylesheet" href="style.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -59,9 +59,9 @@ if (isset($_POST['validate'])) {
 </head>
 
 <body style="font-family: 'Geologica', sans-serif;" class="bg-gray-200">
-    <div class="flex justify-center mt-28">
-        <div class="bg-gray-100 w-fit rounded-xl shadow-lg py-5 px-14">
-            <div class="w-full flex justify-center"><img src="private/images/logo.png" alt="" class="w-36 mt-3"></div>
+    <div class="flex items-center justify-center h-[100vh] w-full overflow-hidden">
+        <div class="bg-gray-100 w-fit rounded-xl shadow-lg py-5 px-6 mx-4">
+            <div class="w-full flex justify-center"><img src="private/images/BMCCA_logo.png" alt="" class="w-36 mt-3"></div>
             <div class="grid grid-cols-1 py-4 gap-x-10">
                 <form action="" method="post">
                     <div class="flex flex-col w-80">
@@ -87,7 +87,7 @@ if (isset($_POST['validate'])) {
         </div>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
-    <?php include('private/sweet_alert.php') ?>;
+    <?php include('private/sweet_alert.php') ?>
 </body>
 
 </html>

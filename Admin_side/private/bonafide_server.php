@@ -155,6 +155,7 @@ class Bonafide
 
     function individual_detail($id)
     {
+        $id = (int)$id;
         $con = connect();
         $query = "SELECT * FROM `bonafide` WHERE `id` = '$id'";
         $result = mysqli_query($con, $query);
@@ -163,6 +164,7 @@ class Bonafide
 
     function update_verify($id)
     {
+        $id = (int)$id;
         $con = connect();
         $query = "UPDATE `bonafide` SET `verify_flag`='1',`verify_by`='$_SESSION[name]' WHERE id = '$id'";
         $result = mysqli_query($con, $query);
@@ -178,6 +180,7 @@ class Bonafide
 
     function approve_verify($id)
     {
+        $id = (int)$id;
         $con = connect();
         $query = "UPDATE `bonafide` SET `approve_flag`='1',`approve_by`='$_SESSION[name]' WHERE id = '$id'";
         $result = mysqli_query($con, $query);
@@ -239,7 +242,7 @@ class Bonafide
     function date_for_pickup($id)
     {
         $con = connect();
-        $query = "UPDATE `bonafide` SET `delever_flag`='1', `pickup_date`= 'curdate()' WHERE id = '$id'";
+        $query = "UPDATE `bonafide` SET `delever_flag`='1', `pickup_date`= curdate() WHERE id = '$id'";
         $result = mysqli_query($con, $query);
         if($result){
             $_SESSION['title'] = "Delivered Successfull!";
@@ -652,8 +655,13 @@ class Bonafide
 
 $bonafide = new Bonafide;
 if ($_SESSION['type'] == "Clerk" && isset($_GET['pickup_id'])) {
-    $id = $_GET['pickup_id'];
+    (int)$id = $_GET['pickup_id'];
     $bonafide->date_for_pickup($id);
     // header('Location: bonafide');
-  }
+}
+
+if(isset($_POST['id'])){
+    $id = addslashes($_POST['id']);
+    $_SESSION['id'] = (int)$id;
+}
 ?>

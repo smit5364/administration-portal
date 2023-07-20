@@ -5,7 +5,7 @@ class bonafide
     function insert($enroll, $name, $fathername, $course, $sem, $mobile, $email, $purpose, $savefilename)
     {
         $conn = connect();
-        $sql = "INSERT INTO `bonafide`(`enrollment_no`, `name`, `father_name`, `course`,  `semester` ,  `mobile_no` ,  `email` ,  `purpose` ,  `fee_recipt` , `apply_date` ) VALUES ('$enroll','$name','$fathername','$course','$sem','$mobile','$email','$purpose','$savefilename','curdate()')";
+        $sql = "INSERT INTO `bonafide`(`enrollment_no`, `name`, `father_name`, `course`,  `semester` ,  `mobile_no` ,  `email` ,  `purpose` ,  `fee_recipt` , `apply_date` ) VALUES ('$enroll','$name','$fathername','$course','$sem','$mobile','$email','$purpose','$savefilename',curdate())";
 
         $bona = mysqli_query($conn, $sql);
         if ($bona) {

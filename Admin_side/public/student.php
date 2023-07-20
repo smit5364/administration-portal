@@ -258,8 +258,7 @@ $student = new Students;
                 <th scope="col" class="px-6 py-3">Sr.No</th>
                 <th scope="col" class="px-6 py-3">Enrollment</th>
                 <th scope="col" class="px-0 py-3">FullName</th>
-                <th scope="col" class="py-3">Course</th>
-                <th scope="col" class="px-6 py-3">Semester</th>
+                <th scope="col" class="py-3">Course - Sem</th>
                 <th scope="col" class="py-3">Email</th>
                 <th scope="col" class="py-3">Mobile</th>
                 <th scope="col" class="py-3">Authority</th>
@@ -274,29 +273,26 @@ $student = new Students;
                 ?>
                 <tr class="border-b transition duration-300 ease-in-out hover:bg-neutral-100">
                   <td class="whitespace-nowrap px-6 py-4 font-medium">
-                    <?php echo $count; ?>
+                    <?php echo htmlspecialchars($count); ?>
                   </td>
                   <td class="whitespace-nowrap px-6 py-4">
-                    <?php echo $row['enrollment_no']; ?>
+                    <?php echo htmlspecialchars($row['enrollment_no']); ?>
                   </td>
                   <td class="whitespace-nowrap px-0 py-4">
-                    <?php echo $row['last_name'] . ' ' . $row['first_name'] . ' ' . $row['middle_name']; ?>
+                    <?php echo htmlspecialchars($row['last_name']) . ' ' . htmlspecialchars($row['first_name']) . ' ' . htmlspecialchars($row['middle_name']); ?>
                   </td>
                   <td class="whitespace-nowrap py-4">
-                    <?php echo $row['course']; ?>
+                    <?php echo htmlspecialchars($row['course']); ?> - <?php echo htmlspecialchars($row['semester']); ?>
                   </td>
                   <td class="whitespace-nowrap py-4">
-                    <?php echo $row['semester']; ?>
+                    <?php echo htmlspecialchars($row['email']); ?>
                   </td>
                   <td class="whitespace-nowrap py-4">
-                    <?php echo $row['email']; ?>
-                  </td>
-                  <td class="whitespace-nowrap py-4">
-                    <?php echo $row['mobile']; ?>
+                    <?php echo htmlspecialchars($row['mobile']); ?>
                   </td>
                   <td class="whitespace-nowrap py-4">
                     <?php if ($row['Authority'] == 0) { ?>
-                      <button onclick="authority(<?php echo $row['id']; ?>)"
+                      <button onclick="authority(<?php echo htmlspecialchars($row['id']); ?>)"
                         class="bg-indigo-600 text-white font-medium py-1 px-2 rounded-lg hover:bg-indigo-500">Approve</button>
                     <?php } else { ?>
                       <p class="bg-green-600 text-white text-center py-1 rounded-full">Authorized</p>

@@ -6,17 +6,13 @@ $bonafide = new Bonafide;
 if ($_SESSION['name'] == "") {
   header('location:signin');
 }
-if ($_SESSION['type'] == "Head" && isset($_GET['approve_id'])) {
-  $id = $_GET['approve_id'];
-  $bonafide->approve_verify($id);
-}
 if ($_SESSION['type'] == "Clerk" && isset($_GET['pickup_id'])) {
-  $id = $_GET['pickup_id'];
+  $id = (int)$_GET['pickup_id'];
   $bonafide->date_for_pickup($id);
   // header('Location: bonafide');
 }
 if (isset($_GET['deliver_id'])) {
-  $id = $_GET['deliver_id'];
+  $id = (int)$_GET['deliver_id'];
   // $bonafide->print_bonafide($id);
   $bonafide->edit_doc($id);
 }
@@ -413,27 +409,31 @@ if (isset($_POST['remark']) && isset($_POST['id'])) {
                 ?>
                 <tr class="border-b transition duration-300 ease-in-out hover:bg-neutral-100 2xl:text-lg">
                   <td class="whitespace-nowrap px-6 py-4 font-medium">
-                    <?php echo $count; ?>
+                    <?php echo htmlspecialchars($count); ?>
                   </td>
                   <td class="whitespace-nowrap px-6 py-4 hidden lg:table-cell">
-                    <?php echo $row['id']; ?>
+                    <?php echo htmlspecialchars($row['id']); ?>
                   </td>
                   <td class="whitespace-nowrap px-0 py-4">
+<<<<<<< Updated upstream
                     <a href="bonafide_verification?verify_id=<?php echo $row['id']; ?>"
                       class="text-indigo-600 font-medium"><?php echo $row['enrollment_no']; ?></a>
+=======
+                    <a href="bonafide_verification?verify_id=<?php echo htmlspecialchars($row['id']); ?>" class="text-indigo-600 font-medium"><?php echo htmlspecialchars($row['enrollment_no']); ?></a>
+>>>>>>> Stashed changes
                   </td>
                   <td class="whitespace-nowrap pr-6 py-4 hidden md:table-cell">
-                    <?php echo $row['name']; ?>
+                    <?php echo htmlspecialchars($row['name']); ?>
                   </td>
                   <td class="whitespace-nowrap py-4 hidden xl:table-cell">
-                    <?php echo $row['course']; ?>
+                    <?php echo htmlspecialchars($row['course']); ?>
                   </td>
 
                   <!-- Verification Bonafide -->
                   <td class="whitespace-nowrap px-6 py-4">
                     <?php if ($_SESSION['type'] == "Clerk" && $row['verify_flag'] == 0 && $row['remark'] == "") { ?>
-                      <a href="bonafide_verification?verify_id=<?php echo $row['id']; ?>"><button name="view" id="view"
-                          class="bg-indigo-600 px-4 py-2 rounded-lg text-white font-medium hover:bg-indigo-500 shadow-md">View</button></a>
+                      <button name="view" id="view"
+                          class="bg-indigo-600 px-4 py-2 rounded-lg text-white font-medium hover:bg-indigo-500 shadow-md" onclick="verify(<?php echo htmlspecialchars($row['id']); ?>)">View</button>
                     <?php } else if ($_SESSION['type'] == "Head" && $row['verify_flag'] == 0 && $row['remark'] == "") { ?>
                         <p class="text-md bg-yellow-600 mr-3 p-1 text-white font-medium text-center rounded-full">Pending</p>
                       <?php } else if ($row['verify_flag'] == 1 && $row['remark'] == "") { ?>
@@ -446,9 +446,9 @@ if (isset($_POST['remark']) && isset($_POST['id'])) {
                   <!-- Approval Bonafide -->
                   <td class="whitespace-nowrap px-6 py-4">
                     <?php if ($_SESSION['type'] == "Head" && $row['verify_flag'] == 1 && $row['approve_flag'] == 0 && $row['remark'] == "") { ?>
-                      <a href="bonafide_verification?verify_id=<?php echo $row['id']; ?>"><button name="approve"
+                      <button name="approve" onclick="verify(<?php echo htmlspecialchars($row['id']); ?>)"
                           id="approve"
-                          class="bg-indigo-600 px-4 py-2 rounded-lg text-white font-medium hover:bg-indigo-500 shadow-md">View</button></a>
+                          class="bg-indigo-600 px-4 py-2 rounded-lg text-white font-medium hover:bg-indigo-500 shadow-md">View</button>
                     <?php } else if (($_SESSION['type'] == "Clerk" || $_SESSION['type'] == "Head") && ($row['verify_flag'] == 1 || $row['verify_flag'] == 0) && $row['approve_flag'] == 0 && $row['remark'] == "") { ?>
                         <p class="text-md bg-yellow-600 mr-3 p-1 text-white font-medium text-center rounded-full">Pending</p>
                       <?php } else if ($row['approve_flag'] == 1 && $row['remark'] == "") { ?>
@@ -461,6 +461,7 @@ if (isset($_POST['remark']) && isset($_POST['id'])) {
                   <!-- Deliver Bonafide -->
                   <td class="whitespace-nowrap px-6 py-4">
                     <?php if ($row['approve_flag'] == 1 && $_SESSION['type'] == "Clerk" && $row['delever_flag'] == 0 && $row['remark'] == "") { ?>
+<<<<<<< Updated upstream
                       <div class="flex"> <a href="private/bonafide_server.php?pickup_id=<?php echo $row['id']; ?>"><button
                             name="print"
                             class="bg-indigo-600 px-4 py-2 rounded-lg text-white font-medium hover:bg-indigo-500 shadow-md disabled:cursor-not-allowed disabled:bg-indigo-500 deliver"
@@ -468,6 +469,13 @@ if (isset($_POST['remark']) && isset($_POST['id'])) {
                         <input type="hidden" name="print_flag" class="print_flag" value="<?php echo $row['print_flag']; ?>">
                         <a href="bonafide?deliver_id=<?php echo $row['id']; ?>" onclick="disable_toggle()"><img
                             class="h-6 my-2 ml-2" src=" private/Images/printer.png" alt="" srcset=""></a>
+=======
+                      <div class="flex"> <a href="private/bonafide_server.php?pickup_id=<?php echo htmlspecialchars($row['id']); ?>"><button name="print"
+                            class="bg-indigo-600 px-4 py-2 rounded-lg text-white font-medium hover:bg-indigo-500 shadow-md disabled:cursor-not-allowed disabled:bg-indigo-500 deliver" disabled>Deliver</button></a>
+                            <input type="hidden" name="print_flag" class="print_flag" value="<?php echo htmlspecialchars($row['print_flag']);?>">
+                        <a href="bonafide?deliver_id=<?php echo htmlspecialchars($row['id']); ?>" onclick="disable_toggle()" class="w-6 h-6"><img class="my-2 ml-2"
+                            src=" private/Images/printer.png" alt="" srcset=""></a>
+>>>>>>> Stashed changes
                       </div>
                     <?php } else if ($_SESSION['type'] == "Head" && $row['delever_flag'] == 0 && $row['remark'] == "") { ?>
                         <div class="flex">
@@ -484,7 +492,7 @@ if (isset($_POST['remark']) && isset($_POST['id'])) {
                               <p class="text-base bg-green-500 mr-3 py-1 px-2 text-white font-medium text-center rounded-full">
                                 Delivered
                               </p>
-                              <a href="bonafide?deliver_id=<?php echo $row['id']; ?>" class="w-6 h-6 "><img class="m-auto"
+                              <a href="bonafide?deliver_id=<?php echo htmlspecialchars($row['id']); ?>" class="w-6 h-6 "><img class="m-auto"
                                   src="private/Images/printer.png" alt="" srcset=""></a>
                             </div>
                           <?php } else if ($row['verify_flag'] == 1 || $row['verify_flag'] == 0 && $row['delever_flag'] == 0 && $row['remark'] != "") { ?>
@@ -559,8 +567,25 @@ if (isset($_POST['remark']) && isset($_POST['id'])) {
         window.location.reload();
       }, 3000);
     }
+<<<<<<< Updated upstream
   </script>
   <?php include('private/sweet_alert.php'); ?>
+=======
+
+    function verify(id){
+      jQuery.ajax({
+        url: 'private/bonafide_server.php',
+        type: 'POST',
+        data: "&id=" + id,
+        success: function(response){
+          // console.log(response);
+          window.location.href = "bonafide_verification";
+        }
+      })
+    }
+    </script>
+  <?php include('private/sweet_alert.php');?>
+>>>>>>> Stashed changes
 </body>
 
 </html>

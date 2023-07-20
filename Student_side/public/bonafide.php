@@ -82,7 +82,7 @@ if (isset($_POST['insert'])) {
                         <label for="Fullname" class="text-xl">Full Name</label>
                         <!-- pattern="^[A-Za-z]+\s[A-Za-z]+\s[A-Za-z]+$" -->
                         <input required readonly type="text" name="fullname" placeholder="Enter Your Fullname" value="<?php if (isset($name)) {
-                            echo $name;
+                            echo htmlspecialchars($name);
                         } ?>"
                             class="bg-white h-12 rounded-lg pl-3 text-lg outline-none focus:ring-2 focus:ring-indigo-800 cursor-not-allowed"
                             id="fullname">
@@ -91,7 +91,7 @@ if (isset($_POST['insert'])) {
                         <label for="Fathername" class="text-xl">Father Name</label>
                         <input required readonly type="text" name="fathername" placeholder="Enter Your Father Name"
                             value="<?php if (isset($fathername)) {
-                                echo $fathername;
+                                echo htmlspecialchars($fathername);
                             } ?>"
                             class="bg-white h-12 rounded-lg pl-3 text-lg outline-none focus:ring-2 focus:ring-indigo-800 cursor-not-allowed">
                     </div>
@@ -100,7 +100,7 @@ if (isset($_POST['insert'])) {
                     <div class="col-span-2 flex flex-col gap-y-1 ">
                         <label for="Enrollment" class="text-xl">Enrollment Number</label>
                         <input required readonly type="text" name="enrollment" value="<?php if (isset($enroll)) {
-                            echo $enroll;
+                            echo htmlspecialchars($enroll);
                         } ?>" placeholder="Enter Your Enrollment Number"
                             class="bg-white h-12 rounded-lg pl-3 text-lg outline-none focus:ring-2 focus:ring-indigo-800 cursor-not-allowed">
                     </div>
@@ -109,7 +109,7 @@ if (isset($_POST['insert'])) {
                         <input readonly required
                             class="bg-white h-12 rounded-lg pl-2 text-lg outline-none focus:ring-2 focus:ring-indigo-800 cursor-not-allowed"
                             type="text" name="course" value="<?php if (isset($crs)) {
-                                echo $crs;
+                                echo htmlspecialchars($crs);
                             } ?>" id="">
                     </div>
                     <div class="row-span-2 flex flex-col gap-y-1 ">
@@ -134,7 +134,7 @@ if (isset($_POST['insert'])) {
                         <input required readonly type="email" name="email" placeholder="Enter Your Email"
                             class="bg-white h-12 rounded-lg pl-3 text-lg outline-none focus:ring-2 focus:ring-indigo-800 cursor-not-allowed"
                             value="<?php if (isset($email)) {
-                                echo $email;
+                                echo htmlspecialchars($email);
                             } ?>">
                     </div>
                     <div class="row-span-2 flex flex-col gap-y-1 ">
@@ -143,7 +143,7 @@ if (isset($_POST['insert'])) {
                             placeholder="Enter Your Mobile No"
                             class="bg-white h-12 rounded-lg pl-3 text-lg outline-none focus:ring-2 focus:ring-indigo-800 cursor-not-allowed"
                             value="<?php if (isset($mobile)) {
-                                echo $mobile;
+                                echo htmlspecialchars($mobile);
                             } ?>">
                     </div>
                 </div>
@@ -185,8 +185,9 @@ if (isset($_POST['insert'])) {
                     </div>
                     <div class="flex flex-col col-span-1">
                         <label for="Fees" class="text-xl">Upload current semester Fees Recipt</label>
-                        <input required type="file" name="fees_recipt"
+                        <input required type="file" name="fees_recipt" accept="application/pdf"
                             class="mt-3 file:outline-none file:h-12 file:w-36 file:rounded-lg cursor-pointer file:cursor-pointer file:border-0 file:bg-white focus:ring-2 focus:ring-indigo-800 focus:rounded-lg text-lg file: file:text-gray-400">
+                        <span class="text-red-600">*Note: Only PDF file accepted</span>
                     </div>
                 </div>
                 <div class="w-full mt-3 flex justify-end">
