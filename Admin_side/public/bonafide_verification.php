@@ -101,6 +101,13 @@ if (isset($_POST['approve'])) {
             </div>
           </a>
         </li>
+        <li class="w-full">
+          <a href="document"
+            class="text-lg my-0 mx-2 flex items-center whitespace-nowrap rounded-lg px-4 py-3 font-medium text-slate-700 transition-colors">
+            <i class="ni ni-tv-2 text-indigo-600 mr-3"></i>
+            Document
+          </a>
+        </li>
       </ul>
     </div>
   </section>
@@ -364,7 +371,7 @@ if (isset($_POST['approve'])) {
       }
       ?>
       <!-- end Navbar -->
-      <div class="w-full bg-white shadow-2xl rounded-2xl mt-0 py-4">
+      <div class="w-full bg-white shadow-lg rounded-2xl mt-0 py-4">
         <div class="flex flex-col justify-start">
           <h1 class="text-2xl font-medium text-indigo-600 pl-3">Bonafide Verification</h1>
         </div>
@@ -509,7 +516,7 @@ if (isset($_POST['approve'])) {
       event.preventDefault();
       const cancel_flag = document.getElementById('cancel_flag').value;
       const remark_value = document.getElementById('remark').value;
-      const verify_id = <?php echo $verify_id; ?>;
+      const verify_id = <?php echo $_SESSION['id']; ?>;
       if (cancel_flag == "1" && remark_value != "" && remark_value != null) {
         swal({
           title: "Are you sure?",
@@ -525,8 +532,6 @@ if (isset($_POST['approve'])) {
                 type: 'POST',
                 data: "&id=" + verify_id + "&remark=" + remark_value,
                 success: function () {
-                  $('#myTable').DataTable().ajax.reload();
-
                   swal({
                     title: "Cancel Bonafide Request.",
                     icon: "success",
@@ -538,8 +543,6 @@ if (isset($_POST['approve'])) {
                 }
               });
             } else {
-              $('#myTable').DataTable().ajax.reload();
-
               swal({
                 title: "This Request is safe.",
                 icon: "success",

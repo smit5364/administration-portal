@@ -98,6 +98,13 @@ session_start();
                         <p class="text-lg text-gray-800 md:text-2xl lg:text-lg">Login</p>
                     </div>
                 </a>
+            <?php }else{ ?>
+                <a href="signout">
+                    <div class="flex justify-center px-3 py-2 md:px-6 md:py-4 lg:px-5 lg:py-3">
+                        <img src="private/images/power.svg" alt="" class="w-5 md:w-8 mr-2 lg:w-6">
+                        <p class="text-lg text-gray-800 md:text-2xl lg:text-lg">Logout</p>
+                    </div>
+                </a>    
             <?php } ?>
         </div>
     </div>

@@ -25,7 +25,7 @@ if(isset($_POST['validate'])){
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="icon" type="image/png" href="private/assets/img/fav.png" />
+  <link rel="icon" type="image/png" href="private/Images/BMCCA_logo.png" />
   <title>Sign in of Administration</title>
   <!--     Fonts and icons     -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />

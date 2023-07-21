@@ -239,7 +239,7 @@ class Document
     function date_for_pickup($id)
     {
         $con = connect();
-        $query = "UPDATE `document` SET `delever_flag`='1', `pickup_date`= 'curdate()' WHERE id = '$id'";
+        $query = "UPDATE `document` SET `delever_flag`='1', `pickup_date`= curdate() WHERE `id` = '$id'";
         $result = mysqli_query($con, $query);
         if ($result) {
             $_SESSION['title'] = "Delivered Successfull!";
@@ -248,7 +248,7 @@ class Document
         } else {
             $_SESSION['title'] = "Delivered Failed!";
             $_SESSION['status_code'] = "error";
-            header('Location: document');
+            header('Location: ../document');
         }
     }
 
@@ -663,12 +663,38 @@ class Document
         }
     }
 
+    function return_date($id){
+        $con = connect();
+        $query = "UPDATE `document` SET `return_flag`='1' WHERE `id` = '$id'";
+        $result = mysqli_query($con, $query);
+        if ($result) {
+            $_SESSION['title'] = "Returned Successfull!";
+            $_SESSION['status_code'] = "success";
+            header('Location: ../document');
+        } else {
+            $_SESSION['title'] = "Returned Failed!";
+            $_SESSION['status_code'] = "error";
+            header('Location: ../document');
+        } 
+    }
+
 }
 
 $document = new document;
 if ($_SESSION['type'] == "Clerk" && isset($_GET['pickup_id'])) {
-    $id = $_GET['pickup_id'];
+    (int)$id = (int)$_GET['pickup_id'];
     $document->date_for_pickup($id);
     // header('Location: document');
+}
+
+if ($_SESSION['type'] == "Clerk" && isset($_GET['return_date'])) {
+    (int)$id = (int)$_GET['return_date'];
+    $document->return_date($id);
+    // header('Location: document');
+}
+
+if(isset($_POST['id'])){
+    $id = addslashes($_POST['id']);
+    $_SESSION['id'] = (int)$id;
 }
 ?>

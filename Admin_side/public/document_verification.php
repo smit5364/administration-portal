@@ -5,9 +5,10 @@ include('private/sidebar_pending_counting.php');
 if ($_SESSION['name'] == "") {
   header('location:signin');
 }
-$id = $_GET['verify_id'];
 $document = new Document;
+$id = htmlspecialchars($_SESSION['id']);
 $document_details = $document->individual_detail($id);
+
 if (isset($_POST['verify'])) {
   $document->update_verify($id);
   header('location:document');
@@ -46,6 +47,10 @@ if (isset($_POST['approve'])) {
     .swal-text {
       font-size: 20px;
       text-align: center;
+    }
+
+    ::-webkit-scrollbar{
+      display: none;
     }
   </style>
 </head>
@@ -88,7 +93,7 @@ if (isset($_POST['approve'])) {
         <?php } ?>
         <li class="w-full">
           <a href="bonafide"
-            class="bg-indigo-200 text-lg my-0 mx-2 flex items-center whitespace-nowrap rounded-lg px-4 py-3 font-medium text-slate-700 transition-colors">
+            class="text-lg my-0 mx-2 flex items-center whitespace-nowrap rounded-lg px-4 py-3 font-medium text-slate-700 transition-colors">
             <i class="ni ni-tv-2 text-indigo-600 mr-3"></i>
             Bonafide
             <div class="bg-indigo-600 ml-28 text-white font-medium px-4 text-xl py-0 rounded-full">
@@ -106,7 +111,6 @@ if (isset($_POST['approve'])) {
             <i class="ni ni-tv-2 text-indigo-600 mr-3"></i>
             Document
             <div class="bg-indigo-600 ml-28 text-white font-medium px-4 text-xl py-0 rounded-full">
-
             </div>
           </a>
         </li>
@@ -115,7 +119,7 @@ if (isset($_POST['approve'])) {
   </section>
   <!-- end sidenav -->
 
-  <main class="relative h-full max-h-screen transition-all duration-200 ease-in-out xl:ml-68 rounded-xl">
+  <main class="relative h-full max-h-screen transition-all duration-200 ease-in-out xl:ml-68 rounded-xl overflow-auto">
     <!-- Navbar -->
     <nav
       class="relative flex flex-wrap items-center justify-between px-0 pt-5 mx-6 transition-all ease-in shadow-none duration-250 rounded-2xl lg:flex-nowrap lg:justify-start"
@@ -129,9 +133,9 @@ if (isset($_POST['approve'])) {
             </li>
             <li
               class="text-md pl-2 capitalize leading-normal text-white before:float-left before:pr-2 before:text-white before:content-['/']"
-              aria-current="page">document</li>
+              aria-current="page">Documents</li>
           </ol>
-          <h6 class="mb-0 font-bold text-white capitalize text-lg">document</h6>
+          <h6 class="mb-0 font-bold text-white capitalize text-lg">Documents</h6>
         </nav>
 
         <div class="flex items-center mt-2 grow sm:mt-0 sm:mr-6 md:mr-0 lg:flex lg:basis-auto">
@@ -327,7 +331,7 @@ if (isset($_POST['approve'])) {
                 <div class="flex flex-row -mx-3">
                   <div class="flex-none w-2/3 max-w-full px-3">
                     <div>
-                      <p class="mb-0 font-sans text-md font-semibold leading-normal uppercase">Rejected document</p>
+                      <p class="mb-0 font-sans text-md font-semibold leading-normal uppercase">Reject document</p>
                       <h5 class="mb-2 font-bold text-2xl">
                         <?php echo $document->reject_document(); ?>
                       </h5>
@@ -374,7 +378,7 @@ if (isset($_POST['approve'])) {
       <!-- end Navbar -->
       <div class="w-full bg-white shadow-2xl rounded-2xl mt-0 py-4">
         <div class="flex flex-col justify-start">
-          <h1 class="text-2xl font-medium text-indigo-600 pl-3">document Verification</h1>
+          <h1 class="text-2xl font-medium text-indigo-600 pl-3">Documents Verification</h1>
         </div>
         <div class="flex flex-col justify-start px-5">
           <?php
@@ -384,19 +388,19 @@ if (isset($_POST['approve'])) {
               <div class="col-span-1">
                 <h1 class="text-lg font-medium">Token number</h1>
                 <p class="text-lg">
-                  <?php echo $row['id']; ?>
+                  <?php echo htmlspecialchars($row['id']); ?>
                 </p>
               </div>
               <div class="col-span-1">
                 <h1 class="text-lg font-medium">Name</h1>
                 <p class="text-lg">
-                  <?php echo $row['name']; ?>
+                  <?php echo htmlspecialchars($row['name']); ?>
                 </p>
               </div>
               <div class="col-span-1">
                 <h1 class="text-lg font-medium">Father Name</h1>
                 <p class="text-lg">
-                  <?php echo $row['father_name']; ?>
+                  <?php echo htmlspecialchars($row['father_name']); ?>
                 </p>
               </div>
             </div>
@@ -404,19 +408,19 @@ if (isset($_POST['approve'])) {
               <div class="col-span-1">
                 <h1 class="text-lg font-medium">Enrollment Number</h1>
                 <p class="text-lg">
-                  <?php echo $row['enrollment_no']; ?>
+                  <?php echo htmlspecialchars($row['enrollment_no']); ?>
                 </p>
               </div>
               <div class="col-span-1">
                 <h1 class="text-lg font-medium">Course</h1>
                 <p class="text-lg">
-                  <?php echo $row['course']; ?>
+                  <?php echo htmlspecialchars($row['course']); ?>
                 </p>
               </div>
               <div class="col-span-1">
                 <h1 class="text-lg font-medium">Semester</h1>
                 <p class="text-lg">
-                  <?php echo $row['semester']; ?>
+                  <?php echo htmlspecialchars($row['semester']); ?>
                 </p>
               </div>
             </div>
@@ -426,10 +430,10 @@ if (isset($_POST['approve'])) {
                 <p class="text-lg">
                   <?php $documents = array();
                   if ($row['document10th'] === '1') {
-                    $documents[] = "10th Document";
+                    $documents[] = "10th Marksheet";
                   }
                   if ($row['document12th'] === '1') {
-                    $documents[] = "12th Document";
+                    $documents[] = "12th Marksheet";
                   }
                   if ($row['leaving_certificate'] === '1') {
                     $documents[] = "Leaving Certificate";
@@ -441,21 +445,21 @@ if (isset($_POST['approve'])) {
               <div class="col-span-1">
                 <h1 class="text-lg font-medium">Return Date</h1>
                 <p class="text-lg">
-                  <?php echo $row['date']; ?>
+                  <?php echo htmlspecialchars($row['date']); ?>
                 </p>
               </div>
               <?php if ($_SESSION['type'] == "Head" && $row['delever_flag'] == 1 || $_SESSION['type'] == "Clerk" && $row['delever_flag'] == 1) { ?>
                 <div class="col-span-1">
                   <h1 class="text-lg font-medium">Pickup Date</h1>
                   <p class="text-lg">
-                    <?php echo $row['pickup_date']; ?>
+                    <?php echo htmlspecialchars($row['pickup_date']); ?>
                   </p>
                 </div>
               <?php } else if (($_SESSION['type'] == "Head" || $_SESSION['type'] == "Clerk") && $row['remark'] != "") { ?>
                   <div class="col-span-1">
                     <h1 class="text-lg font-medium">Reason for Cancel</h1>
                     <p class="text-lg">
-                    <?php echo $row['remark']; ?>
+                    <?php echo htmlspecialchars($row['remark']); ?>
                     </p>
                   </div>
                 <?php } ?>
@@ -464,13 +468,13 @@ if (isset($_POST['approve'])) {
               <div class="col-span-1">
                 <h1 class="text-lg font-medium">Email</h1>
                 <p class="text-lg">
-                  <?php echo $row['email']; ?>
+                  <?php echo htmlspecialchars($row['email']); ?>
                 </p>
               </div>
               <div class="col-span-1">
                 <h1 class="text-lg font-medium">Mobile No</h1>
                 <p class="text-lg">
-                  <?php echo $row['mobile_no']; ?>
+                  <?php echo htmlspecialchars($row['mobile_no']); ?>
                 </p>
               </div>
 
@@ -480,14 +484,13 @@ if (isset($_POST['approve'])) {
               <div class="col-span-1">
                 <h1 class="text-lg font-medium">Reason for document</h1>
                 <p class="text-lg">
-                  <?php echo $row['purpose']; ?>
+                  <?php echo htmlspecialchars($row['purpose']); ?>
                 </p>
               </div>
               <div class="col-span-1">
                 <h1 class="text-lg font-medium">Fees Recipt</h1>
                 <p class="text-lg flex items-center">
-                  <?php echo $row['fee_recipt']; ?>
-                  <a href="private/Fees_recipt/<?php echo $row['fee_recipt']; ?>" target="_blank">
+                  <a href="private/Fees_recipt/<?php echo htmlspecialchars($row['fee_recipt']); ?>" target="_blank">
                     <abbr title="View"><img src="private/Images/icons8-view-94.png" alt="" class="w-14"></abbr>
                   </a>
                 </p>
@@ -547,7 +550,7 @@ if (isset($_POST['approve'])) {
       event.preventDefault();
       const cancel_flag = document.getElementById('cancel_flag').value;
       const remark_value = document.getElementById('remark').value;
-      const verify_id = <?php echo $_GET['verify_id']; ?>;
+      const verify_id = <?php echo $_SESSION['id']; ?>;
       if (cancel_flag == "1" && remark_value != "" && remark_value != null) {
         swal({
           title: "Are you sure?",
@@ -563,8 +566,6 @@ if (isset($_POST['approve'])) {
                 type: 'POST',
                 data: "&id=" + verify_id + "&remark=" + remark_value,
                 success: function () {
-                  $('#myTable').DataTable().ajax.reload();
-
                   swal({
                     title: "Cancel document Request.",
                     icon: "success",
@@ -576,8 +577,6 @@ if (isset($_POST['approve'])) {
                 }
               });
             } else {
-              $('#myTable').DataTable().ajax.reload();
-
               swal({
                 title: "This Request is safe.",
                 icon: "success",

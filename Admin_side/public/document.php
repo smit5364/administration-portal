@@ -3,21 +3,18 @@
 include('private/document_server.php');
 include('private/sidebar_pending_counting.php');
 $document = new Document;
+unset($_SESSION['id']);
 if ($_SESSION['name'] == "") {
   header('location:signin');
 }
-if ($_SESSION['type'] == "Head" && isset($_GET['approve_id'])) {
-  $id = $_GET['approve_id'];
-  $document->approve_verify($id);
-}
 if ($_SESSION['type'] == "Clerk" && isset($_GET['pickup_id'])) {
-  $id = $_GET['pickup_id'];
+  $id = (int)$_GET['pickup_id'];
   $document->date_for_pickup($id);
-  // header('Location: document');
+  // header('Location: bonafide');
 }
 if (isset($_GET['deliver_id'])) {
-  $id = $_GET['deliver_id'];
-  // $document->print_document($id);
+  $id = (int)$_GET['deliver_id'];
+  // $bonafide->print_bonafide($id);
   $document->edit_doc($id);
 }
 
@@ -33,7 +30,7 @@ if (isset($_POST['remark']) && isset($_POST['id'])) {
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="icon" type="image/png" href="private/assets/img/fav.png" />
+  <link rel="icon" type="image/png" href="private/Images/BMCCA_logo.png" />
   <title>Administration Admin side</title>
   <!--     Fonts and icons     -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
@@ -51,6 +48,11 @@ if (isset($_POST['remark']) && isset($_POST['id'])) {
   <!-- Data Tables -->
   <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css">
   <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.3.6/css/buttons.dataTables.min.css">
+  <style>
+    ::-webkit-scrollbar{
+      display: none;
+    }
+  </style>
 </head>
 
 <body class="m-0 font-sans text-base antialiased font-normal bg-gray-50 text-slate-500 overflow-hidden">
@@ -90,13 +92,10 @@ if (isset($_POST['remark']) && isset($_POST['id'])) {
           </li>
         <?php } ?>
         <li class="w-full">
-          <a href="document"
-            class="bg-indigo-200 text-lg my-0 mx-2 flex items-center whitespace-nowrap rounded-lg px-4 py-3 font-medium text-slate-700 transition-colors">
+          <a href="bonafide"
+            class="text-lg my-0 mx-2 flex items-center whitespace-nowrap rounded-lg px-4 py-3 font-medium text-slate-700 transition-colors">
             <i class="ni ni-tv-2 text-indigo-600 mr-3"></i>
             Bonafide
-            <div class="bg-indigo-600 ml-28 text-white font-medium px-4 text-xl py-0 rounded-full">
-              <?php echo pending__bonafide_approval(); ?>
-            </div>
             <div class="bg-indigo-600 ml-28 text-white font-medium px-4 text-xl py-0 rounded-full">
               <?php if ($_SESSION['type'] == "Head") {
                 echo pending__bonafide_approval();
@@ -111,13 +110,6 @@ if (isset($_POST['remark']) && isset($_POST['id'])) {
             class="bg-indigo-200 text-lg my-0 mx-2 flex items-center whitespace-nowrap rounded-lg px-4 py-3 font-medium text-slate-700 transition-colors">
             <i class="ni ni-tv-2 text-indigo-600 mr-3"></i>
             Document
-            <div class="bg-indigo-600 ml-28 text-white font-medium px-4 text-xl py-0 rounded-full">
-
-            </div>
-            <div class="bg-indigo-600 ml-28 text-white font-medium px-4 text-xl py-0 rounded-full">
-
-
-            </div>
           </a>
         </li>
       </ul>
@@ -140,9 +132,9 @@ if (isset($_POST['remark']) && isset($_POST['id'])) {
             </li>
             <li
               class="text-base pl-2 capitalize leading-normal text-white before:float-left before:pr-2 before:text-white before:content-['/']"
-              aria-current="page">document</li>
+              aria-current="page">Documents</li>
           </ol>
-          <h6 class="mb-0 font-bold text-white capitalize text-lg">document</h6>
+          <h6 class="mb-0 font-bold text-white capitalize text-lg">Documents</h6>
         </nav>
 
         <div class="flex items-center justify-end mt-2 grow sm:mt-0 sm:mr-6 md:mr-0 lg:flex lg:basis-auto">
@@ -334,15 +326,15 @@ if (isset($_POST['remark']) && isset($_POST['id'])) {
 
           <!-- card3 -->
           <div class="w-full max-w-full px-3 mb-6 sm:w-1/2 sm:flex-none xl:mb-0 xl:w-1/4 cursor-pointer"
-            id="reject_document">
+            id="reject_bonafide">
             <div class="relative flex flex-col min-w-0 break-words bg-white shadow-xl rounded-2xl bg-clip-border">
               <div class="flex-auto p-4">
                 <div class="flex flex-row -mx-3">
                   <div class="flex-none w-2/3 max-w-full px-3">
                     <div>
-                      <p class="mb-0 font-sans text-base font-semibold leading-normal uppercase">Reject document</p>
+                      <p class="mb-0 font-sans text-base font-semibold leading-normal uppercase">Reject Document</p>
                       <h5 class="mb-2 font-bold text-2xl">
-                        <?php echo $document->reject_document(); ?>
+                        <?php //echo $document->reject_bonafide(); ?>
                       </h5>
                     </div>
                   </div>
@@ -387,7 +379,7 @@ if (isset($_POST['remark']) && isset($_POST['id'])) {
       <!-- end Navbar -->
       <div class="min-w-full bg-white shadow-lg rounded-2xl mt-0 py-4">
         <div class="flex flex-col justify-start">
-          <h1 class="text-2xl font-medium text-indigo-600 py-2 pl-3">document Verification</h1>
+          <h1 class="text-2xl font-medium text-indigo-600 py-2 pl-3">Undertaking Documents</h1>
         </div>
         <div class="px-4 min-w-full text-left text-base mt-2 overflow-x-auto">
           <table id="myTable">
@@ -401,6 +393,7 @@ if (isset($_POST['remark']) && isset($_POST['id'])) {
                 <th scope="col" class="px-6 py-3">Verify</th>
                 <th scope="col" class="py-3">Approve</th>
                 <th scope="col" class="py-3">Deliver</th>
+                <th scope="col" class="py-3">Return</th>
               </tr>
             </thead>
             <tbody class="text-left">
@@ -413,62 +406,56 @@ if (isset($_POST['remark']) && isset($_POST['id'])) {
                 ?>
                 <tr class="border-b transition duration-300 ease-in-out hover:bg-neutral-100 2xl:text-lg">
                   <td class="whitespace-nowrap px-6 py-4 font-medium">
-                    <?php echo $count; ?>
+                    <?php echo htmlspecialchars($count); ?>
                   </td>
                   <td class="whitespace-nowrap px-6 py-4 hidden lg:table-cell">
-                    <?php echo $row['id']; ?>
+                    <?php echo htmlspecialchars($row['id']); ?>
                   </td>
-                  <td class="whitespace-nowrap px-0 py-4">
-                    <a href="document_verification?verify_id=<?php echo $row['id']; ?>"
-                      class="text-indigo-600 font-medium"><?php echo $row['enrollment_no']; ?></a>
+                  <td class="whitespace-nowrap px-0 py-4 text-indigo-600 font-medium cursor-pointer" onclick="verify(<?php echo htmlspecialchars($row['id'])?>)">
+                    <?php echo htmlspecialchars($row['enrollment_no']); ?>
                   </td>
                   <td class="whitespace-nowrap pr-6 py-4 hidden md:table-cell">
-                    <?php echo $row['name']; ?>
+                    <?php echo htmlspecialchars($row['name']); ?>
                   </td>
                   <td class="whitespace-nowrap py-4 hidden xl:table-cell">
-                    <?php echo $row['course']; ?>
+                    <?php echo htmlspecialchars($row['course']); ?>
                   </td>
 
-                  <!-- Verification document -->
+                  <!-- Verification Documents -->
                   <td class="whitespace-nowrap px-6 py-4">
                     <?php if ($_SESSION['type'] == "Clerk" && $row['verify_flag'] == 0 && $row['remark'] == "") { ?>
-                      <a href="document_verification?verify_id=<?php echo $row['id']; ?>"><button name="view" id="view"
-                          class="bg-indigo-600 px-4 py-2 rounded-lg text-white font-medium hover:bg-indigo-500 shadow-md">View</button></a>
+                      <button name="view" id="view"
+                        class="bg-indigo-600 px-4 py-2 rounded-lg text-white font-medium hover:bg-indigo-500 shadow-md"
+                        onclick="verify(<?php echo htmlspecialchars($row['id']); ?>)">View</button>
                     <?php } else if ($_SESSION['type'] == "Head" && $row['verify_flag'] == 0 && $row['remark'] == "") { ?>
-                        <p class="text-md bg-yellow-600 mr-3 p-1 text-white font-medium text-center rounded-full">Pending</p>
+                        <p class="text-base bg-yellow-600 mr-3 p-1 text-white font-medium text-center rounded-full">Pending</p>
                       <?php } else if ($row['verify_flag'] == 1 && $row['remark'] == "") { ?>
-                          <p class="text-md bg-green-500 mr-3 p-1 text-white font-medium text-center rounded-full">Verified</p>
+                          <p class="text-base bg-green-500 mr-3 p-1 text-white font-medium text-center rounded-full">Verified</p>
                         <?php } else if ($row['verify_flag'] == 0 || $row['verify_flag'] == 1 && $row['remark'] != "") { ?>
-                            <p class="text-md bg-red-500 mr-3 p-1 text-white font-medium text-center rounded-full">Canceled</p>
+                            <p class="text-base bg-red-500 mr-3 p-1 text-white font-medium text-center rounded-full">Canceled</p>
                           <?php } ?>
                   </td>
 
-                  <!-- Approval document -->
+                  <!-- Approval Documents -->
                   <td class="whitespace-nowrap px-6 py-4">
                     <?php if ($_SESSION['type'] == "Head" && $row['verify_flag'] == 1 && $row['approve_flag'] == 0 && $row['remark'] == "") { ?>
-                      <a href="document_verification?verify_id=<?php echo $row['id']; ?>"><button name="approve"
-                          id="approve"
-                          class="bg-indigo-600 px-4 py-2 rounded-lg text-white font-medium hover:bg-indigo-500 shadow-md">View</button></a>
+                      <button name="approve" onclick="verify(<?php echo htmlspecialchars($row['id']); ?>)" id="approve"
+                        class="bg-indigo-600 px-4 py-2 rounded-lg text-white font-medium hover:bg-indigo-500 shadow-md">View</button>
                     <?php } else if (($_SESSION['type'] == "Clerk" || $_SESSION['type'] == "Head") && ($row['verify_flag'] == 1 || $row['verify_flag'] == 0) && $row['approve_flag'] == 0 && $row['remark'] == "") { ?>
-                        <p class="text-md bg-yellow-600 mr-3 p-1 text-white font-medium text-center rounded-full">Pending</p>
+                        <p class="text-base bg-yellow-600 mr-3 p-1 text-white font-medium text-center rounded-full">Pending</p>
                       <?php } else if ($row['approve_flag'] == 1 && $row['remark'] == "") { ?>
-                          <p class="text-md bg-green-500 mr-3 p-1 text-white font-medium text-center rounded-full">Approved</p>
+                          <p class="text-base bg-green-500 mr-3 p-1 text-white font-medium text-center rounded-full">Approved</p>
                         <?php } else if ($row['approve_flag'] == 0 && $row['remark'] != "") { ?>
-                            <p class="text-md bg-red-500 mr-3 p-1 text-white font-medium text-center rounded-full">Canceled</p>
+                            <p class="text-base bg-red-500 mr-3 p-1 text-white font-medium text-center rounded-full">Canceled</p>
                           <?php } ?>
                   </td>
 
-                  <!-- Deliver document -->
+                  <!-- Deliver Documents -->
                   <td class="whitespace-nowrap px-6 py-4">
                     <?php if ($row['approve_flag'] == 1 && $_SESSION['type'] == "Clerk" && $row['delever_flag'] == 0 && $row['remark'] == "") { ?>
-                      <div class="flex"> <a href="private/document_server.php?pickup_id=<?php echo $row['id']; ?>"><button
-                            name="print"
-                            class="bg-indigo-600 px-4 py-2 rounded-lg text-white font-medium hover:bg-indigo-500 shadow-md disabled:cursor-not-allowed disabled:bg-indigo-500 deliver"
-                            disabled>Deliver</button></a>
-                        <input type="hidden" name="return_flag" class="return_flag"
-                          value="<?php echo $row['return_flag']; ?>">
-                        <a href="document?deliver_id=<?php echo $row['id']; ?>" onclick="disable_toggle()"><img
-                            class="h-6 my-2 ml-2" src=" private/Images/printer.png" alt="" srcset=""></a>
+                      <div class="flex"> <a
+                          href="private/document_server.php?pickup_id=<?php echo htmlspecialchars($row['id']); ?>"><button
+                            class="bg-indigo-600 px-4 py-2 rounded-lg text-white font-medium hover:bg-indigo-500 shadow-md deliver">Deliver</button></a>
                       </div>
                     <?php } else if ($_SESSION['type'] == "Head" && $row['delever_flag'] == 0 && $row['remark'] == "") { ?>
                         <div class="flex">
@@ -485,16 +472,44 @@ if (isset($_POST['remark']) && isset($_POST['id'])) {
                               <p class="text-base bg-green-500 mr-3 py-1 px-2 text-white font-medium text-center rounded-full">
                                 Delivered
                               </p>
-                              <a href="document?deliver_id=<?php echo $row['id']; ?>" class="w-6 h-6 "><img class="m-auto"
-                                  src="private/Images/printer.png" alt="" srcset=""></a>
                             </div>
                           <?php } else if ($row['verify_flag'] == 1 || $row['verify_flag'] == 0 && $row['delever_flag'] == 0 && $row['remark'] != "") { ?>
                               <div class="flex ">
                                 <p class="text-base bg-red-500 mr-3 py-1 px-2 text-white font-medium text-center rounded-full">
                                   Canceled
                                 </p>
-                                <!-- <a href="document?deliver_id=<?php echo $row['id']; ?>"><img class="h-6 m-auto"
-                                src="private/Images/printer.png" alt="" srcset=""></a> -->
+                              </div>
+                            <?php } ?>
+                  </td>
+
+                  <!-- Return Documents -->
+                  <td class="whitespace-nowrap px-6 py-4">
+                    <?php if ($row['delever_flag'] == 1 && $_SESSION['type'] == "Clerk" && $row['remark'] == "" && $row['return_flag'] == 0) { ?>
+                      <div class="flex"> <a
+                          href="private/document_server.php?return_date=<?php echo htmlspecialchars($row['id']);?>"><button
+                            class="bg-indigo-600 px-4 py-2 rounded-lg text-white font-medium hover:bg-indigo-500 shadow-md">Return</button></a>
+                      </div>
+                    <?php } else if ($_SESSION['type'] == "Head" && $row['delever_flag'] == 0 && $row['remark'] == "") { ?>
+                        <div class="flex">
+                          <p class="text-base bg-yellow-600 mr-3 py-1 px-2 text-white font-medium text-center rounded-full">
+                            Pending</p>
+                        </div>
+                      <?php } else if ($_SESSION['type'] == "Clerk" && $row['delever_flag'] == 0 && $row['remark'] == "") { ?>
+                          <div class="flex">
+                            <p class="text-base bg-yellow-600 mr-3 py-1 px-2 text-white font-medium text-center rounded-full">
+                              Pending</p>
+                          </div>
+                        <?php } else if ($row['return_flag'] == 1 && $row['remark'] == "") { ?>
+                            <div class="flex ">
+                              <p class="text-base bg-green-500 mr-3 py-1 px-2 text-white font-medium text-center rounded-full">
+                                Returned
+                              </p>
+                            </div>
+                          <?php } else if ($row['verify_flag'] == 1 || $row['verify_flag'] == 0 && $row['delever_flag'] == 0 && $row['remark'] != "") { ?>
+                              <div class="flex ">
+                                <p class="text-base bg-red-500 mr-3 py-1 px-2 text-white font-medium text-center rounded-full">
+                                  Canceled
+                                </p>
                               </div>
                             <?php } ?>
                   </td>
@@ -522,43 +537,40 @@ if (isset($_POST['remark']) && isset($_POST['id'])) {
 
     const pending_verify = document.getElementById('pending_verify');
     const pending_approval = document.getElementById('pending_approval');
-    const reject_document = document.getElementById('reject_document');
+    const reject_bonafide = document.getElementById('reject_bonafide');
     const complete_delivery = document.getElementById('complete_delivery');
     <?php if ($_SESSION['type'] == "Head") { ?>
       pending_verify.addEventListener('click', function (event) {
         event.preventDefault();
-        window.location.href = "private/excel_file.php?action=pending_document_verification";
+        window.location.href = "private/excel_file.php?action=pending_bonafide_verification";
       });
 
       pending_approval.addEventListener('click', function (event) {
         event.preventDefault();
-        window.location.href = "private/excel_file.php?action=pending_document_approval";
+        window.location.href = "private/excel_file.php?action=pending_bonafide_approval";
       });
 
-      reject_document.addEventListener('click', function (event) {
+      reject_bonafide.addEventListener('click', function (event) {
         event.preventDefault();
-        window.location.href = "private/excel_file.php?action=document_rejection";
+        window.location.href = "private/excel_file.php?action=bonafide_rejection";
       });
 
       complete_delivery.addEventListener('click', function (event) {
         event.preventDefault();
-        window.location.href = "private/excel_file.php?action=document_Delivery_complete";
+        window.location.href = "private/excel_file.php?action=bonafide_Delivery_complete";
       });
     <?php } ?>
 
-    // Deliver button disabled and undisabled
-    const return_flag = document.getElementsByClassName('return_flag');
-    for (var i = 0; i <= return_flag.length; i++) {
-      if (return_flag[i].value == '1') {
-        const deliver = document.getElementsByClassName('deliver');
-        deliver[i].disabled = false;
-      }
-    }
-
-    function disable_toggle() {
-      setTimeout(() => {
-        window.location.reload();
-      }, 3000);
+    function verify(id){
+      jQuery.ajax({
+        url: 'private/document_server.php',
+        type: 'POST',
+        data: "&id=" + id,
+        success: function (response) {
+          // console.log(response);
+          window.location.href = "document_verification";
+        }
+      })
     }
   </script>
   <?php include('private/sweet_alert.php'); ?>

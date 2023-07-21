@@ -3,16 +3,17 @@
 include('private/bonafide_server.php');
 include('private/sidebar_pending_counting.php');
 $bonafide = new Bonafide;
+unset($_SESSION['id']);
 if ($_SESSION['name'] == "") {
   header('location:signin');
 }
 if ($_SESSION['type'] == "Clerk" && isset($_GET['pickup_id'])) {
-  $id = (int) $_GET['pickup_id'];
+  $id = (int)$_GET['pickup_id'];
   $bonafide->date_for_pickup($id);
   // header('Location: bonafide');
 }
 if (isset($_GET['deliver_id'])) {
-  $id = (int) $_GET['deliver_id'];
+  $id = (int)$_GET['deliver_id'];
   // $bonafide->print_bonafide($id);
   $bonafide->edit_doc($id);
 }
@@ -29,7 +30,7 @@ if (isset($_POST['remark']) && isset($_POST['id'])) {
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="icon" type="image/png" href="private/assets/img/fav.png" />
+  <link rel="icon" type="image/png" href="private/Images/BMCCA_logo.png" />
   <title>Administration Admin side</title>
   <!--     Fonts and icons     -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
@@ -47,6 +48,11 @@ if (isset($_POST['remark']) && isset($_POST['id'])) {
   <!-- Data Tables -->
   <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css">
   <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.3.6/css/buttons.dataTables.min.css">
+  <style>
+    ::-webkit-scrollbar{
+      display: none;
+    }
+  </style>
 </head>
 
 <body class="m-0 font-sans text-base antialiased font-normal bg-gray-50 text-slate-500 overflow-hidden">
@@ -91,9 +97,6 @@ if (isset($_POST['remark']) && isset($_POST['id'])) {
             <i class="ni ni-tv-2 text-indigo-600 mr-3"></i>
             Bonafide
             <div class="bg-indigo-600 ml-28 text-white font-medium px-4 text-xl py-0 rounded-full">
-              <?php echo pending__bonafide_approval(); ?>
-            </div>
-            <div class="bg-indigo-600 ml-28 text-white font-medium px-4 text-xl py-0 rounded-full">
               <?php if ($_SESSION['type'] == "Head") {
                 echo pending__bonafide_approval();
               } else {
@@ -104,16 +107,9 @@ if (isset($_POST['remark']) && isset($_POST['id'])) {
         </li>
         <li class="w-full">
           <a href="document"
-            class="bg-indigo-200 text-lg my-0 mx-2 flex items-center whitespace-nowrap rounded-lg px-4 py-3 font-medium text-slate-700 transition-colors">
+            class="text-lg my-0 mx-2 flex items-center whitespace-nowrap rounded-lg px-4 py-3 font-medium text-slate-700 transition-colors">
             <i class="ni ni-tv-2 text-indigo-600 mr-3"></i>
             Document
-            <div class="bg-indigo-600 ml-28 text-white font-medium px-4 text-xl py-0 rounded-full">
-
-            </div>
-            <div class="bg-indigo-600 ml-28 text-white font-medium px-4 text-xl py-0 rounded-full">
-
-
-            </div>
           </a>
         </li>
       </ul>
@@ -414,9 +410,8 @@ if (isset($_POST['remark']) && isset($_POST['id'])) {
                   <td class="whitespace-nowrap px-6 py-4 hidden lg:table-cell">
                     <?php echo htmlspecialchars($row['id']); ?>
                   </td>
-                  <td class="whitespace-nowrap px-0 py-4">
-                    <a href="bonafide_verification?verify_id=<?php echo htmlspecialchars($row['id']); ?>"
-                      class="text-indigo-600 font-medium"><?php echo htmlspecialchars($row['enrollment_no']); ?></a>
+                  <td class="whitespace-nowrap px-0 py-4 text-indigo-600 font-medium cursor-pointer" onclick="verify(<?php echo htmlspecialchars($row['id'])?>)">
+                    <?php echo htmlspecialchars($row['enrollment_no']); ?>
                   </td>
                   <td class="whitespace-nowrap pr-6 py-4 hidden md:table-cell">
                     <?php echo htmlspecialchars($row['name']); ?>
@@ -558,7 +553,7 @@ if (isset($_POST['remark']) && isset($_POST['id'])) {
       }, 3000);
     }
 
-    function verify(id) {
+    function verify(id){
       jQuery.ajax({
         url: 'private/bonafide_server.php',
         type: 'POST',
