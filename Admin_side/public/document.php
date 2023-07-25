@@ -8,14 +8,9 @@ if ($_SESSION['name'] == "") {
   header('location:signin');
 }
 if ($_SESSION['type'] == "Clerk" && isset($_GET['pickup_id'])) {
-  $id = (int)$_GET['pickup_id'];
+  $id = (int) $_GET['pickup_id'];
   $document->date_for_pickup($id);
   // header('Location: bonafide');
-}
-if (isset($_GET['deliver_id'])) {
-  $id = (int)$_GET['deliver_id'];
-  // $bonafide->print_bonafide($id);
-  $document->edit_doc($id);
 }
 
 if (isset($_POST['remark']) && isset($_POST['id'])) {
@@ -49,7 +44,7 @@ if (isset($_POST['remark']) && isset($_POST['id'])) {
   <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css">
   <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.3.6/css/buttons.dataTables.min.css">
   <style>
-    ::-webkit-scrollbar{
+    ::-webkit-scrollbar {
       display: none;
     }
   </style>
@@ -411,7 +406,8 @@ if (isset($_POST['remark']) && isset($_POST['id'])) {
                   <td class="whitespace-nowrap px-6 py-4 hidden lg:table-cell">
                     <?php echo htmlspecialchars($row['id']); ?>
                   </td>
-                  <td class="whitespace-nowrap px-0 py-4 text-indigo-600 font-medium cursor-pointer" onclick="verify(<?php echo htmlspecialchars($row['id'])?>)">
+                  <td class="whitespace-nowrap px-0 py-4 text-indigo-600 font-medium cursor-pointer"
+                    onclick="verify(<?php echo htmlspecialchars($row['id']) ?>)">
                     <?php echo htmlspecialchars($row['enrollment_no']); ?>
                   </td>
                   <td class="whitespace-nowrap pr-6 py-4 hidden md:table-cell">
@@ -428,9 +424,11 @@ if (isset($_POST['remark']) && isset($_POST['id'])) {
                         class="bg-indigo-600 px-4 py-2 rounded-lg text-white font-medium hover:bg-indigo-500 shadow-md"
                         onclick="verify(<?php echo htmlspecialchars($row['id']); ?>)">View</button>
                     <?php } else if ($_SESSION['type'] == "Head" && $row['verify_flag'] == 0 && $row['remark'] == "") { ?>
-                        <p class="text-base bg-yellow-600 mr-3 p-1 text-white font-medium text-center rounded-full">Pending</p>
+                        <p class="text-base bg-yellow-600 mr-3 p-1 text-white font-medium text-center rounded-full">Pending
+                        </p>
                       <?php } else if ($row['verify_flag'] == 1 && $row['remark'] == "") { ?>
-                          <p class="text-base bg-green-500 mr-3 p-1 text-white font-medium text-center rounded-full">Verified</p>
+                          <p class="text-base bg-green-500 mr-3 p-1 text-white font-medium text-center rounded-full">Verified
+                          </p>
                         <?php } else if ($row['verify_flag'] == 0 || $row['verify_flag'] == 1 && $row['remark'] != "") { ?>
                             <p class="text-base bg-red-500 mr-3 p-1 text-white font-medium text-center rounded-full">Canceled</p>
                           <?php } ?>
@@ -442,9 +440,11 @@ if (isset($_POST['remark']) && isset($_POST['id'])) {
                       <button name="approve" onclick="verify(<?php echo htmlspecialchars($row['id']); ?>)" id="approve"
                         class="bg-indigo-600 px-4 py-2 rounded-lg text-white font-medium hover:bg-indigo-500 shadow-md">View</button>
                     <?php } else if (($_SESSION['type'] == "Clerk" || $_SESSION['type'] == "Head") && ($row['verify_flag'] == 1 || $row['verify_flag'] == 0) && $row['approve_flag'] == 0 && $row['remark'] == "") { ?>
-                        <p class="text-base bg-yellow-600 mr-3 p-1 text-white font-medium text-center rounded-full">Pending</p>
+                        <p class="text-base bg-yellow-600 mr-3 p-1 text-white font-medium text-center rounded-full">Pending
+                        </p>
                       <?php } else if ($row['approve_flag'] == 1 && $row['remark'] == "") { ?>
-                          <p class="text-base bg-green-500 mr-3 p-1 text-white font-medium text-center rounded-full">Approved</p>
+                          <p class="text-base bg-green-500 mr-3 p-1 text-white font-medium text-center rounded-full">Approved
+                          </p>
                         <?php } else if ($row['approve_flag'] == 0 && $row['remark'] != "") { ?>
                             <p class="text-base bg-red-500 mr-3 p-1 text-white font-medium text-center rounded-full">Canceled</p>
                           <?php } ?>
@@ -486,7 +486,7 @@ if (isset($_POST['remark']) && isset($_POST['id'])) {
                   <td class="whitespace-nowrap px-6 py-4">
                     <?php if ($row['delever_flag'] == 1 && $_SESSION['type'] == "Clerk" && $row['remark'] == "" && $row['return_flag'] == 0) { ?>
                       <div class="flex"> <a
-                          href="private/document_server.php?return_date=<?php echo htmlspecialchars($row['id']);?>"><button
+                          href="private/document_server.php?return_date=<?php echo htmlspecialchars($row['id']); ?>"><button
                             class="bg-indigo-600 px-4 py-2 rounded-lg text-white font-medium hover:bg-indigo-500 shadow-md">Return</button></a>
                       </div>
                     <?php } else if ($_SESSION['type'] == "Head" && $row['delever_flag'] == 0 && $row['remark'] == "") { ?>
@@ -561,7 +561,7 @@ if (isset($_POST['remark']) && isset($_POST['id'])) {
       });
     <?php } ?>
 
-    function verify(id){
+    function verify(id) {
       jQuery.ajax({
         url: 'private/document_server.php',
         type: 'POST',

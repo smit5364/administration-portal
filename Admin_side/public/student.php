@@ -90,6 +90,13 @@ $student = new Students;
             </div>
           </a>
         </li>
+        <li class="w-full">
+          <a href="document"
+            class="bg-indigo-200 text-lg my-0 mx-2 flex items-center whitespace-nowrap rounded-lg px-4 py-3 font-medium text-slate-700 transition-colors">
+            <i class="ni ni-tv-2 text-indigo-600 mr-3"></i>
+            Document
+          </a>
+        </li>
       </ul>
     </div>
   </section>
@@ -282,7 +289,8 @@ $student = new Students;
                     <?php echo htmlspecialchars($row['last_name']) . ' ' . htmlspecialchars($row['first_name']) . ' ' . htmlspecialchars($row['middle_name']); ?>
                   </td>
                   <td class="whitespace-nowrap py-4">
-                    <?php echo htmlspecialchars($row['course']); ?> - <?php echo htmlspecialchars($row['semester']); ?>
+                    <?php echo htmlspecialchars($row['course']); ?> -
+                    <?php echo htmlspecialchars($row['semester']); ?>
                   </td>
                   <td class="whitespace-nowrap py-4">
                     <?php echo htmlspecialchars($row['email']); ?>
