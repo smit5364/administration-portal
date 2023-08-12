@@ -1,7 +1,7 @@
 <?php
 // error_reporting(0);
-include('private/document_server.php');
-$document = new document;
+include('private/abroad_study_server.php');
+$abroad_study = new abroad_study;
 
 session_start();
 $_SESSION['redirect_url'] = $_SERVER['REQUEST_URI'];
@@ -10,7 +10,7 @@ if (!$_SESSION['enrollment']) {
 }
 if (isset($_SESSION['enrollment'])) {
     $enroll = $_SESSION['enrollment'];
-    $studentInfo = $document->getStudentInfo($enroll);
+    $studentInfo = $abroad_study->getStudentInfo($enroll);
     $crs = $studentInfo['crs'];
     $name = $studentInfo['name'];
     $fathername = $studentInfo['fathername'];
@@ -62,8 +62,8 @@ if (isset($_POST['insert'])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Request For Document</title>
-    <link rel="icon" href="private/images/fav.png">
+    <title>Request For Abroad Study</title>
+    <link rel="icon" href="private/images/BMCCA_logo.png">
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -87,14 +87,14 @@ if (isset($_POST['insert'])) {
     <div class="flex items-center justify-center mt-3">
         <div class="bg-[#F3F7F6] w-[64rem] px-14 py-8 rounded-xl shadow-md flex flex-col justify-start"
             style="background: linear-gradient(90deg, #e3ffe7 0%, #d9e7ff 100%);">
-            <h1 class="text-3xl font-medium">Request For Documents :</h1>
+            <h1 class="text-3xl font-medium">Request For Abroad Study Documents :</h1>
             <form action="" method="post" id="document_form" enctype="multipart/form-data">
                 <div class="grid grid-cols-2 mt-6 gap-x-10">
                     <div class="row-span-1 flex flex-col gap-y-1">
                         <label for="Fullname" class="text-xl">Full Name</label>
                         <!-- pattern="^[A-Za-z]+\s[A-Za-z]+\s[A-Za-z]+$" -->
                         <input required readonly type="text" name="fullname" placeholder="Enter Your Fullname" value="<?php if (isset($name)) {
-                            echo $name;
+                            echo htmlspecialchars($name);
                         } ?>"
                             class="bg-white h-12 rounded-lg pl-3 text-lg outline-none focus:ring-2 focus:ring-indigo-800 cursor-not-allowed"
                             id="fullname">
@@ -103,7 +103,7 @@ if (isset($_POST['insert'])) {
                         <label for="Fathername" class="text-xl">Father Name</label>
                         <input required readonly type="text" name="fathername" placeholder="Enter Your Father Name"
                             value="<?php if (isset($fathername)) {
-                                echo $fathername;
+                                echo htmlspecialchars($fathername);
                             } ?>"
                             class="bg-white h-12 rounded-lg pl-3 text-lg outline-none focus:ring-2 focus:ring-indigo-800 cursor-not-allowed">
                     </div>
@@ -112,7 +112,7 @@ if (isset($_POST['insert'])) {
                     <div class="col-span-2 flex flex-col gap-y-1 ">
                         <label for="Enrollment" class="text-xl">Enrollment Number</label>
                         <input required readonly type="text" name="enrollment" value="<?php if (isset($enroll)) {
-                            echo $enroll;
+                            echo htmlspecialchars($enroll);
                         } ?>" placeholder="Enter Your Enrollment Number"
                             class="bg-white h-12 rounded-lg pl-3 text-lg outline-none focus:ring-2 focus:ring-indigo-800 cursor-not-allowed">
                     </div>
@@ -120,9 +120,9 @@ if (isset($_POST['insert'])) {
                         <label for="Course" class="text-xl">Course</label>
                         <input readonly required
                             class="bg-white h-12 rounded-lg pl-2 text-lg outline-none focus:ring-2 focus:ring-indigo-800 cursor-not-allowed"
-                            type="text" name="course" id="Course" value="<?php if (isset($crs)) {
-                                echo $crs;
-                            } ?>">
+                            type="text" name="course" value="<?php if (isset($crs)) {
+                                echo htmlspecialchars($crs);
+                            } ?>" id="Course">
                     </div>
                     <div class="row-span-2 flex flex-col gap-y-1 ">
                         <label for="Semester" class="text-xl">Semester</label>
@@ -137,7 +137,7 @@ if (isset($_POST['insert'])) {
                         <input required readonly type="email" name="email" placeholder="Enter Your Email"
                             class="bg-white h-12 rounded-lg pl-3 text-lg outline-none focus:ring-2 focus:ring-indigo-800 cursor-not-allowed"
                             value="<?php if (isset($email)) {
-                                echo $email;
+                                echo htmlspecialchars($email);
                             } ?>">
                     </div>
                     <div class="row-span-2 flex flex-col gap-y-1 ">
@@ -146,34 +146,49 @@ if (isset($_POST['insert'])) {
                             placeholder="Enter Your Mobile No"
                             class="bg-white h-12 rounded-lg pl-3 text-lg outline-none focus:ring-2 focus:ring-indigo-800 cursor-not-allowed"
                             value="<?php if (isset($mobile)) {
-                                echo $mobile;
+                                echo htmlspecialchars($mobile);
                             } ?>">
                     </div>
                 </div>
                 <div class="grid grid-cols-4 mt-5 gap-x-10">
-                    <div class="row-span-1 flex flex-col gap-y-1">
-                        <label for="Reason For Bonafide Issue" class="text-xl">Select Document</label>
+                    <div class="row-span-1 col-span-2 flex flex-col gap-y-1">
+                        <label for="Reason For Bonafide Issue" class="text-xl">Select Require Document:</label>
+                        <!-- Transcript -->
                         <div class="row-span-1 flex items-center mt-1 relative">
-                            <input type="checkbox" id="10th" name="10th" value="1" class="h-4 w-4">
-                            <label for="10th" class="ml-2 text-lg">10<sup>th</sup> Result</label>
+                            <input type="checkbox" id="transcript" name="transcript" value="0" class="h-4 w-4 cursor-pointer">
+                            <label for="transcript" class="ml-2 text-lg cursor-pointer">Transcript Certificate</label>
                         </div>
-                        <div class="row-span-1 flex items-center mt-1">
-                            <input type="checkbox" id="12th" name="12th" value="1"
-                                class="h-4 w-4 text-indigo-600 bg-indigo-600">
-                            <label for="12th" class="ml-2 text-lg">12<sup>th</sup> Result</label>
+                        <div class="row-span-1 ml-6 text-lg" style="display: none;" id="transcript_copies">
+                            <label for="price">Per Copy 250₹ X</label>
+                            <input type="text" name="no_of_copies" id="no_of_copies" value="" class="w-12 h-10 ml-2 bg-white rounded-lg shadow-md text-center">
+                            <label for="no_of_copies" class="ml-1">No of Copy = <span id="total_of_transcript">0</span>₹</label>
                         </div>
+
+                        <!-- MOI -->
                         <div class="row-span-1 flex items-center mt-1">
-                            <input type="checkbox" id="leaving_certificate" name="leaving_certificate" value="1"
-                                class="h-4 w-4 text-indigo-600 bg-indigo-600">
-                            <label for="leaving_certificate" class="ml-2 text-lg">Leaving Certificate</label>
+                            <input type="checkbox" id="MOI" name="MOI" value="0"
+                                class="h-4 w-4 text-indigo-600 bg-indigo-600 cursor-pointer">
+                            <label for="MOI" class="ml-2 text-lg cursor-pointer">MOI</label>
+                        </div>
+                        <div class="row-span-1 ml-6 text-lg" style="display: none;" id="MOI_copies">
+                            <label for="price">Per Copy 150₹ X</label>
+                            <input type="text" name="no_of_MOI_copies" id="no_of_MOI_copies" value="" class="w-12 h-10 ml-2 bg-white rounded-lg shadow-md text-center">
+                            <label for="no_of_MOI_copies" class="ml-1">No of Copy = <span id="total_of_MOI">0</span>₹</label>
+                        </div>
+
+                        <!-- LOR -->
+                        <div class="row-span-1 flex items-center mt-1">
+                            <input type="checkbox" id="LOR" name="LOR" value="0"
+                                class="h-4 w-4 text-indigo-600 bg-indigo-600 cursor-pointer">
+                            <label for="LOR" class="ml-2 text-lg cursor-pointer">LOR</label>
+                        </div>
+                        <div class="row-span-1 ml-6 text-lg" style="display: none;" id="LOR_copies">
+                            <label for="price">Per Copy 100₹ X</label>
+                            <input type="text" name="no_of_LOR_copies" id="no_of_LOR_copies" value="" class="w-12 h-10 ml-2 bg-white rounded-lg shadow-md text-center">
+                            <label for="no_of_LOR_copies" class="ml-1">No of Copy = <span id="total_of_LOR">0</span>₹</label>
                         </div>
                     </div>
-                    <div class="flex flex-col row-span-1">
-                        <label for="date" class="text-xl">Return Date</label>
-                        <input required type="date" name="date" id="date"
-                            class="mt-2 h-12 pl-2 w-full rounded-lg focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2 outline-none">
-                    </div>
-                    <div class="col-span-2 flex flex-col gap-y-1">
+                    <!-- <div class="col-span-2 flex flex-col gap-y-1">
                         <label for="Reason For Bonafide Issue" class="text-xl">Reason For Documents</label>
                         <div role="radiogroup" class="grid grid-cols-2">
                             <div class="flex items-center col-span-1 py-1">
@@ -207,14 +222,15 @@ if (isset($_POST['insert'])) {
                                 placeholder="Enter Your Other Reason"
                                 class="bg-white w-96 ml-5 mt-1 h-10 rounded-lg pl-3 text-lg outline-none focus:ring-2 focus:ring-indigo-800 hidden">
                         </div>
+                    </div> -->
+                    <div class="flex flex-col row-span-1 col-span-2">
+                        <label for="Fees" class="text-xl">Upload Final Semester Marksheet</label>
+                        <input required type="file" name="fees_recipt" id="Fees"
+                            class="mt-3 file:outline-none file:h-12 file:w-36 file:rounded-lg cursor-pointer file:cursor-pointer file:border-0 file:bg-white focus:ring-2 focus:ring-indigo-800 focus:rounded-lg text-lg file: file:text-gray-400" accept="application/pdf">
+                            <span class="text-red-600">*Note: Only PDF file accepted</span>
                     </div>
                 </div>
                 <div class="grid grid-cols-2 mt-3">
-                    <div class="flex flex-col row-span-1">
-                        <label for="Fees" class="text-xl">Upload current semester Fees Recipt</label>
-                        <input required type="file" name="fees_recipt" id="Fees"
-                            class="mt-3 file:outline-none file:h-12 file:w-36 file:rounded-lg cursor-pointer file:cursor-pointer file:border-0 file:bg-white focus:ring-2 focus:ring-indigo-800 focus:rounded-lg text-lg file: file:text-gray-400">
-                    </div>
                 </div>
                 <div class="w-full mt-3 flex justify-end">
                     <input
@@ -237,55 +253,55 @@ if (isset($_POST['insert'])) {
             }
         });
 
-        // Radio Button onclick TextBox Show and Hide
-        const other_radio = document.querySelector('input[value=Other]');
-        const other_reason = document.getElementById('other_reason');
-        other_radio.addEventListener('change', function () {
-            if (other_radio.checked) {
-                other_reason.classList.remove('hidden');
-                other_reason.required = true;
-                other_reason.focus();
-            } else {
-                other_reason.classList.add('hidden');
-            }
-        });
-        const brts_radio = document.getElementById('BRTS Pass');
-        brts_radio.addEventListener('change', function () {
-            if (brts_radio.checked) {
-                other_reason.classList.add('hidden');
-                other_reason.required = false;
+        // // Radio Button onclick TextBox Show and Hide
+        // const other_radio = document.querySelector('input[value=Other]');
+        // const other_reason = document.getElementById('other_reason');
+        // other_radio.addEventListener('change', function () {
+        //     if (other_radio.checked) {
+        //         other_reason.classList.remove('hidden');
+        //         other_reason.required = true;
+        //         other_reason.focus();
+        //     } else {
+        //         other_reason.classList.add('hidden');
+        //     }
+        // });
+        // const brts_radio = document.getElementById('BRTS Pass');
+        // brts_radio.addEventListener('change', function () {
+        //     if (brts_radio.checked) {
+        //         other_reason.classList.add('hidden');
+        //         other_reason.required = false;
 
-            }
-        });
-        const mysy_radio = document.getElementById('Digital India');
-        mysy_radio.addEventListener('change', function () {
-            if (mysy_radio.checked) {
-                other_reason.classList.add('hidden');
-                other_reason.required = false;
-            }
-        });
-        const education_radio = document.getElementById('Education Loan');
-        education_radio.addEventListener('change', function () {
-            if (education_radio.checked) {
-                other_reason.classList.add('hidden');
-                other_reason.required = false;
+        //     }
+        // });
+        // const mysy_radio = document.getElementById('Digital India');
+        // mysy_radio.addEventListener('change', function () {
+        //     if (mysy_radio.checked) {
+        //         other_reason.classList.add('hidden');
+        //         other_reason.required = false;
+        //     }
+        // });
+        // const education_radio = document.getElementById('Education Loan');
+        // education_radio.addEventListener('change', function () {
+        //     if (education_radio.checked) {
+        //         other_reason.classList.add('hidden');
+        //         other_reason.required = false;
 
-            }
-        });
-        const driving_radio = document.getElementById('Driving License');
-        driving_radio.addEventListener('change', function () {
-            if (driving_radio.checked) {
-                other_reason.classList.add('hidden');
-                other_reason.required = false;
-            }
-        });
+        //     }
+        // });
+        // const driving_radio = document.getElementById('Driving License');
+        // driving_radio.addEventListener('change', function () {
+        //     if (driving_radio.checked) {
+        //         other_reason.classList.add('hidden');
+        //         other_reason.required = false;
+        //     }
+        // });
 
         // semester change
         const Semester = document.getElementById('Semester');
         Semester.addEventListener('focus', () => {
             const Course = document.getElementById('Course').value;
             jQuery.ajax({
-                url: 'private/document_server.php',
+                url: 'private/abroad_study_server.php',
                 type: 'POST',
                 data: "&course_code=" + Course,
                 success: function(response) {
@@ -293,6 +309,79 @@ if (isset($_POST['insert'])) {
                     $('#Semester').html(code);
                 }
             })
+        });
+
+        // checkbox change
+        const transcript = document.getElementById('transcript');
+        transcript.addEventListener('change',()=>{
+            const transcript_value = document.getElementById('transcript').value;
+            if(transcript_value == 0){
+                const transcript_copies = document.getElementById('transcript_copies');
+                $('#transcript_copies').show();
+                $('#transcript').val('1');
+                $('#no_of_copies').focus();
+            }else{
+                const transcript_copies = document.getElementById('transcript_copies');
+                $('#transcript_copies').hide();
+                $('#transcript').val('0');
+            }
+        });        
+
+        const MOI = document.getElementById('MOI');
+        MOI.addEventListener('change',()=>{
+            const MOI_value = document.getElementById('MOI').value;
+            if(MOI_value == 0){
+                const MOI_copies = document.getElementById('MOI_copies');
+                $('#MOI_copies').show();
+                $('#MOI').val('1');
+                $('#no_of_MOI_copies').focus();
+            }else{
+                const MOI_copies = document.getElementById('MOI_copies');
+                $('#MOI_copies').hide();
+                $('#MOI').val('0');
+            }
+        });
+
+        const LOR = document.getElementById('LOR');
+        LOR.addEventListener('change',()=>{
+            const LOR_value = document.getElementById('LOR').value;
+            if(LOR_value == 0){
+                const LOR_copies = document.getElementById('LOR_copies');
+                $('#LOR_copies').show();
+                $('#LOR').val('1');
+                $('#no_of_LOR_copies').focus();
+            }else{
+                const LOR_copies = document.getElementById('LOR_copies');
+                $('#LOR_copies').hide();
+                $('#LOR').val('0');
+            }
+        });
+
+        // transcript total 
+        const no_of_copies = document.getElementById('no_of_copies');
+        no_of_copies.addEventListener('focusout',()=>{
+            const no_of_copies_transcript = document.getElementById('no_of_copies').value;
+            const total_of_transcript = document.getElementById('total_of_transcript');
+            const total = 250 * Number(no_of_copies_transcript);
+            total_of_transcript.innerText = total;
+        });
+
+        // MOI total 
+        const no_of_MOI_copies = document.getElementById('no_of_MOI_copies');
+        no_of_MOI_copies.addEventListener('focusout',()=>{
+            const no_of_MOI_copies = document.getElementById('no_of_MOI_copies').value;
+            const total_of_MOI = document.getElementById('total_of_MOI');
+            const total = 150 * Number(no_of_MOI_copies);
+            total_of_MOI.innerText = total;
+        });
+
+        // LOR total 
+        const no_of_LOR_copies = document.getElementById('no_of_LOR_copies');
+        no_of_LOR_copies.addEventListener('focusout',()=>{
+            const no_of_LOR_copies = document.getElementById('no_of_LOR_copies').value;
+            const total_of_LOR = document.getElementById('total_of_LOR');
+            const total = 100 * Number(no_of_LOR_copies);
+            total_of_LOR.innerText = total;
         });
     </script>
 </body>

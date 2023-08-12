@@ -2,9 +2,9 @@
 session_start();
 include('db_connection.php');
 class SignUp{
-    function signup($fname,$mname,$lname,$father,$course,$sem,$enrollment,$email,$mobile,$pass){
+    function signup($fname,$mname,$lname,$father,$course,$enrollment,$email,$mobile,$pass){
         $con = connect();
-        $query = "INSERT INTO `student`(`first_name`, `middle_name`, `last_name`, `father_name`, `course`, `semester`, `enrollment_no`, `email`, `mobile`, `password`) VALUES ('$fname','$mname','$lname','$father','$course','$sem', '$enrollment','$email','$mobile','$pass')";
+        $query = "INSERT INTO `student`(`first_name`, `middle_name`, `last_name`, `father_name`, `course`, `enrollment_no`, `email`, `mobile`, `password`) VALUES ('$fname','$mname','$lname','$father','$course','$enrollment','$email','$mobile','$pass')";
         $result = mysqli_query($con,$query);
         if($result){
             $_SESSION['title'] = "Signup Successfull";
@@ -35,13 +35,12 @@ $mname = addslashes($_POST['mname']);
 $lname = addslashes($_POST['lname']);
 $father = addslashes($_POST['father']);
 $course = addslashes($_POST['course']);
-$sem = addslashes($_POST['sem']);
 $enrollment = addslashes($_POST['enrollment']);
 $email = addslashes($_POST['email']);
 $mobile = addslashes($_POST['mobile']);
 $pass = addslashes($_POST['pass']);
 
-$signup->signup($fname,$mname,$lname,$father,$course,$sem,$enrollment,$email,$mobile,$pass);
+$signup->signup($fname,$mname,$lname,$father,$course,$enrollment,$email,$mobile,$pass);
 }
 
 if(isset($_POST['enrollment'])){

@@ -110,6 +110,13 @@ if (isset($_POST['remark']) && isset($_POST['id'])) {
             class="text-lg my-0 mx-2 flex items-center whitespace-nowrap rounded-lg px-4 py-3 font-medium text-slate-700 transition-colors">
             <i class="ni ni-tv-2 text-indigo-600 mr-3"></i>
             Document
+            <div class="bg-indigo-600 ml-[6.2rem] text-white font-medium px-4 text-xl py-0 rounded-full">
+              <?php if ($_SESSION['type'] == "Head") {
+                echo pending_document_verify();
+              } else {
+                echo pending_document_approval();
+              } ?>
+            </div>
           </a>
         </li>
       </ul>
@@ -267,21 +274,20 @@ if (isset($_POST['remark']) && isset($_POST['id'])) {
         </div>
     </nav>
     <!-- cards -->
-    <div class="w-full py-3 px-4 2xl:w-4/5 2xl:px-6 2xl:pt-8 xl:ml-80">
+    <div class="w-full py-3 px-4 2xl:w-4/5 2xl:px-6 2xl:pt-2 xl:ml-80">
       <?php
       if ($_SESSION['type'] == "Head") {
         ?>
         <!-- row 1 -->
         <div class="flex flex-wrap -mx-3 mb-2">
           <!-- card1 -->
-          <div class="w-full max-w-full px-3 mb-3 2xl:mb-6 sm:w-1/2 sm:flex-none xl:mb-0 xl:w-1/4 cursor-pointer"
-            id="pending_verify">
+          <div class="w-full max-w-full px-3 mb-3 2xl:mb-6 sm:w-1/2 sm:flex-none xl:mb-0 xl:w-1/4">
             <div class="relative flex flex-col min-w-0 break-words bg-white shadow-xl rounded-2xl bg-clip-border">
               <div class="flex-auto p-4">
                 <div class="flex flex-row -mx-3">
                   <div class="flex-none w-2/3 max-w-full px-3">
                     <div>
-                      <p class="mb-0 font-sans text-lg 2xl:text-base font-semibold leading-normal uppercase">Pending
+                      <p class="mb-0 font-sans text-lg 2xl:text-base font-semibold leading-normal uppercase cursor-default">Pending
                         Verify</p>
                       <h5 class="mb-2 font-bold text-2xl">
                         <?php echo $bonafide->pending_verify(); ?>
@@ -295,19 +301,21 @@ if (isset($_POST['remark']) && isset($_POST['id'])) {
                     </div>
                   </div>
                 </div>
+                <div class="font-medium text-base text-indigo-600 w-fit flex items-center cursor-pointer" id="pending_verify">
+                  Download Excel file
+                </div>
               </div>
             </div>
           </div>
 
           <!-- card2 -->
-          <div class="w-full max-w-full px-3 mb-6 sm:w-1/2 sm:flex-none xl:mb-0 xl:w-1/4 cursor-pointer"
-            id="pending_approval">
+          <div class="w-full max-w-full px-3 mb-6 sm:w-1/2 sm:flex-none xl:mb-0 xl:w-1/4">
             <div class="relative flex flex-col min-w-0 break-words bg-white shadow-xl rounded-2xl bg-clip-border">
               <div class="flex-auto p-4">
                 <div class="flex flex-row -mx-3">
                   <div class="flex-none w-2/3 max-w-full px-3">
                     <div>
-                      <p class="mb-0 font-sans text-base font-semibold leading-normal uppercase">Pending Approval</p>
+                      <p class="mb-0 font-sans text-base font-semibold leading-normal uppercase cursor-default">Pending Approval</p>
                       <h5 class="mb-2 font-bold text-2xl">
                         <?php echo $bonafide->pending_approval(); ?>
                       </h5>
@@ -320,19 +328,21 @@ if (isset($_POST['remark']) && isset($_POST['id'])) {
                     </div>
                   </div>
                 </div>
+                <div class="font-medium text-base text-indigo-600 w-fit flex items-center cursor-pointer" id="pending_approval">
+                  Download Excel file
+                </div>
               </div>
             </div>
           </div>
 
           <!-- card3 -->
-          <div class="w-full max-w-full px-3 mb-6 sm:w-1/2 sm:flex-none xl:mb-0 xl:w-1/4 cursor-pointer"
-            id="reject_bonafide">
+          <div class="w-full max-w-full px-3 mb-6 sm:w-1/2 sm:flex-none xl:mb-0 xl:w-1/4">
             <div class="relative flex flex-col min-w-0 break-words bg-white shadow-xl rounded-2xl bg-clip-border">
               <div class="flex-auto p-4">
                 <div class="flex flex-row -mx-3">
                   <div class="flex-none w-2/3 max-w-full px-3">
                     <div>
-                      <p class="mb-0 font-sans text-base font-semibold leading-normal uppercase">Reject Bonafide</p>
+                      <p class="mb-0 font-sans text-base font-semibold leading-normal uppercase cursor-default">Reject Bonafide</p>
                       <h5 class="mb-2 font-bold text-2xl">
                         <?php echo $bonafide->reject_bonafide(); ?>
                       </h5>
@@ -345,18 +355,21 @@ if (isset($_POST['remark']) && isset($_POST['id'])) {
                     </div>
                   </div>
                 </div>
+                <div class="font-medium text-base text-indigo-600 w-fit flex items-center cursor-pointer" id="reject_bonafide">
+                  Download Excel file
+                </div>
               </div>
             </div>
           </div>
 
           <!-- card4 -->
-          <div class="w-full max-w-full px-3 sm:w-1/2 sm:flex-none xl:w-1/4 cursor-pointer" id="complete_delivery">
+          <div class="w-full max-w-full px-3 sm:w-1/2 sm:flex-none xl:w-1/4">
             <div class="relative flex flex-col min-w-0 break-words bg-white shadow-xl rounded-2xl bg-clip-border">
               <div class="flex-auto p-4">
                 <div class="flex flex-row -mx-3">
                   <div class="flex-none w-2/3 max-w-full px-3">
                     <div>
-                      <p class="mb-0 font-sans text-base font-semibold leading-normal uppercase">Deliver Complete</p>
+                      <p class="mb-0 font-sans text-base font-semibold leading-normal uppercase cursor-default">Deliver Complete</p>
                       <h5 class="mb-2 font-bold text-2xl">
                         <?php echo $bonafide->complete_deliver(); ?>
                       </h5>
@@ -368,6 +381,9 @@ if (isset($_POST['remark']) && isset($_POST['id'])) {
                       <i class="ni leading-none ni-cart text-lg relative top-3.5 text-white"></i>
                     </div>
                   </div>
+                </div>
+                <div class="font-medium text-base text-indigo-600 w-fit flex items-center cursor-pointer" id="complete_delivery">
+                    Download Excel file
                 </div>
               </div>
             </div>

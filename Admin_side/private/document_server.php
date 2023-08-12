@@ -84,10 +84,10 @@ class Document
         return $data['COUNT(*)'];
     }
 
-    function pending_approval()
+    function pending_return_document()
     {
         $con = connect();
-        $query = "SELECT COUNT(*) FROM `document` WHERE `approve_flag` = '0' AND `verify_flag` = '1' AND `remark` = ''";
+        $query = "SELECT COUNT(*) FROM `document` WHERE `return_flag` = '0' AND `delever_flag` = '1' AND `remark` = ''";
         $result = mysqli_query($con, $query);
         $data = mysqli_fetch_assoc($result);
         return $data['COUNT(*)'];

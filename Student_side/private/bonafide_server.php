@@ -9,7 +9,6 @@ class bonafide
 
         $bona = mysqli_query($conn, $sql);
         if ($bona) {
-            # code...
             header("Location: home");
         } else {
             echo "Error: " . mysqli_error($conn);

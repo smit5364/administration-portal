@@ -5,7 +5,7 @@ class document
     function insert($enroll, $name, $fathername, $course, $sem, $mobile, $email, $purpose, $date, $document10th, $document12th, $leaving_certificate, $savefilename)
     {
         $conn = connect();
-        $sql = "INSERT INTO `document`(`enrollment_no`, `name`, `father_name`, `course`,  `semester` ,  `mobile_no` ,  `email` ,  `purpose` ,`date`,`document10th`,`document12th`,`leaving_certificate`,  `fee_recipt` , `apply_date` ) VALUES ('$enroll','$name','$fathername','$course','$sem','$mobile','$email','$purpose','$date','$document10th','$document12th','$leaving_certificate','$savefilename','curdate()')";
+        $sql = "INSERT INTO `document`(`enrollment_no`, `name`, `father_name`, `course`,  `semester` ,  `mobile_no` ,  `email` ,  `purpose` ,`date`,`document10th`,`document12th`,`leaving_certificate`,  `fee_recipt` , `apply_date` ) VALUES ('$enroll','$name','$fathername','$course','$sem','$mobile','$email','$purpose','$date','$document10th','$document12th','$leaving_certificate','$savefilename',curdate())";
 
         $bona = mysqli_query($conn, $sql);
         if ($bona) {
@@ -24,7 +24,6 @@ class document
 
         if ($student_run && mysqli_num_rows($student_run) > 0) {
             $student_row = mysqli_fetch_assoc($student_run);
-            $sem = $student_row['semester'];
             $crs = $student_row['course'];
             $name = $student_row['last_name'] . " " . $student_row['first_name'] . " " . $student_row['middle_name'];
             $fathername = $student_row['father_name'];
@@ -32,7 +31,6 @@ class document
             $mobile = $student_row['mobile'];
 
             return array(
-                'sem' => $sem,
                 'crs' => $crs,
                 'name' => $name,
                 'fathername' => $fathername,

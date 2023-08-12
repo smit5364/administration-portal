@@ -25,5 +25,20 @@
                 return $msg;
             }
         }
-    }    
+
+        function send_forget_password_mail($enroll){
+            $con = connect();
+            $query = "SELECT * FROM `student` WHERE `enrollment_no` = '$enroll'";
+            $result = mysqli_query($con,$query);
+            $data = mysqli_fetch_array($result);
+            $email = $data[8];
+            $password = $data[10];
+                
+        }    
+}
+    $signin = new Signin;
+    if(isset($_POST['enrollment'])){
+        $enroll = addslashes($_POST['enrollment']);
+        $signin->send_forget_password_mail($enroll);
+    }
 ?>

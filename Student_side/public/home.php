@@ -166,7 +166,7 @@ session_start();
                 </div>
                 <div class="grid grid-flow-col grid-col-2 pb-3 lg:pb-0 xl:pb-9">
                     <p class="text-xl font-medium pl-3 col-span-1 md:text-3xl md:pl-6 lg:text-2xl lg:pl-4">(Transcript, MOI, <br class="hidden lg:block"> LOR)</p>
-                    <a href="bonafide" class="col-span-2 flex justify-end items-end pr-4 pb-4"><button class="bg-black  flex flex-row items-center rounded-full h-fit w-fit text-white px-3 py-2 text-lg md:text-xl md:px-5 md:py-4 lg:text-lg lg:px-3 lg:py-2">Request<img src="private/images/link_arrow.svg" alt="" class="ml-2 md:h-6 lg:h-5"></button></a>
+                    <a href="abroad_study" class="col-span-2 flex justify-end items-end pr-4 pb-4"><button class="bg-black  flex flex-row items-center rounded-full h-fit w-fit text-white px-3 py-2 text-lg md:text-xl md:px-5 md:py-4 lg:text-lg lg:px-3 lg:py-2">Request<img src="private/images/link_arrow.svg" alt="" class="ml-2 md:h-6 lg:h-5"></button></a>
                 </div>
             </div>
             </div>

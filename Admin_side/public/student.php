@@ -43,6 +43,10 @@ $student = new Students;
     .swal-button {
       background-color: #4F46E5;
     }
+
+    ::-webkit-scrollbar{
+      display: none;
+    }
   </style>
 </head>
 
@@ -92,9 +96,16 @@ $student = new Students;
         </li>
         <li class="w-full">
           <a href="document"
-            class="bg-indigo-200 text-lg my-0 mx-2 flex items-center whitespace-nowrap rounded-lg px-4 py-3 font-medium text-slate-700 transition-colors">
+            class="bg-white text-lg my-0 mx-2 flex items-center whitespace-nowrap rounded-lg px-4 py-3 font-medium text-slate-700 transition-colors">
             <i class="ni ni-tv-2 text-indigo-600 mr-3"></i>
             Document
+            <div class="bg-indigo-600 ml-[6.2rem] text-white font-medium px-4 text-xl py-0 rounded-full">
+              <?php if ($_SESSION['type'] == "Head") {
+                echo pending_document_verify();
+              } else {
+                echo pending_document_approval();
+              } ?>
+            </div>
           </a>
         </li>
       </ul>
@@ -253,8 +264,8 @@ $student = new Students;
     <!-- end Navbar -->
 
     <!-- cards -->
-    <div class="w-4/5 px-6 py-8 xl:ml-80">
-      <div class="min-w-full bg-white shadow-xl rounded-2xl mt-0 py-4">
+    <div class="w-4/5 px-6 py-2 xl:ml-80">
+      <div class="min-w-full bg-white shadow-lg rounded-2xl mt-0 py-4">
         <div class="flex flex-col justify-start">
           <h1 class="text-2xl font-medium text-indigo-600 py-2 pl-3">Student Authorization</h1>
         </div>
@@ -265,7 +276,7 @@ $student = new Students;
                 <th scope="col" class="px-6 py-3">Sr.No</th>
                 <th scope="col" class="px-6 py-3">Enrollment</th>
                 <th scope="col" class="px-0 py-3">FullName</th>
-                <th scope="col" class="py-3">Course - Sem</th>
+                <th scope="col" class="py-3">Course</th>
                 <th scope="col" class="py-3">Email</th>
                 <th scope="col" class="py-3">Mobile</th>
                 <th scope="col" class="py-3">Authority</th>
@@ -289,8 +300,7 @@ $student = new Students;
                     <?php echo htmlspecialchars($row['last_name']) . ' ' . htmlspecialchars($row['first_name']) . ' ' . htmlspecialchars($row['middle_name']); ?>
                   </td>
                   <td class="whitespace-nowrap py-4">
-                    <?php echo htmlspecialchars($row['course']); ?> -
-                    <?php echo htmlspecialchars($row['semester']); ?>
+                    <?php echo htmlspecialchars($row['course']); ?>
                   </td>
                   <td class="whitespace-nowrap py-4">
                     <?php echo htmlspecialchars($row['email']); ?>
@@ -330,8 +340,6 @@ $student = new Students;
   <script>
     $(document).ready(function () {
       $('#myTable').DataTable();
-
-
     });
 
 
@@ -343,7 +351,6 @@ $student = new Students;
         type: 'POST',
         data: "&approve=" + authority_id,
         success: function (response) {
-          $('#myTable').DataTable().ajax.reload();
           swal({
             title: "Approved Authority",
             icon: "success",
