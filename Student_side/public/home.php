@@ -113,7 +113,7 @@ session_start();
             <!-- card 1 -->
             <div class=" transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-2xl rounded-xl">
                 <div class="document lg:p-3 xl:p-0 bg-white shadow-xl rounded-xl border-b-[10px] border-indigo-300" data-aos="zoom-in-up">
-                    <img src="private/images/docuements_png.png" alt="" class="bg-indigo-300 rounded-t-xl lg:object-cover w-full h-[224px] md:h-[458.66px] lg:h-[301.33px]">
+                    <img src="private/images/docuements_png.png" alt="" class="bg-indigo-300 rounded-t-xl lg:object-cover w-full h-[224px] sm:h-[390px] md:h-[458.66px] lg:h-[301.33px]">
                     <div class="grid grid-flow-col grid-cols-2">
                         <p class="text-xl md:text-3xl lg:text-2xl lg:p-4 font-medium p-3 md:p-6 col-span-1">Request For <br> Documents</p>
                         <a href="document" class="col-span-2 flex justify-end items-end pr-4 pb-4"><button class="bg-black flex flex-row items-center rounded-full h-fit w-fit text-white px-3 py-2 text-lg md:text-xl md:px-5 md:py-4 lg:px-3 lg:py-2 lg:text-lg">Request<img src="private/images/link_arrow.svg" alt="" class="ml-2 md:h-6 lg:h-5"></button></a>
@@ -138,7 +138,7 @@ session_start();
                 <img src="private/images/admission_cancel.svg" alt="" class="bg-red-400 rounded-t-xl w-full h-[224px] md:h-[458.66px] object-cover lg:h-[301.33px]">
                 <div class="grid grid-flow-col grid-cols-2 lg:pb-5 xl:pb-0">
                     <p class="text-xl font-medium p-3 col-span-1 md:text-3xl md:p-6 lg:text-2xl lg:p-4">Admission<br>Cancel</p>
-                    <a href="bonafide" class="col-span-2 flex justify-end items-end pr-4 pb-4"><button class="bg-black  flex flex-row items-center rounded-full h-fit w-fit text-white px-3 py-2 text-lg md:text-xl md:px-5 md:py-4 lg:text-lg lg:px-3 lg:py-2">Request<img src="private/images/link_arrow.svg" alt="" class="ml-2 md:h-6 lg:h-5"></button></a>
+                    <a href="admission_cancel" class="col-span-2 flex justify-end items-end pr-4 pb-4"><button class="bg-black  flex flex-row items-center rounded-full h-fit w-fit text-white px-3 py-2 text-lg md:text-xl md:px-5 md:py-4 lg:text-lg lg:px-3 lg:py-2">Request<img src="private/images/link_arrow.svg" alt="" class="ml-2 md:h-6 lg:h-5"></button></a>
                 </div>
             </div>
             </div>
@@ -151,8 +151,8 @@ session_start();
                     <p class="text-xl font-medium pl-3 pt-3 rows-span-1 md:text-3xl md:pl-6 md:pt-6 lg:text-2xl lg:pl-4 lg:pt-4">Transfer Cerificate,</p>
                 </div>
                 <div class="grid grid-flow-col grid-col-2 pb-3 lg:pb-1 2xl:pb-9">
-                    <p class="text-xl font-medium pl-3 md:text-3xl md:pl-6 col-span-1 lg:text-2xl lg:pl-4">Provisional Degree, <br class="hidden md:block xl:hidden"> Migration</p>
-                    <a href="bonafide" class="col-span-2 flex justify-end items-end pr-4 pb-4"><button class="bg-black  flex flex-row items-center rounded-full h-fit w-fit text-white px-3 py-2 text-lg md:text-xl md:px-5 md:py-4 lg:text-lg lg:px-3 lg:py-2">Request<img src="private/images/link_arrow.svg" alt="" class="ml-2 md:h-6 lg:h-5"></button></a>
+                    <p class="text-xl font-medium pl-3 md:text-3xl md:pl-6 col-span-1 lg:text-2xl lg:pl-4">Provisional Degree</p>
+                    <a href="external_study" class="col-span-2 flex justify-end items-end pr-4 pb-4"><button class="bg-black  flex flex-row items-center rounded-full h-fit w-fit text-white px-3 py-2 text-lg md:text-xl md:px-5 md:py-4 lg:text-lg lg:px-3 lg:py-2">Request<img src="private/images/link_arrow.svg" alt="" class="ml-2 md:h-6 lg:h-5"></button></a>
                 </div>
             </div>
             </div>

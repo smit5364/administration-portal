@@ -41,6 +41,7 @@
         </div>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script>
         function send_mail_of_password(){
             const enrollment = document.getElementById('enrollment').value;
@@ -51,7 +52,18 @@
                 type: 'POST',
                 data: '&enrollment=' + enrollment,
                 success: function(response){
-                    
+                    swal({
+                        title: "Send Password on Registered Email",
+                        icon: "success",
+                        buttons: true,
+                        dangerMode: true,
+                    }).then((success) => {
+                        if(success){
+                            window.open("https://mail.google.com","_blank");
+                        }else{
+                            window.location.href = "http://localhost/administration-portal/Student_side/signin";
+                        }
+                    })
                 }
             });
             }
