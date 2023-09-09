@@ -33,35 +33,35 @@ $bonafide = new Bonafide;
     </style>
 </head>
 
-<body style="font-family: 'Geologica', sans-serif;" class="bg-gray-200 w-full h-full flex justify-center items-center my-8 md:h-[95vh]">
+<body style="font-family: 'Geologica', sans-serif;" class="bg-gray-200 w-full h-full flex justify-center items-center my-8 md:h-[95vh] lg:h-[95vh] xl:h-[93vh]">
     <div class="overflow-hidden">
-        <div class="bg-indigo-200 w-fit h-fit py-8 px-5 rounded-xl md:px-8">
+        <div class="bg-indigo-200 w-fit h-fit py-8 px-5 rounded-xl md:px-8 lg:px-12">
             <div class="image flex justify-center">
-                <img src="private/images/BMCCA_logo.png" alt="" class="w-32 md:w-40">
+                <a href="home"><img src="private/images/BMCCA_logo.png" alt="" class="w-32 md:w-48 xl:w-36"></a>
             </div>
             <div class="form mt-6">
                 <form action="" method="post" id="signup_form" enctype="multipart/form-data">
                     <div class="flex flex-col sm:grid sm:grid-cols-2 sm:place-items-center
-                    gap-x-5 md:gap-x-9 md:gap-y-3 lg:grid-cols">
-                        <div class="flex flex-col justify-start w-80 sm:w-72">
-                            <label for="firstname" class="text-lg ml-1 font-medium text-gray-800 md:text-xl">First Name</label>
-                            <input type="text" name="firstname" id="firstname" placeholder="Enter Your Name" class="h-12 rounded-lg text-lg pl-2 mt-1 focus:ring-2 focus:outline-none outline-none focus:ring-offset-2 focus:ring-indigo-800 md:text-xl" required>
+                    gap-x-5 md:gap-x-9 md:gap-y-3 lg:gap-x-12 lg:gap-y-5 xl:grid-cols-3 xl:place-items-start xl:gap-y-2">
+                        <div class="flex flex-col justify-start w-80 sm:w-72 md:w-80 lg:w-96 xl:w-80">
+                            <label for="firstname" class="text-lg ml-1 font-medium text-gray-800 md:text-2xl lg:text-[27px] xl:text-xl">First Name</label>
+                            <input type="text" name="firstname" id="firstname" placeholder="Enter Your Name" class="h-12 rounded-lg text-lg pl-2 mt-1 focus:ring-2 focus:outline-none outline-none focus:ring-offset-2 focus:ring-indigo-800 md:text-2xl md:h-14 md:pl-3 lg:text-[27px] xl:text-xl xl:h-12" required>
                         </div>
-                        <div class="flex flex-col justify-start w-80 mt-3 sm:mt-0 sm:w-72">
-                            <label for="middlename" class="text-lg ml-1 font-medium text-gray-800 md:text-xl">Middle Name</label>
-                            <input type="text" name="middlename" id="middlename" placeholder="Enter Your Father Name" class="h-12 rounded-lg text-lg pl-2 mt-1 focus:ring-2 focus:outline-none outline-none focus:ring-offset-2 focus:ring-indigo-800 md:text-xl" required>
+                        <div class="flex flex-col justify-start w-80 mt-3 sm:mt-0 sm:w-72 md:w-80 lg:w-96 xl:w-80">
+                            <label for="middlename" class="text-lg ml-1 font-medium text-gray-800 md:text-2xl lg:text-[27px] xl:text-xl">Middle Name</label>
+                            <input type="text" name="middlename" id="middlename" placeholder="Enter Your Father Name" class="h-12 rounded-lg text-lg pl-2 mt-1 focus:ring-2 focus:outline-none outline-none focus:ring-offset-2 focus:ring-indigo-800 md:text-2xl md:h-14 md:pl-3 lg:text-[27px] xl:text-xl xl:h-12" required>
                         </div>
-                        <div class="flex flex-col justify-start w-80 mt-3 sm:mt-3 sm:w-72">
-                            <label for="lastname" class="text-lg ml-1 font-medium text-gray-800 md:text-xl">Last Name</label>
-                            <input type="text" name="lastname" id="lastname" placeholder="Enter Your Surname" class="h-12 rounded-lg text-lg pl-2 mt-1 focus:ring-2 focus:outline-none outline-none focus:ring-offset-2 focus:ring-indigo-800 md:text-xl" required>
+                        <div class="flex flex-col justify-start w-80 mt-3 sm:mt-3 sm:w-72 md:w-80 lg:w-96 xl:w-80 xl:mt-0">
+                            <label for="lastname" class="text-lg ml-1 font-medium text-gray-800 md:text-2xl lg:text-[27px] xl:text-xl">Last Name</label>
+                            <input type="text" name="lastname" id="lastname" placeholder="Enter Your Surname" class="h-12 rounded-lg text-lg pl-2 mt-1 focus:ring-2 focus:outline-none outline-none focus:ring-offset-2 focus:ring-indigo-800 md:text-2xl md:h-14 md:pl-3 lg:text-[27px] xl:text-xl xl:h-12" required>
                         </div>
-                        <div class="flex flex-col justify-start w-80 mt-3 sm:mt-3 sm:w-72">
-                            <label for="fathername" class="text-lg ml-1 font-medium text-gray-800 md:text-xl">Father Name</label>
-                            <input type="text" name="fathername" id="fathername" placeholder="Enter Your Father Name" class="h-12 rounded-lg text-lg pl-2 mt-1 focus:ring-2 focus:outline-none outline-none focus:ring-offset-2 focus:ring-indigo-800 md:text-xl" required>
+                        <div class="flex flex-col justify-start w-80 mt-3 sm:mt-3 sm:w-72 md:w-80 lg:w-96 xl:w-80">
+                            <label for="fathername" class="text-lg ml-1 font-medium text-gray-800 md:text-2xl lg:text-[27px] xl:text-xl">Father Name</label>
+                            <input type="text" name="fathername" id="fathername" placeholder="Enter Your Father Name" class="h-12 rounded-lg text-lg pl-2 mt-1 focus:ring-2 focus:outline-none outline-none focus:ring-offset-2 focus:ring-indigo-800 md:text-2xl md:h-14 md:pl-3 lg:text-[27px] xl:text-xl xl:h-12" required>
                         </div>
-                        <div class="flex flex-col justify-start w-80 mt-3 sm:mt-3 sm:w-72">
-                            <label for="course" class="text-lg ml-1 font-medium text-gray-800 md:text-xl">Course</label>
-                            <select required name="course" id="course" class="bg-white h-12 rounded-lg pl-2 text-lg mt-1 outline-none focus:ring-2 focus:ring-indigo-800 md:text-xl">
+                        <div class="flex flex-col justify-start w-80 mt-3 sm:mt-3 sm:w-72 md:w-80 lg:w-96 xl:w-80">
+                            <label for="course" class="text-lg ml-1 font-medium text-gray-800 md:text-2xl lg:text-[27px] xl:text-xl">Course</label>
+                            <select required name="course" id="course" class="bg-white h-12 rounded-lg pl-2 text-lg mt-1 outline-none focus:ring-2 focus:ring-indigo-800 md:text-2xl md:h-14 md:pl-3 lg:text-[27px] xl:text-xl xl:h-12">
                                 <option value="Choose Course" class="hidden">Choose Course</option>
                                 <?php
                                 $courses = $bonafide->fetch_courses_from_table();
@@ -72,34 +72,34 @@ $bonafide = new Bonafide;
                                 ?>
                             </select>
                         </div>
-                        <div class="flex flex-col justify-start w-80 mt-3 sm:mt-3 sm:w-72">
-                            <label for="enrollment" class="text-lg ml-1 font-medium text-gray-800 md:text-xl">Enrollment Number</label>
-                            <input type="text" name="enrollment" id="enrollment" placeholder="Enter Your Enrollment" class="h-12 rounded-lg text-lg pl-2 mt-1 focus:ring-2 focus:outline-none outline-none focus:ring-offset-2 focus:ring-indigo-800 md:text-xl" required>
+                        <div class="flex flex-col justify-start w-80 mt-3 sm:mt-3 sm:w-72 md:w-80 lg:w-96 xl:w-80">
+                            <label for="enrollment" class="text-lg ml-1 font-medium text-gray-800 md:text-2xl lg:text-[27px] xl:text-xl">Enrollment Number</label>
+                            <input type="text" name="enrollment" id="enrollment" placeholder="Enter Your Enrollment" class="h-12 rounded-lg text-lg pl-2 mt-1 focus:ring-2 focus:outline-none outline-none focus:ring-offset-2 focus:ring-indigo-800 md:text-2xl md:h-14 md:pl-3 lg:text-[27px] xl:text-xl xl:h-12" required>
                         </div>
 
-                        <div class="flex flex-col justify-start w-80 mt-3 sm:mt-3 sm:w-72">
-                            <label for="email" class="text-lg ml-1 font-medium text-gray-800 md:text-xl">Email</label>
-                            <input type="email" name="email" id="email" placeholder="Enter Your Email" class="h-12 rounded-lg text-lg pl-2 mt-1 focus:ring-2 focus:outline-none outline-none focus:ring-offset-2 focus:ring-indigo-800 md:text-xl" required>
+                        <div class="flex flex-col justify-start w-80 mt-3 sm:mt-3 sm:w-72 md:w-80 lg:w-96 xl:w-80">
+                            <label for="email" class="text-lg ml-1 font-medium text-gray-800 md:text-2xl lg:text-[27px] xl:text-xl">Email</label>
+                            <input type="email" name="email" id="email" placeholder="Enter Your Email" class="h-12 rounded-lg text-lg pl-2 mt-1 focus:ring-2 focus:outline-none outline-none focus:ring-offset-2 focus:ring-indigo-800 md:text-2xl md:h-14 md:pl-3 lg:text-[27px] xl:text-xl xl:h-12" required>
                         </div>
-                        <div class="flex flex-col justify-start w-80 mt-3 sm:mt-3 sm:w-72">
-                            <label for="mobile" class="text-lg ml-1 font-medium text-gray-800 md:text-xl">Mobile Number</label>
-                            <input type="text" name="mobile" id="mobile" minlength="10" maxlength="10" placeholder="Enter Your Mobile Number" class="h-12 rounded-lg text-lg pl-2 mt-1 focus:ring-2 focus:outline-none outline-none focus:ring-offset-2 focus:ring-indigo-800 md:text-xl" required>
+                        <div class="flex flex-col justify-start w-80 mt-3 sm:mt-3 sm:w-72 md:w-80 lg:w-96 xl:w-80">
+                            <label for="mobile" class="text-lg ml-1 font-medium text-gray-800 md:text-2xl lg:text-[27px] xl:text-xl">Mobile Number</label>
+                            <input type="text" name="mobile" id="mobile" minlength="10" maxlength="10" placeholder="Enter Your Mobile No" class="h-12 rounded-lg text-lg pl-2 mt-1 focus:ring-2 focus:outline-none outline-none focus:ring-offset-2 focus:ring-indigo-800 md:text-2xl md:h-14 md:pl-3 lg:text-[27px] xl:text-xl xl:h-12" required>
                         </div>
-                        <div class="flex flex-col justify-start w-80 mt-3 sm:mt-3 sm:w-72">
-                            <label for="password" class="text-lg ml-1 font-medium text-gray-800 md:text-xl">Password</label>
-                            <input type="password" name="password" id="password" placeholder="Enter Your Password" class="h-12 rounded-lg text-lg pl-2 mt-1 focus:ring-2 focus:outline-none outline-none focus:ring-offset-2 focus:ring-indigo-800 md:text-xl" required>
+                        <div class="flex flex-col justify-start w-80 mt-3 sm:mt-3 sm:w-72 md:w-80 lg:w-96 xl:w-80">
+                            <label for="password" class="text-lg ml-1 font-medium text-gray-800 md:text-2xl lg:text-[27px] xl:text-xl">Password</label>
+                            <input type="password" name="password" id="password" placeholder="Enter Your Password" class="h-12 rounded-lg text-lg pl-2 mt-1 focus:ring-2 focus:outline-none outline-none focus:ring-offset-2 focus:ring-indigo-800 md:text-2xl md:h-14 md:pl-3 lg:text-[27px] xl:text-xl xl:h-12" required>
                         </div>
-                        <div class="flex flex-col justify-start w-80 mt-3 sm:mt-3 sm:w-72">
-                            <label for="confirm_password" class="text-lg ml-1 font-medium text-gray-800 md:text-xl">Confirm Password</label>
-                            <input type="password" name="password" id="confirm_password" placeholder="Enter Your Password" class="h-12 rounded-lg text-lg pl-2 mt-1 focus:ring-2 focus:outline-none outline-none focus:ring-offset-2 focus:ring-indigo-800 md:text-xl" required>
+                        <div class="flex flex-col justify-start w-80 mt-3 sm:mt-3 sm:w-72 md:w-80 lg:w-96 xl:w-80">
+                            <label for="confirm_password" class="text-lg ml-1 font-medium text-gray-800 md:text-2xl lg:text-[27px] xl:text-xl">Confirm Password</label>
+                            <input type="password" name="password" id="confirm_password" placeholder="Enter Your Password" class="h-12 rounded-lg text-lg pl-2 mt-1 focus:ring-2 focus:outline-none outline-none focus:ring-offset-2 focus:ring-indigo-800 md:text-2xl md:h-14 md:pl-3 lg:text-[27px] xl:text-xl xl:h-12" required>
                         </div>
                     </div>
                     <div class="flex flex-col justify-start w-full mt-5 md:mt-8">
-                            <button id="signup" type="submit" class="bg-indigo-600 text-white text-lg font-medium rounded-lg px-3 py-2 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600 hover:bg-indigo-500 md:text-xl">Sign
+                            <button id="signup" type="submit" class="bg-indigo-600 text-white text-lg font-medium rounded-lg px-3 py-2 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600 hover:bg-indigo-500 md:text-2xl md:h-14 md:pl-3 lg:text-[27px] xl:text-xl xl:h-12">Sign
                                 Up</button>
                         </div>
                         <div class="flex justify-center mt-5">
-                            <div class="text-xl font-medium text-gray-700 md:text-xl">
+                            <div class="text-xl font-medium text-gray-700 md:text-2xl lg:w-96 xl:text-xl">
                                 Already you Registered?
                                 <a href="signin" class="text-indigo-600">Sign in</a>
                             </div>
