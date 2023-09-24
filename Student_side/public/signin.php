@@ -40,14 +40,14 @@ if (isset($_POST['validate'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SignIn Administration</title>
-    <link rel="icon" href="private/images/BMCCA_logo.png">
+    <link rel="icon" href="private/assets/images/BMCCA_logo.png">
     <link rel="stylesheet" href="style.css">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <script src="private/src/tailwind.js"></script>
+    <link rel="stylesheet" href="private/src/animate.min.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Geologica:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link href="private/src/font.css" rel="stylesheet">
+    <link rel="stylesheet" href="private/src/aos.css" />
     <style>
         .enrollment::-webkit-outer-spin-button,
         .enrollment::-webkit-inner-spin-button {
@@ -69,11 +69,11 @@ if (isset($_POST['validate'])) {
     </style>
 </head>
 
-<body style="font-family: 'Geologica', sans-serif;" class="bg-gray-200">
+<body style="font-family: 'Geologica', sans-serif; -webkit-tap-highlight-color: transparent;" class="bg-gray-200">
     <div class="flex items-center justify-center h-[100vh] w-full overflow-hidden">
         <div class="bg-gray-100 w-fit rounded-xl shadow-lg py-5 px-6 mx-4 sm:px-10">
             <div class="w-full flex flex-col justify-center items-center">
-                <img src="private/images/BMCCA_logo.png" alt="" class="w-32 sm:w-36 mt-3">
+                <img src="private/assets/images/BMCCA_logo.png" alt="" class="w-32 sm:w-36 mt-3">
             </div>
             <div class="grid grid-cols-1 py-4 gap-x-10">
                 <form action="" method="post">
@@ -102,8 +102,8 @@ if (isset($_POST['validate'])) {
             </div>
         </div>
     </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="private/src/jQuery.js"></script>
+    <script src="private/src/sweetalert.js"></script>
     <?php include('private/sweet_alert.php') ?>
     <script>
         function showPassword_onclick(){
