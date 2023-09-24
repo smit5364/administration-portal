@@ -66,6 +66,13 @@ if (isset($_POST['validate'])) {
     .swal-button{
         background-color: #4F46E5;
     }
+
+    input[type=password]::-ms-reveal,
+    input[type=password]::-ms-clear
+    {
+        display: none;
+    }
+
     </style>
 </head>
 
@@ -83,7 +90,7 @@ if (isset($_POST['validate'])) {
                     </div>
                     <div class="flex flex-col w-auto mt-4 sm:w-[350px]">
                         <label for="" class="text-lg mb-1 sm:text-xl sm:mb-2">Password</label>
-                        <input type="password" name="password" id="password" placeholder="Enter Your Password" class="h-12 sm:h-14 rounded-lg text-lg sm:text-xl pl-2 focus:ring-2 focus:outline-none outline-none focus:ring-offset-2 focus:ring-indigo-600 w-full appearance-none">
+                        <input type="password" name="password" id="password" placeholder="Enter Your Password" class="h-12 sm:h-14 rounded-lg text-lg sm:text-xl pl-2 focus:ring-2 focus:outline-none outline-none focus:ring-offset-2 focus:ring-indigo-600 w-full">
                     </div>
                     <div class="flex items-center w-auto mt-2 ml-1">
                         <input type="checkbox" name="showPassword" id="showPassword" class=" W-[16px] h-[16px] sm:w-[18px] sm:h-[18px] outline-none cursor-pointer" onclick="showPassword_onclick()">

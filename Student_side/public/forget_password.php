@@ -45,12 +45,11 @@
     <script>
         function send_mail_of_password(){
             const enrollment = document.getElementById('enrollment').value;
-            console.log(enrollment);
             if(enrollment != "" || enrollment != null){
                 jQuery.ajax({
                 url: 'private/signin_server.php',
                 type: 'POST',
-                data: '&enrollment=' + enrollment,
+                data: '&enrollment_forget_password=' + enrollment,
                 success: function(response){
                     swal({
                         title: "Send Password on Registered Email",
