@@ -98,13 +98,13 @@ session_start();
                         <p class="text-lg text-gray-800 md:text-2xl lg:text-lg">Login</p>
                     </div>
                 </a>
-            <?php }else{ ?>
+            <?php } else { ?>
                 <a href="signout">
                     <div class="flex justify-center px-3 py-2 md:px-6 md:py-4 lg:px-5 lg:py-3">
                         <img src="private/assets/images/power.svg" alt="" class="w-5 md:w-8 mr-2 lg:w-6">
                         <p class="text-lg text-gray-800 md:text-2xl lg:text-lg">Logout</p>
                     </div>
-                </a>    
+                </a>
             <?php } ?>
         </div>
     </div>
@@ -134,121 +134,125 @@ session_start();
 
             <!-- card 3 -->
             <div class=" transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-2xl rounded-xl">
-            <div class="admission_cancel lg:p-3 xl:p-0 bg-white shadow-xl rounded-xl mt-10 lg:mt-0 border-b-[10px] border-red-400" data-aos="zoom-in-up">
-                <img src="private/assets/images/admission_cancel.svg" alt="" class="bg-red-400 rounded-t-xl w-full h-[224px] md:h-[458.66px] object-cover lg:h-[301.33px]">
-                <div class="grid grid-flow-col grid-cols-2 lg:pb-5 xl:pb-0">
-                    <p class="text-xl font-medium p-3 col-span-1 md:text-3xl md:p-6 lg:text-2xl lg:p-4">Admission<br>Cancel</p>
-                    <a href="admission_cancel" class="col-span-2 flex justify-end items-end pr-4 pb-4"><button class="bg-black  flex flex-row items-center rounded-full h-fit w-fit text-white px-3 py-2 text-lg md:text-xl md:px-5 md:py-4 lg:text-lg lg:px-3 lg:py-2">Request<img src="private/images/link_arrow.svg" alt="" class="ml-2 md:h-6 lg:h-5"></button></a>
+                <div class="admission_cancel lg:p-3 xl:p-0 bg-white shadow-xl rounded-xl mt-10 lg:mt-0 border-b-[10px] border-red-400" data-aos="zoom-in-up">
+                    <img src="private/assets/images/admission_cancel.svg" alt="" class="bg-red-400 rounded-t-xl w-full h-[224px] md:h-[458.66px] object-cover lg:h-[301.33px]">
+                    <div class="grid grid-flow-col grid-cols-2 lg:pb-5 xl:pb-0">
+                        <p class="text-xl font-medium p-3 col-span-1 md:text-3xl md:p-6 lg:text-2xl lg:p-4">Admission<br>Cancel</p>
+                        <a href="admission_cancel" class="col-span-2 flex justify-end items-end pr-4 pb-4"><button class="bg-black  flex flex-row items-center rounded-full h-fit w-fit text-white px-3 py-2 text-lg md:text-xl md:px-5 md:py-4 lg:text-lg lg:px-3 lg:py-2">Request<img src="private/images/link_arrow.svg" alt="" class="ml-2 md:h-6 lg:h-5"></button></a>
+                    </div>
                 </div>
-            </div>
             </div>
 
             <!-- card 4 -->
             <div class=" transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-2xl rounded-xl">
-            <div class="tc_mig_pd lg:p-3 xl:p-0 bg-white shadow-xl rounded-xl mt-10 lg:mt-0 border-b-[10px] border-green-400" data-aos="zoom-in-up">
-                <img src="private/assets/images/tc_mg_pd.svg" alt="" class="bg-green-400 rounded-t-xl w-full h-[224px] object-cover md:h-[458.66px] lg:h-[301.33px]">
-                <div class="grid grid-flow-col grid-rows-1">
+                <div class="tc_mig_pd lg:p-3 xl:p-0 bg-white shadow-xl rounded-xl mt-10 lg:mt-0 border-b-[10px] border-green-400" data-aos="zoom-in-up">
+                    <img src="private/assets/images/tc_mg_pd.svg" alt="" class="bg-green-400 rounded-t-xl w-full h-[224px] object-cover md:h-[458.66px] lg:h-[301.33px]">
+                    <!-- <div class="grid grid-flow-col grid-rows-1">
                     <p class="text-xl font-medium pl-3 pt-3 rows-span-1 md:text-3xl md:pl-6 md:pt-6 lg:text-2xl lg:pl-4 lg:pt-4">Transfer Cerificate,</p>
-                </div>
-                <div class="grid grid-flow-col grid-col-2 pb-3 lg:pb-1 2xl:pb-10">
-                    <p class="text-xl font-medium pl-3 md:text-3xl md:pl-6 col-span-1 lg:text-2xl lg:pl-4">Provisional Degree</p>
+                </div> -->
+                    <!-- <div class="grid grid-flow-col grid-col-2 pb-3 lg:pb-1 2xl:pb-10">
+                    <p class="text-xl font-medium pl-3 md:text-3xl md:pl-6 col-span-1 lg:text-2xl lg:pl-4">Transfer Certificate, <br> Provisional Degree</p>
                     <a href="external_study" class="col-span-2 flex justify-end items-end pr-4 pb-4"><button class="bg-black  flex flex-row items-center rounded-full h-fit w-fit text-white px-3 py-2 text-lg md:text-xl md:px-5 md:py-4 lg:text-lg lg:px-3 lg:py-2">Request<img src="private/images/link_arrow.svg" alt="" class="ml-2 md:h-6 lg:h-5"></button></a>
+                </div> -->
+                    <div class="grid grid-flow-col grid-cols-2">
+                        <p class="text-xl md:text-3xl font-medium p-3 md:p-6 col-span-1 lg:text-2xl lg:p-4">Transfer Certificate <br>Provisional Degree</p>
+                        <a href="bonafide" class="col-span-2 flex justify-end items-end pr-4 pb-4"><button class="bg-black  flex flex-row items-center rounded-full h-fit w-fit text-white px-3 py-2 text-lg md:text-xl md:px-5 md:py-4 lg:text-lg lg:px-3 lg:py-2">Request<img src="private/images/link_arrow.svg" alt="" class="ml-2 md:h-6 lg:h-5"></button></a>
+                    </div>
                 </div>
-            </div>
             </div>
 
             <!-- card 5 -->
             <div class=" transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-2xl rounded-xl">
-            <div class="abroad_study lg:p-3 xl:p-0 bg-white shadow-xl rounded-xl mt-10  lg:mt-0 border-b-[10px] border-orange-400" data-aos="zoom-in-up">
-                <img src="private/assets/images/abroad_Study.svg" alt="" class="bg-orange-400 rounded-t-xl w-full h-[224px] object-cover md:h-[458.66px] lg:h-[301.33px]">
-                <div class="grid grid-flow-col grid-rows-1">
-                    <p class="text-xl font-medium pl-3 pt-3 rows-span-1 md:text-3xl md:pl-6 md:pt-6 lg:text-2xl lg:pl-4 lg:pt-4">Abroad Study</p>
+                <div class="abroad_study lg:p-3 xl:p-0 bg-white shadow-xl rounded-xl mt-10  lg:mt-0 border-b-[10px] border-orange-400" data-aos="zoom-in-up">
+                    <img src="private/assets/images/abroad_Study.svg" alt="" class="bg-orange-400 rounded-t-xl w-full h-[224px] object-cover md:h-[458.66px] lg:h-[301.33px]">
+                    <div class="grid grid-flow-col grid-rows-1">
+                        <p class="text-xl font-medium pl-3 pt-3 rows-span-1 md:text-3xl md:pl-6 md:pt-6 lg:text-2xl lg:pl-4 lg:pt-4">Abroad Study</p>
+                    </div>
+                    <div class="grid grid-flow-col grid-col-2 pb-3 lg:pb-0 xl:pb-9">
+                        <p class="text-xl font-medium pl-3 col-span-1 md:text-3xl md:pl-6 lg:text-2xl lg:pl-4">(Transcript, LOR)</p>
+                        <a href="abroad_study" class="col-span-2 flex justify-end items-end pr-4 pb-4"><button class="bg-black  flex flex-row items-center rounded-full h-fit w-fit text-white px-3 py-2 text-lg md:text-xl md:px-5 md:py-4 lg:text-lg lg:px-3 lg:py-2">Request<img src="private/images/link_arrow.svg" alt="" class="ml-2 md:h-6 lg:h-5"></button></a>
+                    </div>
                 </div>
-                <div class="grid grid-flow-col grid-col-2 pb-3 lg:pb-0 xl:pb-9">
-                    <p class="text-xl font-medium pl-3 col-span-1 md:text-3xl md:pl-6 lg:text-2xl lg:pl-4">(Transcript, LOR)</p>
-                    <a href="abroad_study" class="col-span-2 flex justify-end items-end pr-4 pb-4"><button class="bg-black  flex flex-row items-center rounded-full h-fit w-fit text-white px-3 py-2 text-lg md:text-xl md:px-5 md:py-4 lg:text-lg lg:px-3 lg:py-2">Request<img src="private/images/link_arrow.svg" alt="" class="ml-2 md:h-6 lg:h-5"></button></a>
-                </div>
-            </div>
             </div>
 
             <!-- card 6 -->
             <div class=" transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-2xl rounded-xl">
-            <div class="classroom lg:p-3 xl:p-0 bg-white shadow-xl rounded-xl mt-10 lg:mt-0 border-b-[10px] border-teal-400" data-aos="zoom-in-up">
-                <img src="private/assets/images/my_class.svg" alt="" class="bg-teal-400 rounded-t-xl w-full h-[224px] object-cover md:h-[458.66px] lg:h-[301.33px]">
-                <div class="grid grid-flow-col grid-cols-2 lg:pb-4 xl:pb-[3.25rem]">
-                    <p class="text-xl font-medium p-3 col-span-1 md:text-3xl md:p-6 lg:text-2xl lg:p-4">Find My <br class="hidden md:block"> Classroom</p>
-                    <a href="document" class="col-span-2 flex justify-end items-end pr-4 pb-4"><button class="bg-black  flex flex-row items-center rounded-full h-fit w-fit text-white px-3 py-2 text-lg md:text-xl md:px-5 md:py-4 lg:text-lg lg:px-3 lg:py-2">Find<img src="private/images/link_arrow.svg" alt="" class="ml-2 md:h-6 lg:h-5"></button></a>
+                <div class="classroom lg:p-3 xl:p-0 bg-white shadow-xl rounded-xl mt-10 lg:mt-0 border-b-[10px] border-teal-400" data-aos="zoom-in-up">
+                    <img src="private/assets/images/my_class.svg" alt="" class="bg-teal-400 rounded-t-xl w-full h-[224px] object-cover md:h-[458.66px] lg:h-[301.33px]">
+                    <div class="grid grid-flow-col grid-cols-2 lg:pb-4 xl:pb-[3.25rem]">
+                        <p class="text-xl font-medium p-3 col-span-1 md:text-3xl md:p-6 lg:text-2xl lg:p-4">Find My <br class="hidden md:block"> Classroom</p>
+                        <a href="document" class="col-span-2 flex justify-end items-end pr-4 pb-4"><button class="bg-black  flex flex-row items-center rounded-full h-fit w-fit text-white px-3 py-2 text-lg md:text-xl md:px-5 md:py-4 lg:text-lg lg:px-3 lg:py-2">Find<img src="private/images/link_arrow.svg" alt="" class="ml-2 md:h-6 lg:h-5"></button></a>
+                    </div>
                 </div>
-            </div>
             </div>
 
             <!-- card 7 -->
             <div class=" transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-2xl rounded-xl">
-            <div class="hall_ticket lg:p-3 xl:p-0 bg-white shadow-xl rounded-xl mt-10 lg:mt-0 border-b-[10px] border-yellow-300" data-aos="zoom-in-up">
-                <img src="private/assets/images/hall_ticket.svg" alt="" class="bg-yellow-300 rounded-t-xl w-full h-[224px] object-cover md:h-[458.66px] lg:h-[301.33px]">
-                <div class="grid grid-flow-col grid-cols-2">
-                    <p class="text-xl font-medium p-3 col-span-1 md:text-3xl md:p-6 lg:text-2xl lg:p-4">Find My <br> Hall Ticket</p>
-                    <a href="document" class="col-span-2 flex justify-end items-end pr-4 pb-4"><button class="bg-black  flex flex-row items-center rounded-full h-fit w-fit text-white px-3 py-2 text-lg md:text-xl md:px-5 md:py-4 lg:text-lg lg:px-3 lg:py-2">Find<img src="private/images/link_arrow.svg" alt="" class="ml-2 md:h-6 lg:h-5"></button></a>
+                <div class="hall_ticket lg:p-3 xl:p-0 bg-white shadow-xl rounded-xl mt-10 lg:mt-0 border-b-[10px] border-yellow-300" data-aos="zoom-in-up">
+                    <img src="private/assets/images/hall_ticket.svg" alt="" class="bg-yellow-300 rounded-t-xl w-full h-[224px] object-cover md:h-[458.66px] lg:h-[301.33px]">
+                    <div class="grid grid-flow-col grid-cols-2">
+                        <p class="text-xl font-medium p-3 col-span-1 md:text-3xl md:p-6 lg:text-2xl lg:p-4">Find My <br> Hall Ticket</p>
+                        <a href="document" class="col-span-2 flex justify-end items-end pr-4 pb-4"><button class="bg-black  flex flex-row items-center rounded-full h-fit w-fit text-white px-3 py-2 text-lg md:text-xl md:px-5 md:py-4 lg:text-lg lg:px-3 lg:py-2">Find<img src="private/images/link_arrow.svg" alt="" class="ml-2 md:h-6 lg:h-5"></button></a>
+                    </div>
                 </div>
-            </div>
             </div>
 
             <!-- card 8 -->
             <div class=" transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-2xl rounded-xl">
-            <div class="exam_block lg:p-3 xl:p-0 bg-white shadow-xl rounded-xl mt-10 lg:mt-0 border-b-[10px] border-gray-400" data-aos="zoom-in-up">
-                <img src="private/assets/images/exam_hall.svg" alt="" class="bg-gray-400 rounded-t-xl w-full h-[224px] md:h-[458.66px] lg:h-[301.33px]">
-                <div class="grid grid-flow-col grid-cols-2">
-                    <p class="text-xl font-medium p-3 col-span-1 md:text-3xl md:p-6 lg:text-2xl lg:p-4">Find My <br>Exam Hall</p>
-                    <a href="document" class="col-span-2 flex justify-end items-end pr-4 pb-4"><button class="bg-black  flex flex-row items-center rounded-full h-fit w-fit text-white px-3 py-2 text-lg md:text-xl md:px-5 md:py-4 lg:text-xl lg:px-3 lg:py-2">Find<img src="private/images/link_arrow.svg" alt="" class="ml-2 md:h-6 lg:h-5"></button></a>
+                <div class="exam_block lg:p-3 xl:p-0 bg-white shadow-xl rounded-xl mt-10 lg:mt-0 border-b-[10px] border-gray-400" data-aos="zoom-in-up">
+                    <img src="private/assets/images/exam_hall.svg" alt="" class="bg-gray-400 rounded-t-xl w-full h-[224px] md:h-[458.66px] lg:h-[301.33px]">
+                    <div class="grid grid-flow-col grid-cols-2">
+                        <p class="text-xl font-medium p-3 col-span-1 md:text-3xl md:p-6 lg:text-2xl lg:p-4">Find My <br>Exam Hall</p>
+                        <a href="document" class="col-span-2 flex justify-end items-end pr-4 pb-4"><button class="bg-black  flex flex-row items-center rounded-full h-fit w-fit text-white px-3 py-2 text-lg md:text-xl md:px-5 md:py-4 lg:text-xl lg:px-3 lg:py-2">Find<img src="private/images/link_arrow.svg" alt="" class="ml-2 md:h-6 lg:h-5"></button></a>
+                    </div>
                 </div>
-            </div>
             </div>
 
             <!-- card 9 -->
             <div class=" transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-2xl rounded-xl">
-            <div class="timetable lg:p-3 xl:p-0 bg-white shadow-xl rounded-xl mt-10 lg:mt-0 border-b-[10px] border-purple-300" data-aos="zoom-in-up">
-                <img src="private/assets/images/timetable.svg" alt="" class="bg-purple-300 rounded-t-xl w-full h-[224px] object-cover object-center md:object-none md:h-[458.66px] lg:h-[301.33px]">
-                <div class="grid grid-flow-col grid-cols-2">
-                    <p class="text-xl font-medium p-3 col-span-1 md:text-3xl md:p-6 lg:text-2xl lg:p-4">Find My <br>Time Table</p>
-                    <a href="document" class="col-span-2 flex justify-end items-end pr-4 pb-4"><button class="bg-black  flex flex-row items-center rounded-full h-fit w-fit text-white px-3 py-2 text-lg md:text-xl md:px-5 md:py-4 lg:text-lg lg:px-3 lg:py-2">Find<img src="private/images/link_arrow.svg" alt="" class="ml-2 md:h-6 lg:h-5"></button></a>
+                <div class="timetable lg:p-3 xl:p-0 bg-white shadow-xl rounded-xl mt-10 lg:mt-0 border-b-[10px] border-purple-300" data-aos="zoom-in-up">
+                    <img src="private/assets/images/timetable.svg" alt="" class="bg-purple-300 rounded-t-xl w-full h-[224px] object-cover object-center md:object-none md:h-[458.66px] lg:h-[301.33px]">
+                    <div class="grid grid-flow-col grid-cols-2">
+                        <p class="text-xl font-medium p-3 col-span-1 md:text-3xl md:p-6 lg:text-2xl lg:p-4">Find My <br>Time Table</p>
+                        <a href="document" class="col-span-2 flex justify-end items-end pr-4 pb-4"><button class="bg-black  flex flex-row items-center rounded-full h-fit w-fit text-white px-3 py-2 text-lg md:text-xl md:px-5 md:py-4 lg:text-lg lg:px-3 lg:py-2">Find<img src="private/images/link_arrow.svg" alt="" class="ml-2 md:h-6 lg:h-5"></button></a>
+                    </div>
                 </div>
-            </div>
             </div>
 
             <!-- card 10 -->
             <div class=" transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-2xl rounded-xl">
-            <div class="id_card lg:p-3 xl:p-0 bg-white shadow-xl rounded-xl mt-10 lg:mt-0 border-b-[10px] border-orange-500" data-aos="zoom-in-up">
-                <img src="private/assets/images/ID_Card.svg" alt="" class="bg-orange-500 rounded-t-xl w-full h-[224px] object-cover object-top md:object-cover md:h-[458.66px] lg:h-[301.33px]">
-                <div class="grid grid-flow-col grid-cols-2 xl:pb-7">
-                    <p class="text-xl font-medium p-3 col-span-1 md:text-3xl md:p-6 lg:text-2xl lg:p-4">Request For<br>ID Card</p>
-                    <a href="document" class="col-span-2 flex justify-end items-end pr-4 pb-4"><button class="bg-black  flex flex-row items-center rounded-full h-fit w-fit text-white px-3 py-2 text-lg md:text-xl md:px-5 md:py-4 lg:text-lg lg:px-3 lg:py-2">Request<img src="private/images/link_arrow.svg" alt="" class="ml-2 md:h-6 lg:h-5"></button></a>
+                <div class="id_card lg:p-3 xl:p-0 bg-white shadow-xl rounded-xl mt-10 lg:mt-0 border-b-[10px] border-orange-500" data-aos="zoom-in-up">
+                    <img src="private/assets/images/ID_Card.svg" alt="" class="bg-orange-500 rounded-t-xl w-full h-[224px] object-cover object-top md:object-cover md:h-[458.66px] lg:h-[301.33px]">
+                    <div class="grid grid-flow-col grid-cols-2 xl:pb-7">
+                        <p class="text-xl font-medium p-3 col-span-1 md:text-3xl md:p-6 lg:text-2xl lg:p-4">Request For<br>ID Card</p>
+                        <a href="document" class="col-span-2 flex justify-end items-end pr-4 pb-4"><button class="bg-black  flex flex-row items-center rounded-full h-fit w-fit text-white px-3 py-2 text-lg md:text-xl md:px-5 md:py-4 lg:text-lg lg:px-3 lg:py-2">Request<img src="private/images/link_arrow.svg" alt="" class="ml-2 md:h-6 lg:h-5"></button></a>
+                    </div>
                 </div>
-            </div>
             </div>
 
             <!-- card 11 -->
             <div class=" transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-2xl rounded-xl">
-            <div class="uniform lg:p-3 xl:p-0 bg-white shadow-xl rounded-xl mt-10 lg:mt-0 border-b-[10px] border-[#FFD684]" data-aos="zoom-in-up">
-                <img src="private/assets/images/uniform.svg" alt="" class="bg-[#FFD684] rounded-t-xl w-full h-[224px] object-cover object-top md:h-[458.66px] lg:h-[301.33px]">
-                <div class="grid grid-flow-col grid-cols-2 lg:pb-7">
-                    <p class="text-xl font-medium p-3 col-span-1 md:text-3xl md:p-6 lg:text-2xl lg:p-4">Request For<br>Uniform</p>
-                    <a href="document" class="col-span-2 flex justify-end items-end pr-4 pb-4"><button class="bg-black  flex flex-row items-center rounded-full h-fit w-fit text-white px-3 py-2 text-lg md:text-xl md:px-5 md:py-4 lg:text-lg lg:px-3 lg:py-2">Request<img src="private/images/link_arrow.svg" alt="" class="ml-2 md:h-6 lg:h-5"></button></a>
+                <div class="uniform lg:p-3 xl:p-0 bg-white shadow-xl rounded-xl mt-10 lg:mt-0 border-b-[10px] border-[#FFD684]" data-aos="zoom-in-up">
+                    <img src="private/assets/images/uniform.svg" alt="" class="bg-[#FFD684] rounded-t-xl w-full h-[224px] object-cover object-top md:h-[458.66px] lg:h-[301.33px]">
+                    <div class="grid grid-flow-col grid-cols-2 lg:pb-7">
+                        <p class="text-xl font-medium p-3 col-span-1 md:text-3xl md:p-6 lg:text-2xl lg:p-4">Request For<br>Uniform</p>
+                        <a href="document" class="col-span-2 flex justify-end items-end pr-4 pb-4"><button class="bg-black  flex flex-row items-center rounded-full h-fit w-fit text-white px-3 py-2 text-lg md:text-xl md:px-5 md:py-4 lg:text-lg lg:px-3 lg:py-2">Request<img src="private/images/link_arrow.svg" alt="" class="ml-2 md:h-6 lg:h-5"></button></a>
+                    </div>
                 </div>
-            </div>
             </div>
 
             <!-- card 12 -->
             <div class=" transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-2xl rounded-xl">
                 <div class="add_in_group lg:p-3 xl:p-0 bg-white shadow-xl rounded-xl mt-10 lg:mt-0 border-b-[10px] border-cyan-300" data-aos="zoom-in-up">
-                <img src="private/assets/images/add_in_group.svg" alt="" class="bg-cyan-300 rounded-t-xl w-full h-[224px] object-cover md:h-[458.66px] lg:h-[301.33px]">
-                <div class="grid grid-flow-col grid-rows-1">
-                    <p class="text-xl font-medium pl-3 pt-3 rows-span-1 md:text-3xl md:pl-6 md:pt-6 lg:text-2xl lg:pl-4 lg:pt-4">Request For Change</p>
+                    <img src="private/assets/images/add_in_group.svg" alt="" class="bg-cyan-300 rounded-t-xl w-full h-[224px] object-cover md:h-[458.66px] lg:h-[301.33px]">
+                    <div class="grid grid-flow-col grid-rows-1">
+                        <p class="text-xl font-medium pl-3 pt-3 rows-span-1 md:text-3xl md:pl-6 md:pt-6 lg:text-2xl lg:pl-4 lg:pt-4">Request For Change</p>
+                    </div>
+                    <div class="grid grid-flow-col grid-col-2 pb-3">
+                        <p class="text-xl font-medium pl-3 col-span-1 md:text-3xl md:pl-6 lg:pl-4 lg:text-2xl">Contact No,<br class="hidden lg:block"> Add in group</p>
+                        <a href="bonafide" class="col-span-2 flex justify-end items-end pr-4 pb-4"><button class="bg-black  flex flex-row items-center rounded-full h-fit w-fit text-white px-3 py-2 text-lg md:text-xl md:px-5 md:py-4 lg:text-lg lg:px-3 lg:py-2">Request<img src="private/images/link_arrow.svg" alt="" class="ml-2 md:h-6 lg:h-5"></button></a>
+                    </div>
                 </div>
-                <div class="grid grid-flow-col grid-col-2 pb-3">
-                    <p class="text-xl font-medium pl-3 col-span-1 md:text-3xl md:pl-6 lg:pl-4 lg:text-2xl">Contact No,<br class="hidden lg:block"> Add in group</p>
-                    <a href="bonafide" class="col-span-2 flex justify-end items-end pr-4 pb-4"><button class="bg-black  flex flex-row items-center rounded-full h-fit w-fit text-white px-3 py-2 text-lg md:text-xl md:px-5 md:py-4 lg:text-lg lg:px-3 lg:py-2">Request<img src="private/images/link_arrow.svg" alt="" class="ml-2 md:h-6 lg:h-5"></button></a>
-                </div>
-            </div>
             </div>
         </div>
     </div>
