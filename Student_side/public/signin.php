@@ -42,7 +42,6 @@ if (isset($_POST['validate'])) {
     <title>SignIn Administration</title>
     <link rel="icon" href="private/assets/images/BMCCA_logo.png">
     <link rel="stylesheet" href="style.css">
-    <script src="private/src/tailwind.js"></script>
     <link rel="stylesheet" href="private/src/animate.min.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

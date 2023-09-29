@@ -50,7 +50,7 @@ if (isset($_POST['insert'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bonafide Certificate</title>
-    <link rel="icon" href="private/images/fav.png">
+    <link rel="icon" href="private/assets/images/BMCCA_logo.png">
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

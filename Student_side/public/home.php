@@ -11,9 +11,8 @@ session_start();
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Administration</title>
-    <link rel="icon" href="private/images/BMCCA_logo.png">
-    <link rel="stylesheet" href="input.css">
-    <script src="private/src/tailwind.js"></script>
+    <link rel="icon" href="private/assets/images/BMCCA_logo.png">
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="private/src/animate.min.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -155,7 +154,7 @@ session_start();
                     <a href="external_study" class="col-span-2 flex justify-end items-end pr-4 pb-4"><button class="bg-black  flex flex-row items-center rounded-full h-fit w-fit text-white px-3 py-2 text-lg md:text-xl md:px-5 md:py-4 lg:text-lg lg:px-3 lg:py-2">Request<img src="private/images/link_arrow.svg" alt="" class="ml-2 md:h-6 lg:h-5"></button></a>
                 </div> -->
                     <div class="grid grid-flow-col grid-cols-2">
-                        <p class="text-xl md:text-3xl font-medium p-3 md:p-6 col-span-1 lg:text-2xl lg:p-4">Transfer Certificate <br>Provisional Degree</p>
+                        <p class="text-xl col-span-1 md:text-3xl font-medium p-3 md:p-6 lg:text-2xl lg:p-4">Transfer & <br> Provisional Certificate</p>
                         <a href="bonafide" class="col-span-2 flex justify-end items-end pr-4 pb-4"><button class="bg-black  flex flex-row items-center rounded-full h-fit w-fit text-white px-3 py-2 text-lg md:text-xl md:px-5 md:py-4 lg:text-lg lg:px-3 lg:py-2">Request<img src="private/images/link_arrow.svg" alt="" class="ml-2 md:h-6 lg:h-5"></button></a>
                     </div>
                 </div>
