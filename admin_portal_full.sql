@@ -85,7 +85,7 @@ CREATE TABLE IF NOT EXISTS `admission_cancel` (
   `mobile_no` varchar(500) NOT NULL,
   `email` varchar(500) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `admission_cancel`
@@ -120,7 +120,7 @@ CREATE TABLE IF NOT EXISTS `bonafide` (
   `mobile_no` varchar(500) NOT NULL,
   `email` varchar(500) NOT NULL,
   `purpose` varchar(500) NOT NULL,
-  `fee_recipt` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `fee_recipt` varchar(500) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
   `remark` varchar(500) NOT NULL,
   `status` varchar(500) NOT NULL,
   `verify_flag` tinyint(1) NOT NULL DEFAULT '0',
@@ -132,7 +132,7 @@ CREATE TABLE IF NOT EXISTS `bonafide` (
   `apply_date` date NOT NULL,
   `pickup_date` date NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `bonafide`
@@ -199,7 +199,7 @@ CREATE TABLE IF NOT EXISTS `document` (
   `document10th` tinyint(1) NOT NULL DEFAULT '0',
   `document12th` tinyint(1) NOT NULL DEFAULT '0',
   `leaving_certificate` tinyint(1) NOT NULL DEFAULT '0',
-  `fee_recipt` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `fee_recipt` varchar(500) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
   `remark` varchar(500) NOT NULL,
   `status` varchar(500) NOT NULL,
   `verify_flag` tinyint(1) NOT NULL DEFAULT '0',
@@ -211,7 +211,7 @@ CREATE TABLE IF NOT EXISTS `document` (
   `pickup_date` date NOT NULL,
   `apply_date` date NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `document`
@@ -240,7 +240,7 @@ CREATE TABLE IF NOT EXISTS `student` (
   `password` varchar(500) NOT NULL,
   `Authority` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=15 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `student`

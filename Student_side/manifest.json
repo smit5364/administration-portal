@@ -1,0 +1,59 @@
+{
+    "name": "BMCCA Administration",
+    "short_name": "BMCCA",
+    "start_url": "/administration-portal/Student_side/",
+    "display": "standalone",
+    "background_color": "#FFFFFF",
+    "theme_color": "#FFE1C4",
+    "orientation": "portrait-primary",
+    "icons": [
+        {
+            "src": "/administration-portal/Student_side/Assets/images/BMCCA_logo_72x72.png",
+            "type": "image/png",
+            "sizes": "72x72",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "/administration-portal/Student_side/Assets/images/BMCCA_logo_96x96.png",
+            "type": "image/png",
+            "sizes": "96x96",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "/administration-portal/Student_side/Assets/images/BMCCA_logo_128x128.png",
+            "type": "image/png",
+            "sizes": "128x128",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "/administration-portal/Student_side/Assets/images/BMCCA_logo_144x144.png",
+            "type": "image/png",
+            "sizes": "144x144",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "/administration-portal/Student_side/Assets/images/BMCCA_logo_152x152.png",
+            "type": "image/png",
+            "sizes": "152x152",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "/administration-portal/Student_side/Assets/images/BMCCA_logo_192x192.png",
+            "type": "image/png",
+            "sizes": "192x192",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "/administration-portal/Student_side/Assets/images/BMCCA_logo_384x384.png",
+            "type": "image/png",
+            "sizes": "384x384",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "/administration-portal/Student_side/Assets/images/BMCCA_logo_512x512.png",
+            "type": "image/png",
+            "sizes": "512x512",
+            "purpose": "any maskable"
+        }
+    ]
+}
